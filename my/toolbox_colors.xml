@@ -1,0 +1,14 @@
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+  <category name="PA Characteristics" colour="#5b80a5">
+    <block type="places"></block>
+    <block type="home"></block>
+    <block type="office"></block>
+    <block type="school"></block>
+    <block type="otherplace">
+      <field name="OtherPlace">Other place</field>
+    </block>
+  </category>
+  <category name="forcolor" colour="#745ba5"></category>
+  <category name="color2" colour="#5ba58c"></category>
+  <category name="color3" colour="#9fa55b"></category>
+</xml>

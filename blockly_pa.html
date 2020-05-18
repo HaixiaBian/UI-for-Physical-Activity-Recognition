@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+</style>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="blockly/blockly_compressed.js"></script>
+	<script src="blockly/blocks_compressed.js"></script>
+	<script src="blockly/msg/js/en.js"></script>
+	<script src="my/blocks.js"></script>
+
+  <script src="blockly/demos/blockfactory/analytics.js"></script>
+  <script src="blockly/javascript_compressed.js"></script>
+
+  <script src="blockly/demos/blockfactory/block_definition_extractor.js"></script>
+  <script src="blockly/demos/blockfactory/factory_utils.js"></script>
+  <script src="blockly/demos/blockfactory/workspacefactory/wfactory_model.js"></script>
+  <script src="blockly/demos/blockfactory/standard_categories.js"></script>
+  <script src="blockly/demos/blockfactory/cp.js"></script>
+  <script src="blockly/demos/blockfactory/workspacefactory/wfactory_controller.js"></script>
+  <script src="blockly/demos/blockfactory/workspacefactory/wfactory_view.js"></script>
+  <script src="blockly/demos/blockfactory/workspacefactory/wfactory_generator.js"></script>
+  <script src="blockly/demos/blockfactory/workspacefactory/wfactory_init.js"></script>
+  <script src="blockly/demos/blockfactory/block_option.js"></script>
+  <script src="blockly/demos/blockfactory/factory.js"></script>
+  <script src="blockly/demos/blockfactory/block_library_view.js"></script>
+  <script src="blockly/demos/blockfactory/block_library_storage.js"></script>
+  <script src="blockly/demos/blockfactory/block_library_controller.js"></script>
+  <script src="blockly/demos/blockfactory/block_exporter_tools.js"></script>
+  <script src="blockly/demos/blockfactory/block_exporter_view.js"></script>
+  <script src="blockly/demos/blockfactory/block_exporter_controller.js"></script>
+  <script src="blockly/demos/blockfactory/blocks.js"></script>
+  <script src="blockly/demos/blockfactory/app_controller.js"></script>
+  <!-- <script src="/storage.js"></script> -->
+  <link rel="blockly/demos/blockfactory/stylesheet" href="factory.css">
+  <link rel="blockly/demos/blockfactory/stylesheet" href="cp.css">
+
+</head>
+
+<body>
+
+
+<!-- Blockly Factory Tab -->
+<table id="blockFactoryContent">
+	<tr width="100%" height="10%">
+		<td width="50%" height="5%">
+			<table>
+				<tr id="blockLibrary">
+					<td id="blockLibraryContainer">
+            <span>
+              <div class="dropdown">
+                <button id="button_blockLib">PA Library</button>
+                <div id="dropdownDiv_blockLib" class="dropdown-content">
+                  <a id="createNewBlockButton">Create New Block</a>
+                </div>
+              </div>
+              <select id="blockLibraryDropdown" style="display:none">
+              </select>
+            </span>
+					</td>
+					<td id="blockLibraryControls">
+						<button id="saveToBlockLibraryButton" title="Save block to Block Library.">
+							Save "block_type"
+						</button>
+						<button id="removeBlockFromLibraryButton" title="Remove block from Block Library.">
+							Delete "block_type"
+						</button>
+					</td>
+				</tr>
+			</table>
+		</td>
+    </tr>
+</table>
+
+
+<div id="blocklyDiv" style="height: 480px; width: 1024px;"></div>
+	<xml id="toolbox" style="display: none">
+        <category name="New activity" colour=330>
+			<block type="activity"></block>
+			<block type="multiple_activity"></block>
+			<!-- <block type="turtle_basic"></block> -->
+
+		</category>
+        <category name="My places" colour=0>
+			<block type="pa_in_place"></block>
+			<block type="home"></block>
+			<block type="school"></block>
+			<block type="office"></block>
+		</category>
+		<category name="Time of the day" colour=30>
+			<block type="pa_at_time"></block>
+			<block type="time"></block>
+		</category>
+		<category name="Day of the week" colour=60>
+			<block type="pa_on_day"></block>
+			<block type="day"></block>
+		</category>
+		<category name="Duration" colour=90>
+			<block type="pa_last_for"></block>
+			<block type="duration"></block>
+			<!-- <block type="duration_sim"></block> -->
+			<block type="duration_act"></block>
+		</category>
+		<category name="Breathing rate" colour=120>
+			<block type="pa_br"></block>
+			<!-- <block type="br_gt"></block>
+			<block type="br_lt"></block>
+			<block type="br_sim"></block>
+			<block type="br_normal"></block> -->
+			<block type="br_act"></block>
+		</category>
+		<category name="External objects" colour=150>
+			<block type="pa_object"></block>
+			<block type="ex_object_iron"></block>
+			<block type="ex_object_bike"></block>
+			<block type="ex_object_fryingpan"></block>
+			<block type="ex_object_stove"></block>
+		</category>
+		<category name="Body parts" colour=180>
+			<block type="pa_body"></block>
+			<block type="left_ankle"></block>
+			<block type="right_ankle"></block>
+			<block type="left_thigh"></block>
+			<block type="right_thigh"></block>
+			<block type="left_wrist"></block>			
+			<block type="right_wrist"></block>
+		</category>
+		<category name="Combinations" colour=210>
+			<block type="op_and"></block>
+			<block type="op_or"></block>
+			<block type="op_not"></block>
+		</category>
+		<category name="Comparisons" colour=240>
+			<!-- <block type="as_similar_to"></block>
+			<block type="as_different_from"></block>
+			<block type="as_greater_than"></block>
+			<block type="as_lower_than"></block> -->
+
+			<block type="br_gt"></block>
+			<block type="br_lt"></block>
+			<block type="br_sim"></block>
+
+		</category>
+		<category name="Order in time" colour=270>
+			<block type="temporal_before"></block>
+			<block type="temporal_meets"></block>
+			<block type="temporal_overlaps"></block>
+			<block type="temporal_starts"></block>
+			<block type="temporal_during"></block>
+			<block type="temporal_repeat"></block>
+		</category>
+		<sep></sep>
+		<category name="My physical activities" colour=300>
+		</category>
+		
+	</xml>
+
+	<script>
+		var workspace = Blockly.inject('blocklyDiv',
+			{toolbox: document.getElementById('toolbox')});
+		// var xml = Blockly.Xml.textToDom(xml_text);
+		// Blockly.Xml.domToWorkspace(xml, workspace);
+
+		function saveWorkspace() {
+    		var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+    		var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+    
+    		localStorage.setItem("blockly.xml", xmlText);
+		}
+
+		function loadWorkspace() {
+    		var xmlText = localStorage.getItem("blockly.xml");
+    		if (xmlText) {
+        		Blockly.mainWorkspace.clear();
+        		xmlDom = Blockly.Xml.textToDom(xmlText);
+        		Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDom);
+    		}
+		}
+	</script>
+
+</body>
+</html>

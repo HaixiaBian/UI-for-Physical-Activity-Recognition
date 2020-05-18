@@ -1,0 +1,270 @@
+{
+   "Use previously defined PA: Tweak description or use as is": [
+     "Standing",
+     "Lying",
+     "Walking"
+   ],
+   
+   "Now, let's try to identify what might be the most distinctive characteristics of this PA":{
+     "I perform this PA only in a certain place or places":[
+        "Home",
+        "Office",
+        "School",
+        "Gym",
+        "Grocery store"
+     ],
+     
+     "I perform this PA only at a certain time or times": ["12am","1am","2am","3am","4am","5am","6am","7am","8am","9am","10am","11am","12pm","1pm","2pm","3pm","4pm","5pm","6pm","7pm","8pm","9pm","10pm","11pm"]
+     ,
+     
+     "I perform this PA only at a certain day or days": [
+       "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
+     ],
+     
+      "It usually lasts only for a certain duration": {
+       "about X seconds/minute/hour":"", "similat to duration of":["eating","running"]
+     },
+     
+      "I am continously going up or down during this PA": [
+       "Going up",
+       "Going down",
+       "Going forward and up",
+       "Going forwrad and down"
+     ],
+     
+      "My breating rate during this PA": {
+       "is higher than":{"my normal breathing rate":"","breathing rate during another activity":["walking","climbing stairs"]},
+       "is lower than":{"my normal breathing rate":"","breathing rate during another activity":["walking","climbing stairs"]},
+       "is similar to":{"breathing rate during another activity":["walking","climbing stairs"]}
+     },
+     
+      "During this PA, I use": {
+       "Bike":["for the entire duration of PA", "only for a limited time during the PA"],
+	   "Iron":["for the entire duration of PA", "only for a limited time during the PA"],
+	   "Frying pan":["for the entire duration of PA", "only for a limited time during the PA"],
+	   "Stove":["for the entire duration of PA", "only for a limited time during the PA"]},
+     
+    "One or more of my body parts are moving or in a peculiar position": {
+       "Left ankle": {
+              "completly still":{"parallel to ground":"","perpendicular to ground":["pointing towards ground",
+              "pointing up"]},
+              "occasionally moving but without any order or pattern":{"parallel to ground":"","perpendicular to ground":["pointing towards ground","pointing up"]},
+              "moving in a repeating pattern": {"manner of the repeating pattern is similar to":
+                                                  {"in an arc":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], 
+                                                  "in a circle":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "in a line":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "movement similar to the same body part for a different activity:":"", 
+                                                  "movement similar to a different body part for the current activity": "", 
+                                                  "movement similar to a different body part for a different activity:":""},
+                                               "rate of the repeating pattern is similar to":
+                                                  ["rate similar to the rate of movement of the same body part for a different activity", 
+                                                  "rate similar to the rate of movement of a different body part for the current activity", 
+                                                  "rate similar to the rate of movement of the different body part for a different activity"]
+                                                }
+
+         
+       },
+        "Right ankle": {
+              "completly still":{"parallel to ground":"","perpendicular to ground":["pointing towards ground",
+              "pointing up"]},
+              "occasionally moving but without any order or pattern":{"parallel to ground":"","perpendicular to ground":["pointing towards ground","pointing up"]},
+              "moving in a repeating pattern": {"manner of the repeating pattern is similar to":
+                                                  {"in an arc":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], 
+                                                  "in a circle":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "in a line":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "movement similar to the same body part for a different activity:":"", 
+                                                  "movement similar to a different body part for the current activity": "", 
+                                                  "movement similar to a different body part for a different activity:":""},
+                                               "rate of the repeating pattern is":
+                                                  {"similar to": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"],
+                                                  "greater than": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"],
+                                                  "lower than": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"]}
+                                                }
+
+         
+       },
+       "Left thigh": {
+              "completly still":{"parallel to ground":"","perpendicular to ground":["pointing towards ground",
+              "pointing up"]},
+              "occasionally moving but without any order or pattern":{"parallel to ground":"","perpendicular to ground":["pointing towards ground","pointing up"]},
+              "moving in a repeating pattern": {"manner of the repeating pattern is similar to":
+                                                  {"in an arc":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], 
+                                                  "in a circle":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "in a line":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "movement similar to the same body part for a different activity:":"", 
+                                                  "movement similar to a different body part for the current activity": "", 
+                                                  "movement similar to a different body part for a different activity:":""},
+                                               "rate of the repeating pattern is":
+                                                  {"similar to": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"],
+                                                  "greater than": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"],
+                                                  "lower than": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"]}
+                                                }
+
+         
+       },
+       "Right thigh": {
+              "completly still":{"parallel to ground":"","perpendicular to ground":["pointing towards ground",
+              "pointing up"]},
+              "occasionally moving but without any order or pattern":{"parallel to ground":"","perpendicular to ground":["pointing towards ground","pointing up"]},
+              "moving in a repeating pattern": {"manner of the repeating pattern is similar to":
+                                                  {"in an arc":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], 
+                                                  "in a circle":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "in a line":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "movement similar to the same body part for a different activity:":"", 
+                                                  "movement similar to a different body part for the current activity": "", 
+                                                  "movement similar to a different body part for a different activity:":""},
+                                               "rate of the repeating pattern is":
+                                                  {"similar to": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"],
+                                                  "greater than": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"],
+                                                  "lower than": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"]}
+                                                }
+
+         
+       },
+       "Left wrist": {
+              "completly still":{"parallel to ground":"","perpendicular to ground":["pointing towards ground",
+              "pointing up"]},
+              "occasionally moving but without any order or pattern":{"parallel to ground":"","perpendicular to ground":["pointing towards ground","pointing up"]},
+              "moving in a repeating pattern": {"manner of the repeating pattern is similar to":
+                                                  {"in an arc":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], 
+                                                  "in a circle":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "in a line":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "movement similar to the same body part for a different activity:":"", 
+                                                  "movement similar to a different body part for the current activity": "", 
+                                                  "movement similar to a different body part for a different activity:":""},
+                                               "rate of the repeating pattern is":
+                                                  {"similar to": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"],
+                                                  "greater than": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"],
+                                                  "lower than": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"]}
+                                                }
+
+         
+       },
+       "Right wrist": {
+              "completly still":{"parallel to ground":"","perpendicular to ground":["pointing towards ground",
+              "pointing up"]},
+              "occasionally moving but without any order or pattern":{"parallel to ground":"","perpendicular to ground":["pointing towards ground","pointing up"]},
+              "moving in a repeating pattern": {"manner of the repeating pattern is similar to":
+                                                  {"in an arc":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], 
+                                                  "in a circle":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "in a line":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "movement similar to the same body part for a different activity:":"", 
+                                                  "movement similar to a different body part for the current activity": "", 
+                                                  "movement similar to a different body part for a different activity:":""},
+                                               "rate of the repeating pattern is":
+                                                  {"similar to": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"],
+                                                  "greater than": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"],
+                                                  "lower than": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"]}
+                                                }
+
+         
+       },
+       "Torso/Chest": {
+              "completly still":{"parallel to ground":"","perpendicular to ground":["pointing towards ground",
+              "pointing up"]},
+              "occasionally moving but without any order or pattern":{"parallel to ground":"","perpendicular to ground":["pointing towards ground","pointing up"]},
+              "moving in a repeating pattern": {"manner of the repeating pattern is similar to":
+                                                  {"in an arc":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], 
+                                                  "in a circle":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "in a line":["up to down or vice versa","front to back or vice versa of body","left to right or vise versa of body","up to parallel-to-ground or vice versa",
+                                                  "down to parallel-to-ground or vice versa","plane of repeating pattern is similar to the movement of the same body part of a different activity",
+                                                  "plane of repeating pattern is similar to the movement of the same body part for the current activity",
+                                                  "plane of repeating pattern is similar to the movement of a different body part for a different activity"], "movement similar to the same body part for a different activity:":"", 
+                                                  "movement similar to a different body part for the current activity": "", 
+                                                  "movement similar to a different body part for a different activity:":""},
+                                               "rate of the repeating pattern is":
+                                                  {"similar to": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"],
+                                                  "greater than": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"],
+                                                  "lower than": ["the rate of movement of the same body part for a different activity", 
+                                                  "the rate of movement of a different body part for the current activity", 
+                                                  "the rate of movement of the different body part for a different activity"]}
+                                                }
+
+       }  
+       }
+}
+}
+
+
+ 

@@ -1,0 +1,326 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="factory_base" id="[PD?Q0Ji$I%)AJ=)JOw," deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">pa_place</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="^Jvae#9U*Ys+EBY@3=VR">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="f-*8(r]n%k}mPvYb3MtV">
+            <field name="TEXT">I perform this PA only</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id=";kqzd:==pTOH{t9u@]+%">
+            <field name="INPUTNAME">pa_place</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="diA*/]qO+s;%f7ZTurIe">
+                <field name="TEXT">in a certain place or places</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="ejZ2(ID@ZPZ^Fv./xc+Y"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="4Bf?:Gr0-8;ECvg[.KM:" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="X97J8!$-tVrvO(.xrr6P" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="9O}Xp)HBtW|^-?je48yF"></shadow>
+      <block type="type_other" id="f;uj5QmhjxBO]Ut#nq(V">
+        <field name="TYPE">place</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="zI0q$4;g)FGz.SXM:.(z">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="^[:V#q~wkN|f*rdk6aNr" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">place</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="9i/`I@wk`p:@KqN|g.G6">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_dropdown" id="+5+3x.CcG8jUZ5#ch,_%">
+            <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+            <field name="FIELDNAME">place</field>
+            <field name="USER0">Home</field>
+            <field name="CPU0">Home</field>
+            <field name="USER1">Office</field>
+            <field name="CPU1">Office</field>
+            <field name="USER2">School</field>
+            <field name="CPU2">School</field>
+            <field name="USER3">Gym</field>
+            <field name="CPU3">Gym</field>
+            <field name="USER4">Grocery store</field>
+            <field name="CPU4">Grocery store</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="@=`;!i{R%OnZ*R?60F:=" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="b?X)a1`3?UsKaljnCEfj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id=")`5l|=vRg}k^}cB[+0I-"></shadow>
+      <block type="type_other" id="M(S$;j3hfTVd6YP@[#C+">
+        <field name="TYPE">place</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="uIBy(YzE8d=;,Z10#mS-">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="[PD?Q0Ji$I%)AJ=)JOw," deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">pa_time</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="^Jvae#9U*Ys+EBY@3=VR">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="f-*8(r]n%k}mPvYb3MtV">
+            <field name="TEXT">I perform this PA only</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id=";kqzd:==pTOH{t9u@]+%">
+            <field name="INPUTNAME">pa_place</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="diA*/]qO+s;%f7ZTurIe">
+                <field name="TEXT">at a certain time or times</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="ejZ2(ID@ZPZ^Fv./xc+Y"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="4Bf?:Gr0-8;ECvg[.KM:" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="X97J8!$-tVrvO(.xrr6P" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id=",Dd+i3[i1+/e}h[h14+l"></shadow>
+      <block type="type_other" id="f;uj5QmhjxBO]Ut#nq(V">
+        <field name="TYPE">time</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="zI0q$4;g)FGz.SXM:.(z">
+        <mutation colour="#805ba5"></mutation>
+        <field name="HUE">270</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="[PD?Q0Ji$I%)AJ=)JOw," deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">pa_day</field>
+    <field name="INLINE">EXT</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="^Jvae#9U*Ys+EBY@3=VR">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="f-*8(r]n%k}mPvYb3MtV">
+            <field name="TEXT">I perform this PA only</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_value" id=";kqzd:==pTOH{t9u@]+%">
+            <field name="INPUTNAME">pa_place</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="diA*/]qO+s;%f7ZTurIe">
+                <field name="TEXT">at a certain day or days</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="ejZ2(ID@ZPZ^Fv./xc+Y"></shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="4Bf?:Gr0-8;ECvg[.KM:" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="X97J8!$-tVrvO(.xrr6P" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="?5ZV?HCXWchrO3abGV}z"></shadow>
+      <block type="type_other" id="f;uj5QmhjxBO]Ut#nq(V">
+        <field name="TYPE">day</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="zI0q$4;g)FGz.SXM:.(z">
+        <mutation colour="#a55b93"></mutation>
+        <field name="HUE">315</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="^[:V#q~wkN|f*rdk6aNr" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">day</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="9i/`I@wk`p:@KqN|g.G6">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_dropdown" id="+5+3x.CcG8jUZ5#ch,_%">
+            <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+            <field name="FIELDNAME">day</field>
+            <field name="USER0">Monday</field>
+            <field name="CPU0">Monday</field>
+            <field name="USER1">Tuesday</field>
+            <field name="CPU1">Tuesday</field>
+            <field name="USER2">Wednesday</field>
+            <field name="CPU2">Wednesday</field>
+            <field name="USER3">Thursday</field>
+            <field name="CPU3">Thursday</field>
+            <field name="USER4">Friday</field>
+            <field name="CPU4">Friday</field>
+            <field name="USER5">Saturday</field>
+            <field name="CPU5">Saturday</field>
+            <field name="USER6">Sunday</field>
+            <field name="CPU6">Sunday</field>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="@=`;!i{R%OnZ*R?60F:=" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="b?X)a1`3?UsKaljnCEfj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="4efRIRrNHHAiv@(v8c?1"></shadow>
+      <block type="type_other" id="M(S$;j3hfTVd6YP@[#C+">
+        <field name="TYPE">day</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="uIBy(YzE8d=;,Z10#mS-">
+        <mutation colour="#a55b93"></mutation>
+        <field name="HUE">315</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="^[:V#q~wkN|f*rdk6aNr" deletable="false" movable="false" x="10" y="10">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">time</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="9i/`I@wk`p:@KqN|g.G6">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_dropdown" id="~$VHN^?A(ISnD@b[Xf.-">
+            <mutation options="[&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;,&quot;text&quot;]"></mutation>
+            <field name="FIELDNAME">clock</field>
+            <field name="USER0">12</field>
+            <field name="CPU0">12</field>
+            <field name="USER1">1</field>
+            <field name="CPU1">1</field>
+            <field name="USER2">2</field>
+            <field name="CPU2">2</field>
+            <field name="USER3">3</field>
+            <field name="CPU3">3</field>
+            <field name="USER4">4</field>
+            <field name="CPU4">4</field>
+            <field name="USER5">5</field>
+            <field name="CPU5">5</field>
+            <field name="USER6">6</field>
+            <field name="CPU6">6</field>
+            <field name="USER7">7</field>
+            <field name="CPU7">7</field>
+            <field name="USER8">8</field>
+            <field name="CPU8">8</field>
+            <field name="USER9">9</field>
+            <field name="CPU9">9</field>
+            <field name="USER10">10</field>
+            <field name="CPU10">10</field>
+            <field name="USER11">11</field>
+            <field name="CPU11">11</field>
+            <next>
+              <block type="field_dropdown" id="+5+3x.CcG8jUZ5#ch,_%">
+                <mutation options="[&quot;text&quot;,&quot;text&quot;]"></mutation>
+                <field name="FIELDNAME">ampm</field>
+                <field name="USER0">a.m.</field>
+                <field name="CPU0">am</field>
+                <field name="USER1">p.m.</field>
+                <field name="CPU1">pm</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="@=`;!i{R%OnZ*R?60F:=" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="b?X)a1`3?UsKaljnCEfj" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="QTH}nxgO|i45uGTIgL^k"></shadow>
+      <block type="type_other" id="M(S$;j3hfTVd6YP@[#C+">
+        <field name="TYPE">time</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="uIBy(YzE8d=;,Z10#mS-">
+        <mutation colour="#a55b93"></mutation>
+        <field name="HUE">315</field>
+      </block>
+    </value>
+  </block></xml>

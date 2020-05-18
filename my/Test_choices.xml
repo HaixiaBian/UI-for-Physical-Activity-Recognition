@@ -1,0 +1,15 @@
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+  <category name="PA Characteristics" colour="#9fa55b">
+    <block type="checkbox">
+      <field name="Home">TRUE</field>
+      <field name="Office">TRUE</field>
+      <field name="School">TRUE</field>
+      <field name="Other">TRUE</field>
+      <field name="11">...</field>
+    </block>
+    <block type="single">
+      <field name="duration">eating</field>
+      <field name="other">default</field>
+    </block>
+  </category>
+</xml>
