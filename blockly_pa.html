@@ -3,8 +3,173 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+
+html, body {
+  height: 100%;
+  min-height: 375px;
+}
+
+body {
+  background-color: #fff;
+  font-family: sans-serif;
+  margin: 0 5px;
+  //overflow: hidden;
+}
+
+table {
+  border: none;
+  border-collapse: collapse;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+td {
+  vertical-align: top;
+  padding: 0;
+}
+
+p {
+  display: block;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+  padding: 5px 0;
+}
+
+#blockLibraryContainer {
+  vertical-align: bottom;
+}
+
+#blockLibraryControls {
+  text-align: right;
+  vertical-align: middle;
+}
+
+#blocklyWorkspaceContainer {
+  width: 100%;
+}
+
+#previewContainer {
+  vertical-align: bottom;
+}
+
+button:disabled, .buttonStyle:disabled {
+  opacity: 0.6;
+}
+
+button>*, .buttonStyle>* {
+  opacity: 1;
+  vertical-align: text-bottom;
+}
+
+button, .buttonStyle {
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  color: #000;
+  padding: 10px;
+  margin: 10px 5px;
+  font-size: small;
+}
+
+.buttonStyle:hover:not(:disabled), button:hover:not(:disabled) {
+  box-shadow: 2px 2px 5px #888;
+}
+
+.buttonStyle:hover:not(:disabled)>*, button:hover:not(:disabled)>* {
+  opacity: 1;
+}
+
+#dropdownDiv_blockLib {
+  max-height: 65%;
+  overflow-y: scroll;
+}
+
+#button_blockLib {
+  border-color: darkgrey;
+  font-size: large;
+}
+
+.button_alert {
+  background-color: #fcc;
+  border-color: #f99;
+}
+
+.button_warn {
+  background-color: #aea;
+  border-color: #5d5;
+}
+
+#modalShadow {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  background-color: #fff;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,.2);
+  display: none;
+  min-width: 170px;
+  opacity: 1;
+  position: absolute;
+  z-index: 101;  /* On top of the modal Shadow. */
+}
+
+/* Links inside the dropdown */
+.dropdown-content a, .dropdown-content label {
+  color: black;
+  display: block;
+  font-size: small;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+
+
+/* Change color of dropdown links on hover. */
+.dropdown-content a:hover, .dropdown-content label:hover {
+  background-color: #EEE;
+}
+
+/* Change color of dropdown links on selected. */
+.dropdown-content-selected {
+  background-color: #DDD;
+}
+
+/* Show the dropdown menu */
+.show {
+  display: block;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #ccc;
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
 </style>
 
+</head>
+
+<body>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="blockly/blockly_compressed.js"></script>
@@ -12,78 +177,58 @@
 	<script src="blockly/msg/js/en.js"></script>
 	<script src="my/blocks.js"></script>
 
-  <script src="blockly/demos/blockfactory/analytics.js"></script>
-  <script src="blockly/javascript_compressed.js"></script>
+	<script src="analytics.js"></script>
+	<script src="factory.js"></script>
+	<script src="factory_utils.js"></script>
+	<script src="block_library_view.js"></script>
+	<script src="block_library_storage.js"></script>
+	<script src="block_library_controller.js"></script>
+	<script src="app_controller.js"></script>
 
-  <script src="blockly/demos/blockfactory/block_definition_extractor.js"></script>
-  <script src="blockly/demos/blockfactory/factory_utils.js"></script>
-  <script src="blockly/demos/blockfactory/workspacefactory/wfactory_model.js"></script>
-  <script src="blockly/demos/blockfactory/standard_categories.js"></script>
-  <script src="blockly/demos/blockfactory/cp.js"></script>
-  <script src="blockly/demos/blockfactory/workspacefactory/wfactory_controller.js"></script>
-  <script src="blockly/demos/blockfactory/workspacefactory/wfactory_view.js"></script>
-  <script src="blockly/demos/blockfactory/workspacefactory/wfactory_generator.js"></script>
-  <script src="blockly/demos/blockfactory/workspacefactory/wfactory_init.js"></script>
-  <script src="blockly/demos/blockfactory/block_option.js"></script>
-  <script src="blockly/demos/blockfactory/factory.js"></script>
-  <script src="blockly/demos/blockfactory/block_library_view.js"></script>
-  <script src="blockly/demos/blockfactory/block_library_storage.js"></script>
-  <script src="blockly/demos/blockfactory/block_library_controller.js"></script>
-  <script src="blockly/demos/blockfactory/block_exporter_tools.js"></script>
-  <script src="blockly/demos/blockfactory/block_exporter_view.js"></script>
-  <script src="blockly/demos/blockfactory/block_exporter_controller.js"></script>
-  <script src="blockly/demos/blockfactory/blocks.js"></script>
-  <script src="blockly/demos/blockfactory/app_controller.js"></script>
-  <!-- <script src="/storage.js"></script> -->
-  <link rel="blockly/demos/blockfactory/stylesheet" href="factory.css">
-  <link rel="blockly/demos/blockfactory/stylesheet" href="cp.css">
-
-</head>
-
-<body>
-
-
-<!-- Blockly Factory Tab -->
-<table id="blockFactoryContent">
-	<tr width="100%" height="10%">
-		<td width="50%" height="5%">
-			<table>
-				<tr id="blockLibrary">
-					<td id="blockLibraryContainer">
-            <span>
-              <div class="dropdown">
-                <button id="button_blockLib">PA Library</button>
-                <div id="dropdownDiv_blockLib" class="dropdown-content">
-                  <a id="createNewBlockButton">Create New Block</a>
-                </div>
-              </div>
-              <select id="blockLibraryDropdown" style="display:none">
-              </select>
-            </span>
-					</td>
-					<td id="blockLibraryControls">
-						<button id="saveToBlockLibraryButton" title="Save block to Block Library.">
-							Save "block_type"
-						</button>
-						<button id="removeBlockFromLibraryButton" title="Remove block from Block Library.">
-							Delete "block_type"
-						</button>
-					</td>
-				</tr>
-			</table>
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+	
+	<table>
+	  <tr height="1px">
+		<td colspan="2">
+		  <h1>Categories</h1>
 		</td>
-    </tr>
-</table>
+	  </tr>
 
+	  <tr id="blockLibrary" height="50px">
+		<td id="blockLibraryContainer">
+		<span>
+		  <div class="dropdown">
+			<button id="button_blockLib">Activities</button>
+			<div id="dropdownDiv_blockLib" class="dropdown-content">
+			  <a id="createNewBlockButton">Create New Activity</a>
+			</div>
+		  </div>
+		  <select id="blockLibraryDropdown" style="display:none">
+		  </select>
+		</span>
+		</td>
+		<td id="blockLibraryControls">
+		<button id="saveToBlockLibraryButton" title="Save block to Block Library.">
+		  Save "new_activity"
+		</button>
+		<button id="removeBlockFromLibraryButton" title="Remove block from Block Library.">
+		  Delete "new_activity"
+		</button>
+		</td>
+	  </tr>
+	  <tr>
+		<td colspan="2" id="blocklyWorkspaceContainer">
+			<div id="blockly" position="absolute"></div>
+		</td>
+	  </tr>
+	</table>
 
-<div id="blocklyDiv" style="height: 480px; width: 1024px;"></div>
+	<div id="modalShadow"></div>
+
 	<xml id="toolbox" style="display: none">
-        <category name="New activity" colour=330>
+        <!--category name="New activity" colour=330>
 			<block type="activity"></block>
-			<block type="multiple_activity"></block>
-			<!-- <block type="turtle_basic"></block> -->
-
-		</category>
+		</category-->
         <category name="My places" colour=0>
 			<block type="pa_in_place"></block>
 			<block type="home"></block>
@@ -101,15 +246,15 @@
 		<category name="Duration" colour=90>
 			<block type="pa_last_for"></block>
 			<block type="duration"></block>
-			<!-- <block type="duration_sim"></block> -->
+			<block type="duration_sim"></block>
 			<block type="duration_act"></block>
 		</category>
 		<category name="Breathing rate" colour=120>
 			<block type="pa_br"></block>
-			<!-- <block type="br_gt"></block>
+			<block type="br_gt"></block>
 			<block type="br_lt"></block>
 			<block type="br_sim"></block>
-			<block type="br_normal"></block> -->
+			<block type="br_normal"></block>
 			<block type="br_act"></block>
 		</category>
 		<category name="External objects" colour=150>
@@ -120,7 +265,6 @@
 			<block type="ex_object_stove"></block>
 		</category>
 		<category name="Body parts" colour=180>
-			<block type="pa_body"></block>
 			<block type="left_ankle"></block>
 			<block type="right_ankle"></block>
 			<block type="left_thigh"></block>
@@ -128,57 +272,94 @@
 			<block type="left_wrist"></block>			
 			<block type="right_wrist"></block>
 		</category>
-		<category name="Combinations" colour=210>
+		<category name="Operations" colour=210>
 			<block type="op_and"></block>
 			<block type="op_or"></block>
 			<block type="op_not"></block>
 		</category>
-		<category name="Comparisons" colour=240>
-			<!-- <block type="as_similar_to"></block>
-			<block type="as_different_from"></block>
-			<block type="as_greater_than"></block>
-			<block type="as_lower_than"></block> -->
-
-			<block type="br_gt"></block>
-			<block type="br_lt"></block>
-			<block type="br_sim"></block>
-
+		<category name="Assignments" colour=240>
+			<block type="ass_similar_to"></block>
+			<block type="ass_different_from"></block>
+			<block type="ass_greater_than"></block>
+			<block type="ass_lower_than"></block>
 		</category>
-		<category name="Order in time" colour=270>
-			<block type="temporal_before"></block>
-			<block type="temporal_meets"></block>
-			<block type="temporal_overlaps"></block>
-			<block type="temporal_starts"></block>
-			<block type="temporal_during"></block>
-			<block type="temporal_repeat"></block>
+		<category name="Temporal Order" colour=270>
+			<block type="temporal_order_before"></block>
+			<block type="temporal_order_after"></block>
+			<block type="temporal_order_meets"></block>
+			<block type="temporal_order_overlaps"></block>
+			<block type="temporal_order_starts"></block>
+			<block type="temporal_order_during"></block>
 		</category>
 		<sep></sep>
-		<category name="My physical activities" colour=300>
+		<category name="My physical activities" custom="DEFINED_ACTIVITIES" colour=300>
 		</category>
 		
 	</xml>
 
 	<script>
-		var workspace = Blockly.inject('blocklyDiv',
-			{toolbox: document.getElementById('toolbox')});
-		// var xml = Blockly.Xml.textToDom(xml_text);
-		// Blockly.Xml.domToWorkspace(xml, workspace);
+		// var workspace = Blockly.inject('blocklyDiv',
+		// 	{toolbox: document.getElementById('toolbox')});
+		// //var xml = Blockly.Xml.textToDom(xml_text);
+		// //Blockly.Xml.domToWorkspace(xml, workspace);
+		// 
+		// mutatorOpenListener = function(e) {
+		// 	console.log(e);
+		// 	if (e.type != Blockly.Events.UI || e.element != 'mutatorOpen' ||
+		// 		!e.newValue) {
+		// 		return;
+		// 	}
+		// 	// var workspaceId = /** @type {string} */ (e.workspaceId);
+		// 	// var block = Blockly.Workspace.getById(workspaceId)
+		// 	// 						.getBlockById(e.blockId);
+		// 	// var type = block.type;
+		// 	// if (type != 'procedures_defnoreturn' && type != 'procedures_defreturn') {
+		// 	// 	return;
+		// 	// }
+		// 	// var workspace = block.mutator.getWorkspace();
+		// 	// Blockly.Procedures.updateMutatorFlyout_(workspace);
+		// 	// workspace.addChangeListener(Blockly.Procedures.mutatorChangeListener_);
+		// };
+		// workspace.addChangeListener(mutatorOpenListener);
+		
+		// workspace.registerToolboxCategoryCallback(
+		// 	'DEFINED_ACTIVITIES', activitiesFlyoutCallback);
+		
+	
+		var blocklyFactory;
+		var init = function() {
+		  BlocklyDevTools.Analytics.init();
 
-		function saveWorkspace() {
-    		var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-    		var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
-    
-    		localStorage.setItem("blockly.xml", xmlText);
-		}
+		  blocklyFactory = new AppController();
+		  blocklyFactory.init();
+		  window.addEventListener('beforeunload', blocklyFactory.confirmLeavePage);
+		};
+		window.addEventListener('load', init);
 
-		function loadWorkspace() {
-    		var xmlText = localStorage.getItem("blockly.xml");
-    		if (xmlText) {
-        		Blockly.mainWorkspace.clear();
-        		xmlDom = Blockly.Xml.textToDom(xmlText);
-        		Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDom);
-    		}
-		}
+		/**
+		 * Construct the blocks required by the flyout for the colours category.
+		 * @param {!Blockly.Workspace} workspace The workspace this flyout is for.
+		 * @return {!Array.<!Element>} Array of XML block elements.
+		 */
+		activitiesFlyoutCallback = function(workspace) {
+		  var activities = ['running', 'standing'];
+		  var xmlList = [];
+		  
+		  function populateActivities(activityList) {
+			for (var i = 0; i < activityList.length; i++) {
+			  var blockText = '<block type="pa_activity_defined">' +
+				  '<field name="NAME">' + activityList[i] + '</field>' +
+				  '</block>';
+			  var block = Blockly.Xml.textToDom(blockText);
+			  xmlList.push(block);
+			}
+		  }
+		  if (Blockly.Blocks['pa_activity_defined']) {
+			activityList = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
+			populateActivities(activityList);
+		  }
+		  return xmlList;
+		};
 	</script>
 
 </body>

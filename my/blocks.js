@@ -147,23 +147,11 @@ Blockly.Blocks['single'] = {
   }
 };
 
-Blockly.Blocks['ex_object_iron'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Iron");
-    this.setInputsInline(false);
-    this.setOutput(true, "ex_object");
-    this.setColour(150);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
 Blockly.Blocks['home'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Home");
-    this.setOutput(true, "place");
+    this.setOutput(true, null);
     this.setColour(0);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -174,7 +162,7 @@ Blockly.Blocks['school'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("School");
-    this.setOutput(true, "place");
+    this.setOutput(true, null);
     this.setColour(0);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -185,7 +173,7 @@ Blockly.Blocks['office'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Office");
-    this.setOutput(true, "place");
+    this.setOutput(true, null);
     this.setColour(0);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -197,7 +185,7 @@ Blockly.Blocks['other'] = {
     this.appendDummyInput()
         .appendField("Other")
         .appendField(new Blockly.FieldTextInput("..."), "Other");
-    this.setOutput(true, "place");
+    this.setOutput(true, null);
     this.setColour(0);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -228,7 +216,7 @@ Blockly.Blocks['places'] = {
 Blockly.Blocks['duration'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldNumber(1, 1), "NUM")
+        .appendField(new Blockly.FieldNumber(1, 1, Infinity, 1), "NUM")
         .appendField(new Blockly.FieldDropdown([["hour","h"], ["minute","m"], ["second","s"]]), "UNIT");
     this.setOutput(true, "duration");
     this.setColour(90);
@@ -249,14 +237,13 @@ Blockly.Blocks['duration_sim'] = {
   }
 };
 
-
 Blockly.Blocks['br_gt'] = {
   init: function() {
-    this.appendValueInput("x")
-        .setCheck(null)
+    this.appendValueInput("ACT")
+        .setCheck("br")
         .appendField("higher than");
-    this.setOutput(true, null);
-    this.setColour(240);
+    this.setOutput(true, "br_constrain");
+    this.setColour(120);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -264,11 +251,11 @@ Blockly.Blocks['br_gt'] = {
 
 Blockly.Blocks['br_lt'] = {
   init: function() {
-    this.appendValueInput("x")
-        .setCheck(null)
+    this.appendValueInput("ACT")
+        .setCheck("br")
         .appendField("lower than");
-    this.setOutput(true, null);
-    this.setColour(240);
+    this.setOutput(true, "br_constrain");
+    this.setColour(120);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -276,11 +263,11 @@ Blockly.Blocks['br_lt'] = {
 
 Blockly.Blocks['br_sim'] = {
   init: function() {
-    this.appendValueInput("x")
-        .setCheck(null)
+    this.appendValueInput("ACT")
+        .setCheck("br")
         .appendField("similar to");
-    this.setOutput(true, null);
-    this.setColour(240);
+    this.setOutput(true, "br_constrain");
+    this.setColour(120);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -300,7 +287,7 @@ Blockly.Blocks['br_normal'] = {
 Blockly.Blocks['br_act'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["walking","walking"], ["climbing stairs","climbing stairs"],["normal/sitting","normal/sitting"]]), "ACT");
+        .appendField(new Blockly.FieldDropdown([["walking","walking"], ["climbing stairs","climbing stairs"]]), "ACT");
     this.setOutput(true, "br");
     this.setColour(120);
  this.setTooltip("");
@@ -351,100 +338,14 @@ Blockly.Blocks['op_not'] = {
   }
 };
 
-Blockly.Blocks['temporal_before'] = {
-  init: function() {
-    this.appendValueInput("x")
-        .setCheck(null)
-        .appendField("before");
-    this.appendValueInput("y")
-        .setCheck(null);
-    this.setInputsInline(false);
-    this.setOutput(true, null);
-    this.setColour(270);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['temporal_meets'] = {
-  init: function() {
-    this.appendValueInput("x")
-        .setCheck(null)
-        .appendField("meets");
-    this.appendValueInput("y")
-        .setCheck(null);
-    this.setInputsInline(false);
-    this.setOutput(true, null);
-    this.setColour(270);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['temporal_overlaps'] = {
-  init: function() {
-    this.appendValueInput("x")
-        .setCheck(null)
-        .appendField("overlaps");
-    this.appendValueInput("y")
-        .setCheck(null);
-    this.setInputsInline(false);
-    this.setOutput(true, null);
-    this.setColour(270);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['temporal_starts'] = {
-  init: function() {
-    this.appendValueInput("x")
-        .setCheck(null)
-        .appendField("starts");
-    this.appendValueInput("y")
-        .setCheck(null);
-    this.setInputsInline(false);
-    this.setOutput(true, null);
-    this.setColour(270);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['temporal_during'] = {
-  init: function() {
-    this.appendValueInput("x")
-        .setCheck(null)
-        .appendField("during");
-    this.appendValueInput("y")
-        .setCheck(null);
-    this.setInputsInline(false);
-    this.setOutput(true, null);
-    this.setColour(270);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['temporal_repeat'] = {
-  init: function() {
-    this.appendValueInput("x")
-        .setCheck("null")
-        .appendField("repeating");
-    this.setOutput(true, null);
-    this.setColour(270);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
 Blockly.Blocks['temporal_order_before'] = {
   init: function() {
     this.appendValueInput("x")
         .setCheck("activity")
         .appendField("Before");
     this.setInputsInline(false);
-    this.setOutput(true, null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(270);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -457,7 +358,8 @@ Blockly.Blocks['temporal_order_after'] = {
         .setCheck("activity")
         .appendField("After");
     this.setInputsInline(false);
-    this.setOutput(true, null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(270);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -470,7 +372,8 @@ Blockly.Blocks['temporal_order_meets'] = {
         .setCheck("activity")
         .appendField("Meets");
     this.setInputsInline(false);
-    this.setOutput(true, null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(270);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -483,7 +386,8 @@ Blockly.Blocks['temporal_order_overlaps'] = {
         .setCheck("activity")
         .appendField("Overlaps");
     this.setInputsInline(false);
-    this.setOutput(true, null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(270);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -496,7 +400,8 @@ Blockly.Blocks['temporal_order_starts'] = {
         .setCheck("activity")
         .appendField("Starts");
     this.setInputsInline(false);
-    this.setOutput(true, null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(270);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -509,7 +414,8 @@ Blockly.Blocks['temporal_order_during'] = {
         .setCheck("activity")
         .appendField("During");
     this.setInputsInline(false);
-    this.setOutput(true, null);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(270);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -578,9 +484,9 @@ Blockly.Blocks['duration_act'] = {
 
 Blockly.Blocks['left_ankle'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendValueInput("NAME")
+        .setCheck(null)
         .appendField("Left ankle");
-    this.setInputsInline(false);
     this.setOutput(true, "body_parts");
     this.setColour(180);
  this.setTooltip("");
@@ -590,21 +496,9 @@ Blockly.Blocks['left_ankle'] = {
 
 Blockly.Blocks['right_ankle'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendValueInput("body_parts")
+        .setCheck(null)
         .appendField("Right ankle");
-    this.setInputsInline(false);
-    this.setOutput(true, "body_parts");
-    this.setColour(180);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['left_wrist'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Left wrist");
-    this.setInputsInline(false);
     this.setOutput(true, "body_parts");
     this.setColour(180);
  this.setTooltip("");
@@ -614,9 +508,21 @@ Blockly.Blocks['left_wrist'] = {
 
 Blockly.Blocks['right_wrist'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendValueInput("body_parts")
+        .setCheck(null)
         .appendField("Right wrist");
-    this.setInputsInline(false);
+    this.setOutput(true, "body_parts");
+    this.setColour(180);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['left_wrist'] = {
+  init: function() {
+    this.appendValueInput("body_parts")
+        .setCheck(null)
+        .appendField("Left wrist");
     this.setOutput(true, "body_parts");
     this.setColour(180);
  this.setTooltip("");
@@ -626,9 +532,9 @@ Blockly.Blocks['right_wrist'] = {
 
 Blockly.Blocks['left_thigh'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendValueInput("body_parts")
+        .setCheck(null)
         .appendField("Left thigh");
-    this.setInputsInline(false);
     this.setOutput(true, "body_parts");
     this.setColour(180);
  this.setTooltip("");
@@ -638,9 +544,9 @@ Blockly.Blocks['left_thigh'] = {
 
 Blockly.Blocks['right_thigh'] = {
   init: function() {
-    this.appendDummyInput()
+    this.appendValueInput("body_parts")
+        .setCheck(null)
         .appendField("Right thigh");
-    this.setInputsInline(false);
     this.setOutput(true, "body_parts");
     this.setColour(180);
  this.setTooltip("");
@@ -648,9 +554,7 @@ Blockly.Blocks['right_thigh'] = {
   }
 };
 
-
-
-Blockly.Blocks['as_similar_to'] = {
+Blockly.Blocks['ass_similar_to'] = {
   init: function() {
     this.appendValueInput("assignments")
         .setCheck(null)
@@ -662,7 +566,7 @@ Blockly.Blocks['as_similar_to'] = {
   }
 };
 
-Blockly.Blocks['as_different_from'] = {
+Blockly.Blocks['ass_different_from'] = {
   init: function() {
     this.appendValueInput("assignments")
         .setCheck(null)
@@ -674,7 +578,7 @@ Blockly.Blocks['as_different_from'] = {
   }
 };
 
-Blockly.Blocks['as_greater_than'] = {
+Blockly.Blocks['ass_greater_than'] = {
   init: function() {
     this.appendValueInput("assignments")
         .setCheck(null)
@@ -686,7 +590,7 @@ Blockly.Blocks['as_greater_than'] = {
   }
 };
 
-Blockly.Blocks['as_lower_than'] = {
+Blockly.Blocks['ass_lower_than'] = {
   init: function() {
     this.appendValueInput("assignments")
         .setCheck(null)
@@ -705,24 +609,6 @@ Blockly.Blocks['activity'] = {
         .appendField(new Blockly.FieldTextInput("name"), "NAME");
     this.appendStatementInput("DESC")
         .setCheck(null);
-    this.setColour(330);
-    // this.setPreviousStatement(true, null);
-    // this.setNextStatement(true, null);
-    this.setOutput(true, null);
-
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['multiple_activity'] = {
-  init: function() {
-    this.appendValueInput("mul_act")
-        .setCheck("activity")
-        .appendField("Sub-activities");
-    this.setInputsInline(false);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
     this.setColour(330);
  this.setTooltip("");
  this.setHelpUrl("");
@@ -775,7 +661,7 @@ Blockly.Blocks['pa_last_for'] = {
   init: function() {
     this.appendValueInput("duration")
         .setCheck("duration")
-        .appendField("Lasts");
+        .appendField("Last for");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(90);
@@ -811,20 +697,6 @@ Blockly.Blocks['pa_object'] = {
   }
 };
 
-Blockly.Blocks['pa_body'] = {
-  init: function() {
-    this.appendValueInput("body")
-        .setCheck("body_parts")
-        .appendField("Body part");
-    this.setInputsInline(false);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(180);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
 Blockly.Blocks['pa_on_day'] = {
   init: function() {
     this.appendValueInput("pa_day")
@@ -839,14 +711,13 @@ Blockly.Blocks['pa_on_day'] = {
   }
 };
 
-// Blockly.Blocks['turtle_basic'] = {
-//   init: function() {
-//     this.appendDummyInput()
-//         .appendField('simple turtle');
-//     this.appendDummyInput()
-//         .setAlign(Blockly.ALIGN_CENTRE)
-//         .appendField(new CustomFields.FieldTurtle(), 'TURTLE');
-//     this.setStyle('loop_blocks');
-//     this.setCommentText('Demonstrates a turtle field with no validator.');
-//   }
-// };
+Blockly.Blocks['pa_activity_defined'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldLabelSerializable("activity_name"), "NAME");
+    this.setOutput(true, "activity");
+    this.setColour(300);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
