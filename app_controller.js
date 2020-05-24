@@ -22,6 +22,7 @@ AppController = function() {
   this.blockLibraryController =
       new BlockLibraryController(this.blockLibraryName);
   this.blockLibraryController.populateBlockLibrary();
+  this.blockLibraryController.populateBlockLibrary_del();
 
   // // Construct Workspace Factory Controller.
   // this.workspaceFactoryController = new WorkspaceFactoryController
@@ -480,6 +481,11 @@ AppController.prototype.assignLibraryClickHandlers = function() {
       function() {
         self.openModal('dropdownDiv_blockLib');
       });
+  document.getElementById('button_DelblockLib').addEventListener('click',
+      function() {
+        self.openModal('dropdownDiv_DelblockLib');
+      });
+	  
 };
 
 /**

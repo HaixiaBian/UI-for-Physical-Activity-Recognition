@@ -20,9 +20,11 @@
 var BlockLibraryView = function() {
   // Div element to contain the block types to choose from.
   this.dropdown = document.getElementById('dropdownDiv_blockLib');
+  this.delDropdown = document.getElementById('dropdownDiv_DelblockLib');
   // Map of block type to corresponding 'a' element that is the option in the
   // dropdown. Used to quickly and easily get a specific option.
   this.optionMap = Object.create(null);
+  this.optionMap_del = Object.create(null);
   // Save and delete buttons.
   this.saveButton = document.getElementById('saveToBlockLibraryButton');
   this.deleteButton = document.getElementById('removeBlockFromLibraryButton');
@@ -54,6 +56,22 @@ BlockLibraryView.prototype.addOption = function(blockType, selected) {
   }
 };
 
+BlockLibraryView.prototype.addOption_del = function(blockType, selected) {
+  // Create option.
+  var option = document.createElement('a');
+  option.id ='dropdowndel_' + blockType;
+  option.classList.add('blockLibOpt');
+  option.textContent = blockType;
+
+  // Add option to dropdown.
+  this.delDropdown.appendChild(option);
+  this.optionMap_del[blockType] = option;
+
+  // Select the block.
+  if (selected) {
+    this.setSelectedBlockType(blockType);
+  }
+};
 /**
  * Sets a given block type to selected and all other blocks to deselected.
  * If null, deselects all blocks.
@@ -173,6 +191,16 @@ BlockLibraryView.prototype.getSelectedOption = function() {
  */
 BlockLibraryView.prototype.clearOptions = function() {
   var blockOpts = this.dropdown.getElementsByClassName('blockLibOpt');
+  var option;
+  while ((option = blockOpts[0])) {
+    option.parentNode.removeChild(option);
+  }
+};
+/**
+ * Removes all options from dropdown_del.
+ */
+BlockLibraryView.prototype.clearOptions_del = function() {
+  var blockOpts = this.delDropdown.getElementsByClassName('blockLibOpt');
   var option;
   while ((option = blockOpts[0])) {
     option.parentNode.removeChild(option);

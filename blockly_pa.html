@@ -88,7 +88,17 @@ button, .buttonStyle {
   overflow-y: scroll;
 }
 
+#dropdownDiv_DelblockLib {
+  max-height: 65%;
+  overflow-y: scroll;
+}
+
 #button_blockLib {
+  border-color: darkgrey;
+  font-size: large;
+}
+
+#button_DelblockLib {
   border-color: darkgrey;
   font-size: large;
 }
@@ -172,10 +182,12 @@ button, .buttonStyle {
 <body>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="blockly/blockly_compressed.js"></script>
+    <script src="blockly/blockly_uncompressed.js"></script>
 	<script src="blockly/blocks_compressed.js"></script>
 	<script src="blockly/msg/js/en.js"></script>
+	<script src="my/mutator.js"></script>
 	<script src="my/blocks.js"></script>
+	
 
 	<script src="analytics.js"></script>
 	<script src="factory.js"></script>
@@ -204,6 +216,15 @@ button, .buttonStyle {
 			</div>
 		  </div>
 		  <select id="blockLibraryDropdown" style="display:none">
+		  </select>
+		</span>
+		<span>
+		  <div class="dropdown">
+			<button id="button_DelblockLib">Deleted Activities</button>
+			<div id="dropdownDiv_DelblockLib" class="dropdown-content">
+			</div>
+		  </div>
+		  <select id="blockLibraryDropdown_del" style="display:none">
 		  </select>
 		</span>
 		</td>

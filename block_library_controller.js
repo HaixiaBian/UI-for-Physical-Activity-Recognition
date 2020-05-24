@@ -28,8 +28,10 @@
  */
 function BlockLibraryController(blockLibraryName, opt_blockLibraryStorage) {
   this.name = blockLibraryName;
+  this.delname = 'dellib_' + blockLibraryName;
   // Create a new, empty Block Library Storage object, or load existing one.
   this.storage = opt_blockLibraryStorage || new BlockLibraryStorage(this.name);
+  this.storage_del = new BlockLibraryStorage(this.delname);
   // The BlockLibraryView object handles the proper updating and formatting of
   // the block library dropdown.
   this.view = new BlockLibraryView();
@@ -60,8 +62,31 @@ BlockLibraryController.prototype.getCurrentBlockType = function() {
  * buttons so that user may save block to library and but not delete.
  * @param {string} blockType Type of block.
  */
+ 
 BlockLibraryController.prototype.removeFromBlockLibrary = function() {
   var blockType = this.getCurrentBlockType();
+  
+  // Create block XML.
+  var xmlElement = Blockly.utils.xml.createElement('xml');
+  var block = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
+  xmlElement.appendChild(Blockly.Xml.blockToDomWithXY(block));
+  
+  // Do not add option again if block type is already in library.
+  if (!this.has_del(blockType)) {
+    this.view.addOption_del(blockType, true, true);
+  }
+  // Save block.
+  this.storage_del.addBlock(blockType, xmlElement);
+  this.storage_del.saveToLocalStorage();
+  
+  // Show saved block without other stray blocks sitting in Block Factory's
+  // main workspace.
+  this.openBlock(blockType);
+
+  // Add select handler to the new option.
+  this.addOptionSelectHandler_del(blockType);
+  BlocklyDevTools.Analytics.onSave('Block');
+  
   this.storage.removeBlock(blockType);
   this.storage.saveToLocalStorage();
   this.populateBlockLibrary();
@@ -75,6 +100,22 @@ BlockLibraryController.prototype.removeFromBlockLibrary = function() {
 BlockLibraryController.prototype.openBlock = function(blockType) {
   if (blockType) {
     var xml = this.storage.getBlockXml(blockType);
+    BlockFactory.mainWorkspace.clear();
+    Blockly.Xml.domToWorkspace(xml, BlockFactory.mainWorkspace);
+    BlockFactory.mainWorkspace.clearUndo();
+  } else {
+    BlockFactory.showStarterBlock();
+    this.view.setSelectedBlockType(null);
+  }
+};
+
+/**
+ * Updates the workspace to show the block user selected from library_del
+ * @param {string} blockType Block to edit on block factory.
+ */
+BlockLibraryController.prototype.openBlock_del = function(blockType) {
+  if (blockType) {
+    var xml = this.storage_del.getBlockXml(blockType);
     BlockFactory.mainWorkspace.clear();
     Blockly.Xml.domToWorkspace(xml, BlockFactory.mainWorkspace);
     BlockFactory.mainWorkspace.clearUndo();
@@ -128,6 +169,12 @@ BlockLibraryController.prototype.saveToBlockLibrary = function() {
     BlocklyDevTools.Analytics.onWarning(msg);
     return;
   }
+  
+  if (this.has_del(blockType)) {
+	  this.storage_del.removeBlock(blockType);
+	  this.storage_del.saveToLocalStorage();
+	  this.populateBlockLibrary_del();
+  }
 
   // Create block XML.
   var xmlElement = Blockly.utils.xml.createElement('xml');
@@ -163,6 +210,16 @@ BlockLibraryController.prototype.has = function(blockType) {
 };
 
 /**
+ * Checks to see if the given blockType is already in Block Library
+ * @param {string} blockType Type of block.
+ * @return {boolean} Boolean indicating whether or not block is in the library.
+ */
+BlockLibraryController.prototype.has_del = function(blockType) {
+  var blockLibrary_del = this.storage_del.blocks;
+  return (blockType in blockLibrary_del && blockLibrary_del[blockType] != null);
+};
+
+/**
  * Populates the dropdown menu.
  */
 BlockLibraryController.prototype.populateBlockLibrary = function() {
@@ -173,6 +230,19 @@ BlockLibraryController.prototype.populateBlockLibrary = function() {
     this.view.addOption(blockType, false);
   }
   this.addOptionSelectHandlers();
+};
+
+/**
+ * Populates the dropdown_del menu.
+ */
+BlockLibraryController.prototype.populateBlockLibrary_del = function() {
+  this.view.clearOptions_del();
+  // Add an unselected option for each saved block.
+  var blockLibrary_del = this.storage_del.blocks;
+  for (var blockType in blockLibrary_del) {
+    this.view.addOption_del(blockType, false);
+  }
+  this.addOptionSelectHandlers_del();
 };
 
 /**
@@ -290,6 +360,48 @@ BlockLibraryController.prototype.addOptionSelectHandler = function(blockType) {
 };
 
 /**
+ * Add select handler for an option of a given block type. The handler will to
+ * update the view and the selected block accordingly.
+ * @param {string} blockType The type of block represented by the option is for.
+ */
+BlockLibraryController.prototype.addOptionSelectHandler_del = function(blockType) {
+  var self = this;
+
+  // Click handler for a block option. Sets the block option as the selected
+  // option and opens the block for edit in Block Factory.
+  var setSelectedAndOpen_ = function(blockOption) {
+    var blockType = blockOption.textContent;
+    self.view.setSelectedBlockType(blockType);
+    self.openBlock_del(blockType);
+    // The block is saved in the block library and all changes have been saved
+    // when the user opens a block from the block library dropdown.
+    // Thus, the buttons show up as a disabled update button and an enabled
+    // delete.
+    self.view.updateButtons(blockType, true, true);
+    blocklyFactory.closeModal();
+  };
+
+  // Returns a block option select handler.
+  var makeOptionSelectHandler_ = function(blockOption) {
+    return function() {
+      // If there are unsaved changes warn user, check if they'd like to
+      // proceed with unsaved changes, and act accordingly.
+      var proceedWithUnsavedChanges = self.warnIfUnsavedChanges();
+      if (!proceedWithUnsavedChanges) {
+        return;
+      }
+      setSelectedAndOpen_(blockOption);
+    };
+  };
+
+  // Assign a click handler to the block option.
+  var blockOption = this.view.optionMap_del[blockType];
+  // Use an additional closure to correctly assign the tab callback.
+  blockOption.addEventListener(
+      'click', makeOptionSelectHandler_(blockOption));
+};
+
+/**
  * Add select handlers to each option to update the view and the selected
  * blocks accordingly.
  */
@@ -299,6 +411,18 @@ BlockLibraryController.prototype.addOptionSelectHandlers = function() {
     this.addOptionSelectHandler(blockType);
   }
 };
+
+/**
+ * Add select handlers to each option to update the view and the selected
+ * blocks accordingly.
+ */
+BlockLibraryController.prototype.addOptionSelectHandlers_del = function() {
+  // Assign a click handler to each block option.
+  for (var blockType in this.view.optionMap_del) {
+    this.addOptionSelectHandler_del(blockType);
+  }
+};
+
 
 /**
  * Update the save and delete buttons based on the current block type of the

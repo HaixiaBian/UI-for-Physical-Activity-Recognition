@@ -55,6 +55,13 @@ BlockLibraryStorage.prototype.saveToLocalStorage = function() {
 };
 
 /**
+ * Writes the current block library (this.blocks) to local storage for deleted.
+ */
+BlockLibraryStorage.prototype.saveToLocalStorage_del = function() {
+  localStorage[this.name] = JSON.stringify(this.blocks);
+};
+
+/**
  * Clears the current block library.
  */
 BlockLibraryStorage.prototype.clear = function() {

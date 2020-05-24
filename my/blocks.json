@@ -1,13 +1,4 @@
-
-'use strict';
-
-goog.require('Blockly');
-goog.require('Blockly.Blocks');
-goog.require('Blockly.FieldDropdown');
-goog.require('Blockly.FieldLabel');
-goog.require('Blockly.Mutator');
-
-Blockly.defineBlocksWithJsonArray([{
+[{
   "type": "pa_place",
   "message0": "I perform this PA only %1 in a certain place or places %2",
   "args0": [
@@ -1057,7 +1048,7 @@ Blockly.defineBlocksWithJsonArray([{
   "nextStatement": null,
   "colour": 60,
   "tooltip": "",
-  "helpUrl": "",
+  "helpUrl": ""
 },
 {
   "type": "pa_activity_defined",
@@ -1072,80 +1063,6 @@ Blockly.defineBlocksWithJsonArray([{
   "output": "activity",
   "colour": 300,
   "tooltip": "",
-  "helpUrl": "",
-  "mutator": "pa_activity_mutator",
-},
-{
-  "type": "del_remind",
-  "message0": "This activity has been deleted!",
-  "colour": 230,
-  "tooltip": "",
   "helpUrl": ""
-}]);
-
-
-var PA_ACTIVITY_MUTATOR_MIXIN = {
-
-  /**
-   * Don't automatically add STATEMENT_PREFIX and STATEMENT_SUFFIX to generated
-   * code.  These will be handled manually in this block's generators.
-   */
-  //suppressPrefixSuffix: true,
-
-  /**
-   * Create XML to represent the number of else-if and else inputs.
-   * @return {Element} XML storage element.
-   * @this {Blockly.Block}
-   */
-  mutationToDom: function() {
-    return null;
-  },
-  /**
-   * Parse XML to restore the else-if and else inputs.
-   * @param {!Element} xmlElement XML storage element.
-   * @this {Blockly.Block}
-   */
-  domToMutation: function(xmlElement) {
-  },
-  /**
-   * Populate the mutator's dialog with this block's components.
-   * @param {!Blockly.Workspace} workspace Mutator's workspace.
-   * @return {!Blockly.Block} Root block in mutator.
-   * @this {Blockly.Block}
-   */
-  decompose: function(workspace) {
-    // var containerBlock = workspace.newBlock('controls_if_if');
-    // containerBlock.initSvg();
-    // return containerBlock;
-	var xml = blocklyFactory.blockLibraryController.storage.getBlockXml(this.getFieldValue("NAME"));
-	//xml = Blockly.Xml.textToDom(xml);
-	if (xml) {
-		Blockly.Xml.domToWorkspace(xml, workspace);
-		var containerBlock = workspace.getTopBlocks()[0];
-		return containerBlock;
-	} else {
-		var containerBlock = workspace.newBlock('del_remind');
-		containerBlock.initSvg();
-		return containerBlock;
-	}
-  },
-  /**
-   * Reconfigure this block based on the mutator dialog's components.
-   * @param {!Blockly.Block} containerBlock Root block in mutator.
-   * @this {Blockly.Block}
-   */
-  compose: function(containerBlock) {
-  },
-  /**
-   * Store pointers to any connected child blocks.
-   * @param {!Blockly.Block} containerBlock Root block in mutator.
-   * @this {Blockly.Block}
-   */
-  saveConnections: function(containerBlock) {
-  },
-};
-
-Blockly.Extensions.registerMutator('pa_activity_mutator',
-    PA_ACTIVITY_MUTATOR_MIXIN, myMutatorFn,
-    null);
-
+}
+]
