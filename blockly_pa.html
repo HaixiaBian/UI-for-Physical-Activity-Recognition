@@ -49,7 +49,7 @@ p {
 }
 
 #blocklyWorkspaceContainer {
-  width: 100%;
+  width: 60%;
 }
 
 #previewContainer {
@@ -184,9 +184,11 @@ button, .buttonStyle {
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="blockly/blockly_uncompressed.js"></script>
 	<script src="blockly/blocks_compressed.js"></script>
+	<script src="blockly/javascript_compressed.js"></script>
 	<script src="blockly/msg/js/en.js"></script>
 	<script src="my/mutator.js"></script>
 	<script src="my/blocks.js"></script>
+	<script src="my/generators.js"></script>
 	
 
 	<script src="analytics.js"></script>
@@ -238,12 +240,16 @@ button, .buttonStyle {
 		</td>
 	  </tr>
 	  <tr>
-		<td colspan="2" id="blocklyWorkspaceContainer">
+		<td id="blocklyWorkspaceContainer">
 			<div id="blockly" position="absolute"></div>
+		</td>
+		<td id="matchesWorkspaceContainer">
+			<div id="blocklyMatches" position="absolute"></div>
 		</td>
 	  </tr>
 	</table>
 
+	<div id="hiddenWorkspace"></div>
 	<div id="modalShadow"></div>
 
 	<xml id="toolbox" style="display: none">

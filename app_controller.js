@@ -11,6 +11,7 @@
  *
  * @author quachtina96 (Tina Quach)
  */
+goog.require('Blockly.Generator');
 
 /**
  * Controller for the Blockly Factory
@@ -537,6 +538,188 @@ AppController.prototype.assignBlockFactoryClickHandlers = function() {
     });
 };
 
+
+var xmlGetField = function(xml, fieldName) {
+  
+}
+var xmlGetInput =  function(xml) {
+  return xml.getElementsByTagName('value')[0];
+}
+var xmlToConstrain = function(xml) {
+  var ctype = xml.getAttribute('type');
+  var val = xmlGetInput(xml);
+  if (!val) {
+    return null;
+  }
+  var converter_map = {
+    'pa_in_place': function (val) {
+      val = val.getElementsByTagName('block')[0].getAttribute('type');
+      return [val];
+    },
+    'pa_at_time': function (val) {
+      val = val.getElementsByTagName('block')[0];
+      var hour = val.getElementsByTagName();
+      
+      return [val];
+    },
+  };
+  if (!(ctype in converter_map)) {
+    return null;
+  }
+  var args = converter_map[ctype](xml);
+  if (args) {
+    return [ctype, args];
+  } else {
+    return null;
+  }
+}
+var xmlToObj = function(xml) {
+  var objmap = {
+    'block': function(xml) {
+      var obj = new Object();
+      obj.statements = [];
+      obj.inputs = [];
+      obj.fields = {};
+    }
+  };
+}
+var xmlToDef = function(xml) {
+  var res = {};
+  if (xml.getElementsByTagName('statement').length == 0) {
+    return res;
+  }
+  var elem = xml.getElementsByTagName('statement')[0];
+  while (elem) {
+    var block = elem.children[0];
+    console.log(block.getAttribute('type'));
+    cons = xmlToConstrain(block);
+    if (cons) {
+      res[cons[0]] = cons[1];
+    }
+    elem = block.getElementsByTagName('next')[0];
+  }
+  console.log(res);
+  return res;
+}
+var blockToConstrain = function(block) {
+  var ctype = block.type;
+  var converter_map = {
+    'pa_in_place': function (block) {
+      var val = block.getChildren()[0];
+      if (!val) {
+        return null;
+      }
+      val = val.type;
+      return [val];
+    },
+    'pa_at_time': function (block) {
+      var val = block.getChildren()[0];
+      if (!val) {
+        return null;
+      }
+      var hour = val.getFieldValue('hour');
+      var minute = val.getFieldValue('minute');
+      var ampm = val.getFieldValue('ampm');
+      
+      return [hour+":"+minute+ampm];
+    },
+  };
+  if (!(ctype in converter_map)) {
+    return null;
+  }
+  var args = converter_map[ctype](block);
+  if (args) {
+    return [ctype, args];
+  } else {
+    return null;
+  }
+}
+var blockToDef = function(defblock) {
+  var res = {};
+  var block = defblock.getChildren()[0];
+  while (block) {
+    console.log(block.type);
+    cons = blockToConstrain(block);
+    if (cons) {
+      res[cons[0]] = cons[1];
+    }
+    block = block.getNextBlock();
+  }
+  console.log(res);
+  return res;
+}
+  
+var matchBlock = function(src, target) {
+  for (k in src) {
+    if (!(k in target)) {
+      return false;
+    }
+    var v1 = src[k];
+    var v2 = target[k];
+    if (JSON.stringify(v1) != JSON.stringify(v2)) {
+      return false;
+    }
+  }
+  return true;
+};
+
+AppController.prototype.libraryMatch = function(event) {
+  if (event.type == Blockly.Events.MOVE ||
+      event.type == Blockly.Events.CREATE ||
+      event.type == Blockly.Events.CHANGE) {
+    if (!event.workspaceId) {
+      return;
+    }
+    //var workspace = Blockly.Workspace.getById(event.workspaceId);
+    var rootBlock = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
+    //root_xml = Blockly.Xml.blockToDom(rootBlock);
+    //root_def = xmlToDef(root_xml);
+    var root_def = Blockly.JavaScript.workspaceToCode(BlockFactory.mainWorkspace);
+    console.log(root_def);
+    try {
+      root_def = JSON.parse(root_def);
+    } catch (e) {
+      return;
+    }
+      
+    BlockFactory.matchesWorkspace.clear();
+    
+    var allinlib = this.blockLibraryController.storage.blocks;
+    var matches = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
+    matches = Blockly.Xml.textToDom(matches);
+    var cur_y = 10;
+    for (var pa_name in allinlib) {
+      // console.log(pa_name);
+      var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
+      BlockFactory.hiddenWorkspace.clear();
+      var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
+      block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
+      BlockFactory.hiddenWorkspace.clear();
+      try {
+        var block_def = JSON.parse(block);
+      } catch (e) {
+        return;
+      }
+      
+      if (!matchBlock(root_def, block_def)) {
+        continue;
+      }
+      xml.children[0].removeAttribute('x');
+      // xml.children[0].removeAttribute('y');
+      xml.children[0].setAttribute('y', cur_y);
+      // matches.appendChild(xml.children[0]);
+      var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.matchesWorkspace);
+      block = BlockFactory.matchesWorkspace.getBlockById(block);
+      cur_y += block.height + 10;
+    }
+    BlockFactory.hiddenWorkspace.clear();
+	
+    // Blockly.Xml.domToWorkspace(matches, BlockFactory.matchesWorkspace);
+
+    return;
+  }
+};
+
 /**
  * Add event listeners for the block factory.
  */
@@ -554,6 +737,10 @@ AppController.prototype.addBlockFactoryEventListeners = function() {
     self.blockLibraryController.updateButtons(FactoryUtils.savedBlockChanges(
         self.blockLibraryController));
     });
+  
+  BlockFactory.mainWorkspace.addChangeListener(function(event) {
+	self.libraryMatch(event);
+  });
 
   // document.getElementById('direction')
   //     .addEventListener('change', BlockFactory.updatePreview);
@@ -596,6 +783,7 @@ AppController.prototype.onresize = function(event) {
     var expandList = [
       //document.getElementById('blocklyPreviewContainer'),
       document.getElementById('blockly'),
+      document.getElementById('blocklyMatches'),
       //document.getElementById('blocklyMask'),
       //document.getElementById('preview'),
       //document.getElementById('languagePre'),
@@ -693,6 +881,19 @@ AppController.prototype.init = function() {
   BlockFactory.mainWorkspace = Blockly.inject('blockly',
       {collapse: false,
        toolbox: toolbox,
+       comments: false,
+       disable: false,
+       media: 'blockly/media/'});
+  BlockFactory.matchesWorkspace = Blockly.inject('blocklyMatches',
+      {collapse: false,
+       comments: false,
+       disable: false,
+       scrollbars: true,
+       readOnly: true,
+       media: 'blockly/media/'});
+  BlockFactory.hiddenWorkspace = Blockly.inject('hiddenWorkspace',
+      {collapse: false,
+       toolbox: false,
        comments: false,
        disable: false,
        media: 'blockly/media/'});

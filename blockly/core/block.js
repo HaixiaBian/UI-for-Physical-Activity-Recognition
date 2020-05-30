@@ -212,7 +212,6 @@ Blockly.Block = function(workspace, prototypeName, opt_id) {
         Blockly.Events.setGroup(false);
       }
     }
-
   }
   // Bind an onchange function, if it exists.
   if (typeof this.onchange == 'function') {

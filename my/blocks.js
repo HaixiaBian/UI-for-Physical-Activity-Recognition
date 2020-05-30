@@ -150,7 +150,7 @@ Blockly.defineBlocksWithJsonArray([{
   "args0": [
     {
       "type": "field_dropdown",
-      "name": "clock",
+      "name": "hour",
       "options": [
         [
           "12",
@@ -204,11 +204,11 @@ Blockly.defineBlocksWithJsonArray([{
     },
     {
       "type": "field_dropdown",
-      "name": "NAME",
+      "name": "minute",
       "options": [
         [
           "00",
-          "0"
+          "00"
         ],
         [
           "15",
