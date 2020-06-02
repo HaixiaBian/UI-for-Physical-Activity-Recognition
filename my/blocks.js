@@ -481,10 +481,10 @@ Blockly.defineBlocksWithJsonArray([{
     {
       "type": "input_value",
       "name": "ACT",
-      "check": "activity"
+      "check": "du_sim"
     }
   ],
-  "output": null,
+  "output": "duration",
   "colour": 90,
   "tooltip": "",
   "helpUrl": ""
@@ -806,7 +806,7 @@ Blockly.defineBlocksWithJsonArray([{
       ]
     }
   ],
-  "output": "duration",
+  "output": "du_sim",
   "colour": 90,
   "tooltip": "",
   "helpUrl": ""
@@ -901,10 +901,10 @@ Blockly.defineBlocksWithJsonArray([{
   "args0": [
     {
       "type": "input_value",
-      "name": "assignments"
+      "name": "sim"
     }
   ],
-  "output": "assignments",
+  "output": null,
   "colour": 240,
   "tooltip": "",
   "helpUrl": ""
@@ -915,10 +915,10 @@ Blockly.defineBlocksWithJsonArray([{
   "args0": [
     {
       "type": "input_value",
-      "name": "assignments"
+      "name": "diff"
     }
   ],
-  "output": "assignments",
+  "output": null,
   "colour": 240,
   "tooltip": "",
   "helpUrl": ""
@@ -929,10 +929,10 @@ Blockly.defineBlocksWithJsonArray([{
   "args0": [
     {
       "type": "input_value",
-      "name": "assignments"
+      "name": "gt"
     }
   ],
-  "output": "assignments",
+  "output": null,
   "colour": 240,
   "tooltip": "",
   "helpUrl": ""
@@ -943,10 +943,10 @@ Blockly.defineBlocksWithJsonArray([{
   "args0": [
     {
       "type": "input_value",
-      "name": "assignments"
+      "name": "lt"
     }
   ],
-  "output": "assignments",
+  "output": null,
   "colour": 240,
   "tooltip": "",
   "helpUrl": ""
