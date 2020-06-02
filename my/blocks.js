@@ -621,13 +621,18 @@ Blockly.defineBlocksWithJsonArray([{
 },
 {
   "type": "temporal_order_before",
-  "message0": "Before %1",
+  "message0": "Before %1 %2",
   "args0": [
     {
       "type": "input_value",
       "name": "x",
       "check": "activity"
-    }
+    },
+    {
+          "type": "input_value",
+          "name": "y",
+          "check": "activity"
+        }
   ],
   "inputsInline": false,
   "previousStatement": null,
@@ -638,13 +643,18 @@ Blockly.defineBlocksWithJsonArray([{
 },
 {
   "type": "temporal_order_after",
-  "message0": "After %1",
+  "message0": "After %1 %2",
   "args0": [
     {
       "type": "input_value",
       "name": "x",
       "check": "activity"
-    }
+    },
+    {
+          "type": "input_value",
+          "name": "y",
+          "check": "activity"
+        }
   ],
   "inputsInline": false,
   "previousStatement": null,
@@ -655,13 +665,18 @@ Blockly.defineBlocksWithJsonArray([{
 },
 {
   "type": "temporal_order_meets",
-  "message0": "Meets %1",
+  "message0": "Meets %1 %2",
   "args0": [
     {
       "type": "input_value",
       "name": "x",
       "check": "activity"
-    }
+    },
+    {
+          "type": "input_value",
+          "name": "y",
+          "check": "activity"
+        }
   ],
   "inputsInline": false,
   "previousStatement": null,
@@ -672,13 +687,18 @@ Blockly.defineBlocksWithJsonArray([{
 },
 {
   "type": "temporal_order_overlaps",
-  "message0": "Overlaps %1",
+  "message0": "Overlaps %1 %2",
   "args0": [
     {
       "type": "input_value",
       "name": "x",
       "check": "activity"
-    }
+    },
+         {
+               "type": "input_value",
+               "name": "y",
+               "check": "activity"
+             }
   ],
   "inputsInline": false,
   "previousStatement": null,
@@ -689,13 +709,18 @@ Blockly.defineBlocksWithJsonArray([{
 },
 {
   "type": "temporal_order_starts",
-  "message0": "Starts %1",
+  "message0": "Starts %1 %2",
   "args0": [
     {
       "type": "input_value",
       "name": "x",
       "check": "activity"
-    }
+    },
+         {
+               "type": "input_value",
+               "name": "y",
+               "check": "activity"
+             }
   ],
   "inputsInline": false,
   "previousStatement": null,
@@ -706,13 +731,18 @@ Blockly.defineBlocksWithJsonArray([{
 },
 {
   "type": "temporal_order_during",
-  "message0": "During %1",
+  "message0": "During %1 %2",
   "args0": [
     {
       "type": "input_value",
       "name": "x",
       "check": "activity"
-    }
+    },
+         {
+               "type": "input_value",
+               "name": "y",
+               "check": "activity"
+             }
   ],
   "inputsInline": false,
   "previousStatement": null,
