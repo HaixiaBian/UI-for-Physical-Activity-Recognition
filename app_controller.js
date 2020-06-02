@@ -46,6 +46,8 @@ AppController = function() {
   this.lastSelectedTab = null;
   // Selected tab.
   this.selectedTab = AppController.BLOCK_FACTORY;
+  
+  //this.hasExactMatch = false;
 };
 
 // Constant values representing the three tabs in the controller.
@@ -663,6 +665,25 @@ var matchBlock = function(src, target) {
   return true;
 };
 
+var matchExact = function(src, target) {
+  for (k in src) {
+    if (!(k in target)) {
+      return false;
+    }
+    var v1 = src[k];
+    var v2 = target[k];
+    if (JSON.stringify(v1) != JSON.stringify(v2)) {
+      return false;
+    }
+  }
+  for (k in target) {
+    if (!(k in src)) {
+      return false;
+    }
+  }
+  return true;
+};
+
 AppController.prototype.libraryMatch = function(event) {
   if (event.type == Blockly.Events.MOVE ||
       event.type == Blockly.Events.CREATE ||
@@ -720,6 +741,9 @@ AppController.prototype.libraryMatch = function(event) {
   }
 };
 
+//AppController.prototype.updateSaveButtons = 
+
+
 /**
  * Add event listeners for the block factory.
  */
@@ -733,13 +757,63 @@ AppController.prototype.addBlockFactoryEventListeners = function() {
   // Update the buttons on the screen based on whether
   // changes have been saved.
   var self = this;
-  BlockFactory.mainWorkspace.addChangeListener(function() {
-    self.blockLibraryController.updateButtons(FactoryUtils.savedBlockChanges(
-        self.blockLibraryController));
-    });
+  // BlockFactory.mainWorkspace.addChangeListener(function() {
+  //   self.blockLibraryController.updateButtons(FactoryUtils.savedBlockChanges(
+  //       self.blockLibraryController));
+  //   });
+  BlockFactory.mainWorkspace.addChangeListener(function(event) {
+    if (event.type != Blockly.Events.MOVE &&
+        event.type != Blockly.Events.CREATE &&
+        event.type != Blockly.Events.CHANGE) {
+      return;
+    }
+    if (!event.workspaceId) {
+      return;
+    }
+    var self = blocklyFactory;
+    self.blockLibraryController.updateButtons(
+        FactoryUtils.savedBlockChanges(self.blockLibraryController));
+    
+    var rootBlock = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
+    if (!rootBlock.allInputsFilled()) {
+        self.blockLibraryController.updateButtons(true);
+        return;
+    }
+      
+    var root_def = Blockly.JavaScript.workspaceToCode(BlockFactory.mainWorkspace);
+    // console.log(root_def);
+    try {
+      root_def = JSON.parse(root_def);
+    } catch (e) {
+      return;
+    }
+    
+    
+    
+    var allinlib = self.blockLibraryController.storage.blocks;
+    for (var pa_name in allinlib) {
+      // console.log(pa_name);
+      var xml = self.blockLibraryController.storage.getBlockXml(pa_name);
+      BlockFactory.hiddenWorkspace.clear();
+      var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
+      block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
+      // console.log(block);
+      BlockFactory.hiddenWorkspace.clear();
+      try {
+        var block_def = JSON.parse(block);
+      } catch (e) {
+        continue;
+      }
+      
+      if (matchExact(root_def, block_def)) {
+        self.blockLibraryController.updateButtons(true);
+        break;
+      }
+    }
+  });
   
   BlockFactory.mainWorkspace.addChangeListener(function(event) {
-	self.libraryMatch(event);
+    self.libraryMatch(event);
   });
 
   // document.getElementById('direction')
