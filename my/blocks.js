@@ -146,7 +146,7 @@ Blockly.defineBlocksWithJsonArray([{
 },
 {
   "type": "time",
-  "message0": "%1 : %2 %3",
+  "message0": "%1 : %2 - %3 %4 %5",
   "args0": [
     {
       "type": "field_dropdown",
@@ -205,6 +205,82 @@ Blockly.defineBlocksWithJsonArray([{
     {
       "type": "field_dropdown",
       "name": "minute",
+      "options": [
+        [
+          "00",
+          "00"
+        ],
+        [
+          "15",
+          "15"
+        ],
+        [
+          "30",
+          "30"
+        ],
+        [
+          "45",
+          "45"
+        ]
+      ]
+    },
+    {
+      "type": "field_dropdown",
+      "name": "hour2",
+      "options": [
+        [
+          "12",
+          "12"
+        ],
+        [
+          "1",
+          "1"
+        ],
+        [
+          "2",
+          "2"
+        ],
+        [
+          "3",
+          "3"
+        ],
+        [
+          "4",
+          "4"
+        ],
+        [
+          "5",
+          "5"
+        ],
+        [
+          "6",
+          "6"
+        ],
+        [
+          "7",
+          "7"
+        ],
+        [
+          "8",
+          "8"
+        ],
+        [
+          "9",
+          "9"
+        ],
+        [
+          "10",
+          "10"
+        ],
+        [
+          "11",
+          "11"
+        ]
+      ]
+    },
+    {
+      "type": "field_dropdown",
+      "name": "minute2",
       "options": [
         [
           "00",
@@ -817,10 +893,11 @@ Blockly.defineBlocksWithJsonArray([{
   "args0": [
     {
       "type": "input_value",
-      "name": "NAME"
+      "name": "movement"
     }
   ],
-  "output": "body_parts",
+  "previousStatement": null,
+  "nextStatement": null,
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
@@ -831,10 +908,11 @@ Blockly.defineBlocksWithJsonArray([{
   "args0": [
     {
       "type": "input_value",
-      "name": "body_parts"
+      "name": "movement"
     }
   ],
-  "output": "body_parts",
+  "previousStatement": null,
+  "nextStatement": null,
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
@@ -845,10 +923,11 @@ Blockly.defineBlocksWithJsonArray([{
   "args0": [
     {
       "type": "input_value",
-      "name": "body_parts"
+      "name": "movement"
     }
   ],
-  "output": "body_parts",
+  "previousStatement": null,
+  "nextStatement": null,
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
@@ -859,10 +938,11 @@ Blockly.defineBlocksWithJsonArray([{
   "args0": [
     {
       "type": "input_value",
-      "name": "body_parts"
+      "name": "movement"
     }
   ],
-  "output": "body_parts",
+  "previousStatement": null,
+  "nextStatement": null,
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
@@ -873,10 +953,11 @@ Blockly.defineBlocksWithJsonArray([{
   "args0": [
     {
       "type": "input_value",
-      "name": "body_parts"
+      "name": "movement"
     }
   ],
-  "output": "body_parts",
+  "previousStatement": null,
+  "nextStatement": null,
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
@@ -887,10 +968,11 @@ Blockly.defineBlocksWithJsonArray([{
   "args0": [
     {
       "type": "input_value",
-      "name": "body_parts"
+      "name": "movement"
     }
   ],
-  "output": "body_parts",
+  "previousStatement": null,
+  "nextStatement": null,
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
@@ -1109,6 +1191,345 @@ Blockly.defineBlocksWithJsonArray([{
   "type": "del_remind",
   "message0": "This activity has been deleted!",
   "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "pos_still",
+  "message0": "Completly still:  %1",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "pos",
+      "options": [
+        [
+          "parallel to ground",
+          "parallel"
+        ],
+        [
+          "pointing towards ground",
+          "down"
+        ],
+        [
+          "pointing up",
+          "up"
+        ]
+      ]
+    }
+  ],
+  "output": "pose",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "occa_moving",
+  "message0": "occasionally moving %1 without any order or pattern:   %2 %3",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "pos",
+      "options": [
+        [
+          "parallel to ground",
+          "parallel"
+        ],
+        [
+          "pointing towards ground",
+          "down"
+        ],
+        [
+          "pointing up",
+          "up"
+        ]
+      ]
+    }
+  ],
+  "output": "pose",
+  "colour": 180,
+  "tooltip": "occasionally moving but without any order or pattern",
+  "helpUrl": ""
+},
+{
+  "type": "rate",
+  "message0": "the rate is similar to %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "NAME",
+      "check": [
+        "body_part",
+        "activity"
+      ]
+    }
+  ],
+  "previousStatement": "rate",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_arc",
+  "message0": "in an arc %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "PLANE",
+      "check": "plane"
+    }
+  ],
+  "previousStatement": "manner",
+  "nextStatement": "rate",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_circle",
+  "message0": "in a circle %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "PLANE",
+      "check": "plane"
+    }
+  ],
+  "previousStatement": "manner",
+  "nextStatement": "rate",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_line",
+  "message0": "in a line %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "PLANE",
+      "check": "plane"
+    }
+  ],
+  "previousStatement": "manner",
+  "nextStatement": "rate",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_up_down",
+  "message0": "up to down or vice versa",
+  "previousStatement": "plane",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_front_back",
+  "message0": "front to back or vice versa of body",
+  "previousStatement": "plane",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_left_right",
+  "message0": "left to right or vise versa of body",
+  "previousStatement": "plane",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_up_level",
+  "message0": "up to parallel-to-ground or vice versa",
+  "previousStatement": "plane",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_down_level",
+  "message0": "down to parallel-to-ground or vice versa",
+  "previousStatement": "plane",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_pattern",
+  "message0": "in a pattern %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "PATTERN",
+      "check": [
+        "manner",
+        "rate"
+      ]
+    }
+  ],
+  "output": "pattern",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_plane_sim",
+  "message0": "the plane is similar to %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "ACT",
+      "check": [
+        "body_part",
+        "activity"
+      ]
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": "plane",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_rate_sim",
+  "message0": "the rate is similar to %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "OTHER",
+      "check": [
+        "body_part",
+        "activity"
+      ]
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": "rate",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "left_ankle_ref",
+  "message0": "Left ankle",
+  "output": "body_part",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "right_ankle_ref",
+  "message0": "Right ankle",
+  "output": "body_part",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "right_wrist_ref",
+  "message0": "Right wrist",
+  "output": "body_part",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "left_wrist_ref",
+  "message0": "Left wrist",
+  "output": "body_part",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "left_thigh_ref",
+  "message0": "Left thigh",
+  "output": "body_part",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "right_thigh_ref",
+  "message0": "Right thigh",
+  "output": "body_part",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "body_part_activity_ref",
+  "message0": "a different body part %1 in a different activity %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "BODYPART"
+    },
+    {
+      "type": "input_value",
+      "name": "ACT"
+    }
+  ],
+  "output": "body_part",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "same_body_part_activity_ref",
+  "message0": "the same body part %1 in a different activity %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_value",
+      "name": "ACT"
+    }
+  ],
+  "output": "body_part",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_manner_sim",
+  "message0": "the manner is similar to %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "OTHER",
+      "check": [
+        "body_part",
+        "activity"
+      ]
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": "pattern",
+  "nextStatement": "rate",
+  "colour": 180,
   "tooltip": "",
   "helpUrl": ""
 }]);
