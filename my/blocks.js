@@ -696,19 +696,209 @@ Blockly.defineBlocksWithJsonArray([{
   "helpUrl": ""
 },
 {
+  "type": "order_in_time",
+  "message0": "Order in time %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "order",
+      "check": "temporal_order_rel"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 270,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "temporal_order_before_leftoutput",
+  "message0": "Before %1 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "x",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "y",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    }
+  ],
+  "inputsInline": false,
+  "output": "temporal_order_rel",
+  "colour": 270,
+  "tooltip": "",
+  "helpUrl": "",
+  "mutator": "temporal_order_mutator",
+},
+{
+  "type": "temporal_order_after_leftoutput",
+  "message0": "After %1 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "x",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "y",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    }
+  ],
+  "inputsInline": false,
+  "output": "temporal_order_rel",
+  "colour": 270,
+  "tooltip": "",
+  "helpUrl": "",
+  "mutator": "temporal_order_mutator",
+},
+{
+  "type": "temporal_order_meets_leftoutput",
+  "message0": "Meets %1 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "x",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "y",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    }
+  ],
+  "inputsInline": false,
+  "output": "temporal_order_rel",
+  "colour": 270,
+  "tooltip": "",
+  "helpUrl": "",
+  "mutator": "temporal_order_mutator",
+},
+{
+  "type": "temporal_order_overlaps_leftoutput",
+  "message0": "Overlaps %1 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "x",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "y",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    }
+  ],
+  "inputsInline": false,
+  "output": "temporal_order_rel",
+  "colour": 270,
+  "tooltip": "",
+  "helpUrl": "",
+  "mutator": "temporal_order_mutator",
+},
+{
+  "type": "temporal_order_starts_leftoutput",
+  "message0": "Starts %1 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "x",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "y",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    }
+  ],
+  "inputsInline": false,
+  "output": "temporal_order_rel",
+  "colour": 270,
+  "tooltip": "",
+  "helpUrl": "",
+  "mutator": "temporal_order_mutator",
+},
+{
+  "type": "temporal_order_during_leftoutput",
+  "message0": "During %1 %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "x",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "y",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    }
+  ],
+  "inputsInline": false,
+  "output": "temporal_order_rel",
+  "colour": 270,
+  "tooltip": "",
+  "helpUrl": "",
+  "mutator": "temporal_order_mutator",
+},
+{
   "type": "temporal_order_before",
   "message0": "Before %1 %2",
   "args0": [
     {
       "type": "input_value",
       "name": "x",
-      "check": "activity"
+      "check": [
+        "activity",
+        "ex_object"
+      ]
     },
     {
-          "type": "input_value",
-          "name": "y",
-          "check": "activity"
-        }
+      "type": "input_value",
+      "name": "y",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    }
   ],
   "inputsInline": false,
   "previousStatement": null,
@@ -724,13 +914,19 @@ Blockly.defineBlocksWithJsonArray([{
     {
       "type": "input_value",
       "name": "x",
-      "check": "activity"
+      "check": [
+        "activity",
+        "ex_object"
+      ]
     },
     {
-          "type": "input_value",
-          "name": "y",
-          "check": "activity"
-        }
+      "type": "input_value",
+      "name": "y",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    }
   ],
   "inputsInline": false,
   "previousStatement": null,
@@ -746,13 +942,19 @@ Blockly.defineBlocksWithJsonArray([{
     {
       "type": "input_value",
       "name": "x",
-      "check": "activity"
+      "check": [
+        "activity",
+        "ex_object"
+      ]
     },
     {
-          "type": "input_value",
-          "name": "y",
-          "check": "activity"
-        }
+      "type": "input_value",
+      "name": "y",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    }
   ],
   "inputsInline": false,
   "previousStatement": null,
@@ -768,13 +970,19 @@ Blockly.defineBlocksWithJsonArray([{
     {
       "type": "input_value",
       "name": "x",
-      "check": "activity"
+      "check": [
+        "activity",
+        "ex_object"
+      ]
     },
-         {
-               "type": "input_value",
-               "name": "y",
-               "check": "activity"
-             }
+    {
+      "type": "input_value",
+      "name": "y",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    }
   ],
   "inputsInline": false,
   "previousStatement": null,
@@ -790,13 +998,19 @@ Blockly.defineBlocksWithJsonArray([{
     {
       "type": "input_value",
       "name": "x",
-      "check": "activity"
+      "check": [
+        "activity",
+        "ex_object"
+      ]
     },
-         {
-               "type": "input_value",
-               "name": "y",
-               "check": "activity"
-             }
+    {
+      "type": "input_value",
+      "name": "y",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    }
   ],
   "inputsInline": false,
   "previousStatement": null,
@@ -812,13 +1026,19 @@ Blockly.defineBlocksWithJsonArray([{
     {
       "type": "input_value",
       "name": "x",
-      "check": "activity"
+      "check": [
+        "activity",
+        "ex_object"
+      ]
     },
-         {
-               "type": "input_value",
-               "name": "y",
-               "check": "activity"
-             }
+    {
+      "type": "input_value",
+      "name": "y",
+      "check": [
+        "activity",
+        "ex_object"
+      ]
+    }
   ],
   "inputsInline": false,
   "previousStatement": null,
@@ -888,6 +1108,26 @@ Blockly.defineBlocksWithJsonArray([{
   "helpUrl": ""
 },
 {
+  "type": "body_parts",
+  "message0": "Body parts %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "BODYPART",
+      "check": "bodypart_desc"
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
   "type": "left_ankle",
   "message0": "Left ankle %1",
   "args0": [
@@ -896,8 +1136,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "movement"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "bodypart_desc",
+  "nextStatement": "bodypart_desc",
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
@@ -911,8 +1151,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "movement"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "bodypart_desc",
+  "nextStatement": "bodypart_desc",
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
@@ -926,8 +1166,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "movement"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "bodypart_desc",
+  "nextStatement": "bodypart_desc",
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
@@ -941,8 +1181,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "movement"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "bodypart_desc",
+  "nextStatement": "bodypart_desc",
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
@@ -956,8 +1196,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "movement"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "bodypart_desc",
+  "nextStatement": "bodypart_desc",
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
@@ -971,8 +1211,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "movement"
     }
   ],
-  "previousStatement": null,
-  "nextStatement": null,
+  "previousStatement": "bodypart_desc",
+  "nextStatement": "bodypart_desc",
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
@@ -1373,7 +1613,7 @@ Blockly.defineBlocksWithJsonArray([{
 },
 {
   "type": "mov_pattern",
-  "message0": "in a pattern %1 %2",
+  "message0": "Repeating Pattern %1 %2",
   "args0": [
     {
       "type": "input_dummy"
@@ -1398,7 +1638,7 @@ Blockly.defineBlocksWithJsonArray([{
   "args0": [
     {
       "type": "input_value",
-      "name": "ACT",
+      "name": "OTHER",
       "check": [
         "body_part",
         "activity"
@@ -1413,7 +1653,7 @@ Blockly.defineBlocksWithJsonArray([{
 },
 {
   "type": "mov_rate_sim",
-  "message0": "the rate is similar to %1",
+  "message0": "the rate is %1",
   "args0": [
     {
       "type": "input_value",
@@ -1532,7 +1772,308 @@ Blockly.defineBlocksWithJsonArray([{
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
-}]);
+},
+{
+  "type": "temporal_order_config",
+  "message0": "%1",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "OUTPUT_DIRECTION",
+      "options": [
+        [
+          "left",
+          "left"
+        ],
+        [
+          "up & down",
+          "up_down"
+        ]
+      ]
+    }
+  ],
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_manner_bodypart",
+  "message0": "the movement is similar to %1 %2 of the current activity",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "BODYPART",
+      "options": [
+        [
+          "",
+          ""
+        ]
+      ]
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": "manner",
+  "nextStatement": "rate",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_manner_bodypart_activity",
+  "message0": "the movement is similar to %1 %2 of %3",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "BODYPART",
+      "options": [
+        [
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "type": "field_dropdown",
+      "name": "ACT",
+      "options": [
+        [
+          "",
+          ""
+        ]
+      ]
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": "manner",
+  "nextStatement": "rate",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_manner_activity",
+  "message0": "the movement is similar to %1 the same body part of %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "ACT",
+      "options": [
+        [
+          "",
+          ""
+        ]
+      ]
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": "manner",
+  "nextStatement": "rate",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+}
+]);
+
+Blockly.Blocks['mov_motion'] = {
+  init: function() {
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("type of motion in")
+        .appendField(new Blockly.FieldDropdown([["an arc","arc"], ["a circle","circle"], ["a line","line"]]), "TYPE");
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("plane of motion")
+        .appendField(new Blockly.FieldDropdown([["up-down","updown"], ["left-right","leftright"]]), "PLANE");
+    this.setPreviousStatement(true, "manner");
+    this.setNextStatement(true, "rate");
+    this.setColour(180);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+var dropdownTextMap = {
+  'left_ankle': 'Left Ankle',
+  'right_ankle': 'Right Ankle',
+  'left_wrist': 'Left Wrist',
+  'right_wrist': 'Right Wrist',
+  'left_thigh': 'Left Thigh',
+  'right_thigh': 'Right Thigh'
+};
+var getDropdownText = function(value) {
+  return dropdownTextMap[value];
+}
+
+var dropdownAllBP = [];
+for (var key in dropdownTextMap) {
+  dropdownAllBP.push([getDropdownText(key), key]);
+}
+
+var getBPDropdownList = function(bplist) {
+          var dropdown_list = [];
+          for (var bp of bplist) {
+            dropdown_list.push([getDropdownText(bp), bp]);
+          }
+          if ((dropdown_list.length) == 0) {
+            return [["", ""]];
+          }
+          return dropdown_list;
+}
+var getActDropdownList = function(actlist) {
+          var dropdown_list = [];
+          for (var act of actlist) {
+            dropdown_list.push([act, act]);
+          }
+          if ((dropdown_list.length) == 0) {
+            return [["", ""]];
+          }
+          return dropdown_list;
+}
+Blockly.Blocks['mov_manner_bodypart'] = {
+  init: function() {
+    var block = this;
+    this.appendDummyInput()
+        .appendField("the movement is similar to");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(function () {
+          if (block.workspace != BlockFactory.mainWorkspace || !block.rendered) {
+            return dropdownAllBP;
+          }
+          var bplist = blocklyFactory.getBodyPartListCurr(block);
+          return getBPDropdownList(bplist);
+          // var dropdown_list = [['', '']];
+          //return BlockFactory.
+        }), "BODYPART")
+        .appendField("of the current activity");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, "manner");
+    this.setNextStatement(true, "rate");
+    this.setColour(180);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+  customUpdate: function() {
+    var field = this.getField("BODYPART");
+    console.log(field);
+  }
+};
+
+Blockly.Blocks['mov_manner_bodypart_activity'] = {
+  init: function() {
+    var block = this;
+    this.appendDummyInput()
+        .appendField("the movement is similar to");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(function() {
+          if (block.workspace != BlockFactory.mainWorkspace || !block.rendered) {
+            return dropdownAllBP;
+          }
+          var bplist = blocklyFactory.getBodyPartListExceptCurr(block);
+          return getBPDropdownList(bplist);
+        }), "BODYPART")
+        .appendField("of")
+        .appendField(new Blockly.FieldDropdown(function() {
+          if (block.workspace != BlockFactory.mainWorkspace || !block.rendered) {
+            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
+            return getActDropdownList(actlist);
+          }
+          var cur_bp = block.getFieldValue("BODYPART");
+          var actlist = blocklyFactory.getActivityListHasBodyPartManner(block, cur_bp);
+          return getActDropdownList(actlist);
+        }), "ACT");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, "manner");
+    this.setNextStatement(true, "rate");
+    this.setColour(180);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['mov_manner_activity'] = {
+  init: function() {
+    var block = this;
+    this.appendDummyInput()
+        .appendField("the movement is similar to");
+    this.appendDummyInput()
+        .appendField("the same body part of")
+        .appendField(new Blockly.FieldDropdown(function() {
+          if (block.workspace != BlockFactory.mainWorkspace || !block.rendered) {
+            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
+            return getActDropdownList(actlist);
+          }
+          if (block.workspace != BlockFactory.mainWorkspace) {
+            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
+            return getActDropdownList(actlist);
+          }
+          var cur_bp = block.getParent().getParent().type;
+          var actlist = blocklyFactory.getActivityListHasBodyPart(block, cur_bp);
+          return getActDropdownList(actlist);
+        }), "ACT");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, "manner");
+    this.setNextStatement(true, "rate");
+    this.setColour(180);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['mov_rate_bodypart'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("the rate is similar to");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["",""]]), "BODYPART")
+        .appendField("of the current activity");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, "rate");
+    this.setColour(180);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['mov_rate_bodypart_activity'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("the rate is similar to");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["",""]]), "BODYPART")
+        .appendField("of")
+        .appendField(new Blockly.FieldDropdown([["",""]]), "ACT");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, "rate");
+    this.setColour(180);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['mov_rate_activity'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("the rate is similar to");
+    this.appendDummyInput()
+        .appendField("the same body part of")
+        .appendField(new Blockly.FieldDropdown([["",""]]), "ACT");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, "rate");
+    this.setColour(180);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 
 
 var PA_ACTIVITY_MUTATOR_MIXIN = {
@@ -1568,17 +2109,17 @@ var PA_ACTIVITY_MUTATOR_MIXIN = {
     // var containerBlock = workspace.newBlock('controls_if_if');
     // containerBlock.initSvg();
     // return containerBlock;
-	var xml = blocklyFactory.blockLibraryController.storage.getBlockXml(this.getFieldValue("NAME"));
-	//xml = Blockly.Xml.textToDom(xml);
-	if (xml) {
-		Blockly.Xml.domToWorkspace(xml, workspace);
-		var containerBlock = workspace.getTopBlocks()[0];
-		return containerBlock;
-	} else {
-		var containerBlock = workspace.newBlock('del_remind');
-		containerBlock.initSvg();
-		return containerBlock;
-	}
+    var xml = blocklyFactory.blockLibraryController.storage.getBlockXml(this.getFieldValue("NAME"));
+    //xml = Blockly.Xml.textToDom(xml);
+    if (xml) {
+      Blockly.Xml.domToWorkspace(xml, workspace);
+      var containerBlock = workspace.getTopBlocks()[0];
+      return containerBlock;
+    } else {
+      var containerBlock = workspace.newBlock('del_remind');
+      containerBlock.initSvg();
+      return containerBlock;
+    }
   },
   /**
    * Reconfigure this block based on the mutator dialog's components.
@@ -1596,7 +2137,62 @@ var PA_ACTIVITY_MUTATOR_MIXIN = {
   },
 };
 
+var TEMPORAL_ORDER_MUTATOR_MIXIN = {
+
+  /**
+   * Don't automatically add STATEMENT_PREFIX and STATEMENT_SUFFIX to generated
+   * code.  These will be handled manually in this block's generators.
+   */
+  //suppressPrefixSuffix: true,
+
+  /**
+   * Create XML to represent the number of else-if and else inputs.
+   * @return {Element} XML storage element.
+   * @this {Blockly.Block}
+   */
+  mutationToDom: function() {
+    return null;
+  },
+  /**
+   * Parse XML to restore the else-if and else inputs.
+   * @param {!Element} xmlElement XML storage element.
+   * @this {Blockly.Block}
+   */
+  domToMutation: function(xmlElement) {
+  },
+  /**
+   * Populate the mutator's dialog with this block's components.
+   * @param {!Blockly.Workspace} workspace Mutator's workspace.
+   * @return {!Blockly.Block} Root block in mutator.
+   * @this {Blockly.Block}
+   */
+  decompose: function(workspace) {
+    var containerBlock = workspace.newBlock('temporal_order_config');
+    containerBlock.initSvg();
+    return containerBlock;
+  },
+  /**
+   * Reconfigure this block based on the mutator dialog's components.
+   * @param {!Blockly.Block} containerBlock Root block in mutator.
+   * @this {Blockly.Block}
+   */
+  compose: function(containerBlock) {
+  },
+  /**
+   * Store pointers to any connected child blocks.
+   * @param {!Blockly.Block} containerBlock Root block in mutator.
+   * @this {Blockly.Block}
+   */
+  saveConnections: function(containerBlock) {
+  },
+};
+
+
 Blockly.Extensions.registerMutator('pa_activity_mutator',
     PA_ACTIVITY_MUTATOR_MIXIN, myMutatorFn,
+    null);
+
+Blockly.Extensions.registerMutator('temporal_order_mutator',
+    TEMPORAL_ORDER_MUTATOR_MIXIN, myMutatorFn,
     null);
 

@@ -1,3 +1,6 @@
+// Blockly.JavaScript.INDENT = '';
+INDENT = Blockly.JavaScript.INDENT;
+INDENT_LEN = Blockly.JavaScript.INDENT.length;
 
 Blockly.JavaScript['activity'] = function(block) {
   var text_name = block.getFieldValue('NAME');
@@ -10,6 +13,12 @@ Blockly.JavaScript['activity'] = function(block) {
 var genItem = function(ctype, args) {
   //var code = '["' + ctype + '", ' + args + '],\n';
   var code = '"' + ctype + '": [' + args + '],\n';
+  return code;
+};
+
+var genDictItem = function(ctype, args) {
+  //var code = '["' + ctype + '", ' + args + '],\n';
+  var code = '"' + ctype + '": {\n' + args + '\n},\n';
   return code;
 };
 
@@ -87,6 +96,17 @@ Blockly.JavaScript['pa_object'] = function(block) {
     return '';
   }
   var code = genItem("object", value_obj);
+  return code;
+};
+
+Blockly.JavaScript['body_parts'] = function(block) {
+  var statements_bodypart = Blockly.JavaScript.statementToCode(block, 'BODYPART');
+  // TODO: Assemble JavaScript into code variable.
+  if (!statements_bodypart) {
+    statements_bodypart = '""';
+    return '';
+  }
+  var code = genDictItem("body_parts", statements_bodypart.slice(0,-2));
   return code;
 };
 
@@ -301,6 +321,317 @@ Blockly.JavaScript['ex_object_stove'] = function(block) {
 
 //----------------------------------------------------
 
+Blockly.JavaScript['left_ankle'] = function(block) {
+  var value_movement = Blockly.JavaScript.valueToCode(block, 'movement', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  if (!value_movement) {
+    value_movement = '""';
+    return '';
+  }
+  var code = genItem("left_ankle", value_movement);
+  return code;
+};
+
+Blockly.JavaScript['right_ankle'] = function(block) {
+  var value_movement = Blockly.JavaScript.valueToCode(block, 'movement', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  if (!value_movement) {
+    value_movement = '""';
+    return '';
+  }
+  var code = genItem("right_ankle", value_movement);
+  return code;
+};
+
+Blockly.JavaScript['left_wrist'] = function(block) {
+  var value_movement = Blockly.JavaScript.valueToCode(block, 'movement', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  if (!value_movement) {
+    value_movement = '""';
+    return '';
+  }
+  var code = genItem("left_wrist", value_movement);
+  return code;
+};
+
+Blockly.JavaScript['right_wrist'] = function(block) {
+  var value_movement = Blockly.JavaScript.valueToCode(block, 'movement', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  if (!value_movement) {
+    value_movement = '""';
+    return '';
+  }
+  var code = genItem("right_wrist", value_movement);
+  return code;
+};
+
+Blockly.JavaScript['left_thigh'] = function(block) {
+  var value_movement = Blockly.JavaScript.valueToCode(block, 'movement', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  if (!value_movement) {
+    value_movement = '""';
+    return '';
+  }
+  var code = genItem("left_thigh", value_movement);
+  return code;
+};
+
+Blockly.JavaScript['right_thigh'] = function(block) {
+  var value_movement = Blockly.JavaScript.valueToCode(block, 'movement', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  if (!value_movement) {
+    value_movement = '""';
+    return '';
+  }
+  // var code = '{"right_thigh": [' + value_movement + ']"},\n';
+  var code = genItem("right_thigh", value_movement);
+  return code;
+};
+
+Blockly.JavaScript['pos_still'] = function(block) {
+  var dropdown_pos = block.getFieldValue('pos');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"still", "' + dropdown_pos + '"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['occa_moving'] = function(block) {
+  var dropdown_pos = block.getFieldValue('pos');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"occa_moving", "' + dropdown_pos + '"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['mov_pattern'] = function(block) {
+  var statements_pattern = Blockly.JavaScript.statementToCode(block, 'PATTERN');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"pattern", {\n' + INDENT + statements_pattern.slice(INDENT_LEN, -2) + '\n}';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['mov_motion'] = function(block) {
+  var dropdown_type = block.getFieldValue('TYPE');
+  var dropdown_plane = block.getFieldValue('PLANE');
+  // TODO: Assemble JavaScript into code variable.
+  var def = ["motion", {
+    type: dropdown_type,
+    plane: dropdown_plane
+  }];
+  var code = '"manner": ' + JSON.stringify(def) + ',\n';
+  return code;
+};
+
+Blockly.JavaScript['mov_manner_bodypart'] = function(block) {
+  var dropdown_bodypart = block.getFieldValue('BODYPART');
+  // TODO: Assemble JavaScript into code variable.
+  var def = ["sim", {
+    act: "current",
+    bodypart: dropdown_bodypart
+  }];
+  var code = '"manner": ' + JSON.stringify(def) + ',\n';
+  return code;
+};
+
+Blockly.JavaScript['mov_manner_bodypart_activity'] = function(block) {
+  var dropdown_bodypart = block.getFieldValue('BODYPART');
+  var dropdown_act = block.getFieldValue('ACT');
+  // TODO: Assemble JavaScript into code variable.
+  var def = ["sim", {
+    act: dropdown_act,
+    bodypart: dropdown_bodypart
+  }];
+  var code = '"manner": ' + JSON.stringify(def) + ',\n';
+  return code;
+};
+
+Blockly.JavaScript['mov_manner_activity'] = function(block) {
+  var dropdown_act = block.getFieldValue('ACT');
+  // TODO: Assemble JavaScript into code variable.
+  var def = ["sim", {
+    act: dropdown_act,
+    bodypart: "current"
+  }];
+  var code = '"manner": ' + JSON.stringify(def) + ',\n';
+  return code;
+};
+
+Blockly.JavaScript['mov_rate_bodypart'] = function(block) {
+  var dropdown_bodypart = block.getFieldValue('BODYPART');
+  // TODO: Assemble JavaScript into code variable.
+  var def = ["sim", {
+    act: "current",
+    bodypart: dropdown_bodypart
+  }];
+  var code = '"rate": ' + JSON.stringify(def) + ',\n';
+  return code;
+};
+
+Blockly.JavaScript['mov_rate_bodypart_activity'] = function(block) {
+  var dropdown_bodypart = block.getFieldValue('BODYPART');
+  var dropdown_act = block.getFieldValue('ACT');
+  // TODO: Assemble JavaScript into code variable.
+  var def = ["sim", {
+    act: dropdown_act,
+    bodypart: dropdown_bodypart
+  }];
+  var code = '"rate": ' + JSON.stringify(def) + ',\n';
+  return code;
+};
+
+Blockly.JavaScript['mov_rate_activity'] = function(block) {
+  var dropdown_act = block.getFieldValue('ACT');
+  // TODO: Assemble JavaScript into code variable.
+  var def = ["sim", {
+    act: dropdown_act,
+    bodypart: "current"
+  }];
+  var code = '"rate": ' + JSON.stringify(def) + ',\n';
+  return code;
+};
+
+Blockly.JavaScript['mov_arc'] = function(block) {
+  var statements_plane = Blockly.JavaScript.statementToCode(block, 'PLANE');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"arc", ' + statements_plane.slice(INDENT_LEN) + '';
+  return code;
+};
+
+Blockly.JavaScript['mov_circle'] = function(block) {
+  var statements_name = Blockly.JavaScript.statementToCode(block, 'PLANE');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"circle", ' + statements_plane.slice(INDENT_LEN) + '';
+  return code;
+};
+
+Blockly.JavaScript['mov_line'] = function(block) {
+  var statements_plane = Blockly.JavaScript.statementToCode(block, 'PLANE');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"line", ' + statements_plane.slice(INDENT_LEN) + '';
+  return code;
+};
+
+Blockly.JavaScript['mov_up_down'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"up_down"';
+  return code;
+};
+
+Blockly.JavaScript['mov_front_back'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"front_back"';
+  return code;
+};
+
+Blockly.JavaScript['mov_left_right'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"left_right"';
+  return code;
+};
+
+Blockly.JavaScript['mov_up_level'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"up_level"';
+  return code;
+};
+
+Blockly.JavaScript['mov_down_level'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"down_level"';
+  return code;
+};
+
+Blockly.JavaScript['mov_plane_sim'] = function(block) {
+  var value_other = Blockly.JavaScript.valueToCode(block, 'OTHER', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"plane_similar_to", ' + value_other;
+  return code;
+};
+
+Blockly.JavaScript['mov_manner_sim'] = function(block) {
+  var value_other = Blockly.JavaScript.valueToCode(block, 'OTHER', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"manner_similar_to", ' + value_other;
+  return code;
+};
+
+Blockly.JavaScript['mov_rate_sim'] = function(block) {
+  var value_other = Blockly.JavaScript.valueToCode(block, 'OTHER', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"rate_similar_to", ' + value_other;
+  return code;
+};
+
+Blockly.JavaScript['rate'] = function(block) {
+  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+
+Blockly.JavaScript['left_ankle_ref'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"left_ankle"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['right_ankle_ref'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"right_ankle"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['left_wrist_ref'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"left_wrist"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['right_wrist_ref'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"right_wrist"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['left_thigh_ref'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"left_thigh"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['right_thigh_ref'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"right_thigh"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['same_body_part_activity_ref'] = function(block) {
+  var value_act = Blockly.JavaScript.valueToCode(block, 'ACT', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = value_act;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['body_part_activity_ref'] = function(block) {
+  var value_bodypart = Blockly.JavaScript.valueToCode(block, 'BODYPART', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_act = Blockly.JavaScript.valueToCode(block, 'ACT', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = value_bodypart + value_act;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+//----------------------------------------------------
+
 Blockly.JavaScript['pa_activity_defined'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
   var code = '"' + block.getFieldValue('NAME') + '"';
@@ -427,48 +758,6 @@ Blockly.JavaScript['duration_act'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
-Blockly.JavaScript['left_ankle'] = function(block) {
-  var value_movement = Blockly.JavaScript.valueToCode(block, 'movement', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['right_ankle'] = function(block) {
-  var value_movement = Blockly.JavaScript.valueToCode(block, 'movement', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['right_wrist'] = function(block) {
-  var value_movement = Blockly.JavaScript.valueToCode(block, 'movement', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['left_wrist'] = function(block) {
-  var value_movement = Blockly.JavaScript.valueToCode(block, 'movement', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['left_thigh'] = function(block) {
-  var value_movement = Blockly.JavaScript.valueToCode(block, 'movement', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['right_thigh'] = function(block) {
-  var value_movement = Blockly.JavaScript.valueToCode(block, 'movement', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
 Blockly.JavaScript['ass_similar_to'] = function(block) {
   var value_assignments = Blockly.JavaScript.valueToCode(block, 'assignments', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
@@ -507,172 +796,10 @@ Blockly.JavaScript['del_remind'] = function(block) {
   return code;
 };
 
-Blockly.JavaScript['pos_still'] = function(block) {
-  var dropdown_pos = block.getFieldValue('pos');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['occa_moving'] = function(block) {
-  var dropdown_pos = block.getFieldValue('pos');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
 Blockly.JavaScript['manner'] = function(block) {
   var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
   // TODO: Assemble JavaScript into code variable.
   var code = '...';
   // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['rate'] = function(block) {
-  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['mov_arc'] = function(block) {
-  var statements_plane = Blockly.JavaScript.statementToCode(block, 'PLANE');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['mov_circle'] = function(block) {
-  var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['mov_line'] = function(block) {
-  var statements_plane = Blockly.JavaScript.statementToCode(block, 'PLANE');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['mov_up_down'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['mov_front_back'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['mov_left_right'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['mov_up_level'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['mov_down_level'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['mov_pattern'] = function(block) {
-  var statements_pattern = Blockly.JavaScript.statementToCode(block, 'PATTERN');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['mov_plane_sim'] = function(block) {
-  var value_act = Blockly.JavaScript.valueToCode(block, 'ACT', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['mov_rate_sim'] = function(block) {
-  var value_other = Blockly.JavaScript.valueToCode(block, 'OTHER', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
-};
-
-Blockly.JavaScript['left_ankle_ref'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['right_ankle_ref'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['right_wrist_ref'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['left_wrist_ref'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['left_thigh_ref'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['right_thigh_ref'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['body_part_activity_ref'] = function(block) {
-  var value_bodypart = Blockly.JavaScript.valueToCode(block, 'BODYPART', Blockly.JavaScript.ORDER_ATOMIC);
-  var value_act = Blockly.JavaScript.valueToCode(block, 'ACT', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['same_body_part_activity_ref'] = function(block) {
-  var value_act = Blockly.JavaScript.valueToCode(block, 'ACT', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
-};
-
-Blockly.JavaScript['mov_manner_sim'] = function(block) {
-  var value_other = Blockly.JavaScript.valueToCode(block, 'OTHER', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
-  return code;
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };

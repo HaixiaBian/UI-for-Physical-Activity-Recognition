@@ -66,6 +66,8 @@ BlockLibraryController.prototype.getCurrentBlockType = function() {
 BlockLibraryController.prototype.removeFromBlockLibrary = function() {
   var blockType = this.getCurrentBlockType();
   
+  try {
+  
   // Create block XML.
   var xmlElement = Blockly.utils.xml.createElement('xml');
   var block = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
@@ -87,6 +89,9 @@ BlockLibraryController.prototype.removeFromBlockLibrary = function() {
   this.addOptionSelectHandler_del(blockType);
   BlocklyDevTools.Analytics.onSave('Block');
   
+  } catch(e) {
+  }
+  
   this.storage.removeBlock(blockType);
   this.storage.saveToLocalStorage();
   this.populateBlockLibrary();
@@ -101,6 +106,7 @@ BlockLibraryController.prototype.openBlock = function(blockType) {
   if (blockType) {
     var xml = this.storage.getBlockXml(blockType);
     BlockFactory.mainWorkspace.clear();
+    blocklyFactory.setActivityDef(xml);
     Blockly.Xml.domToWorkspace(xml, BlockFactory.mainWorkspace);
     BlockFactory.mainWorkspace.clearUndo();
   } else {
