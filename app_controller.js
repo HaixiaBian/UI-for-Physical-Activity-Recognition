@@ -686,6 +686,14 @@ var matchExact = function(src, target) {
   return true;
 };
 
+AppController.prototype.getRootBlock = function(block) {
+  var root_block = block.getRootBlock();
+  if (root_block.type != 'activity') {
+    root_block = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
+  }
+  return root_block;
+};
+
 AppController.prototype.libraryMatch = function(event) {
   if (event.type == Blockly.Events.MOVE ||
       event.type == Blockly.Events.CREATE ||
@@ -740,7 +748,7 @@ AppController.prototype.libraryMatch = function(event) {
   }
 };
 
-AppController.prototype.getBodyPartListCurrAct = function(block) {
+AppController.prototype.getBodyPartListCurrActManner = function(block) {
   var root_def;
   if (!block) {
     root_def = this.rootDef;
@@ -750,7 +758,7 @@ AppController.prototype.getBodyPartListCurrAct = function(block) {
     // var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
     // block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
     // BlockFactory.hiddenWorkspace.clear();
-    var root_block = block.getRootBlock();
+    var root_block = this.getRootBlock(block);
     var block_code = Blockly.JavaScript.blockToCode(root_block);
     try {
       var block_def = JSON.parse(block_code);
@@ -765,19 +773,24 @@ AppController.prototype.getBodyPartListCurrAct = function(block) {
   }
   
   //var cur_bp = block.
+  var bplist = {};
   var def = root_def['body_parts'];
   console.log(def);
-  for (body_part in def) {
-    console.log(body_part);
-    //if (
-    var desc = def[body_part];
-    console.log(desc);
+  for (bodypart in def) {
+    var bp = def[bodypart];
+    if (bp[0] != "pattern") {
+      continue;
+    }
+    if (!("manner" in bp[1])) {
+      continue;
+    }
+    bplist[bodypart] = true;
   }
   
-  return Object.keys(def);
+  return Object.keys(bplist);
 };
 
-AppController.prototype.getBodyPartListExceptCurrAct = function(cur_block) {
+AppController.prototype.getBodyPartListExceptCurrActManner = function(cur_block) {
   var bplist = {};
   var allinlib = this.blockLibraryController.storage.blocks;
   var cur_act = cur_block.getRootBlock().getFieldValue('NAME');
@@ -802,6 +815,14 @@ AppController.prototype.getBodyPartListExceptCurrAct = function(cur_block) {
       continue;
     }
     for (var bodypart in block_def['body_parts']) {
+      var bp = block_def['body_parts'][bodypart];
+      if (bp[0] != "pattern") {
+        continue;
+      }
+      if (!("manner" in bp[1])) {
+        continue;
+      }
+
       bplist[bodypart] = true;
     }
   }
@@ -847,7 +868,7 @@ AppController.prototype.getActivityListHasBodyPartManner = function(cur_block, b
   return actlist;
 };
 
-AppController.prototype.getBodyPartListCurr = function(block) {
+AppController.prototype.getBodyPartListCurrActRate = function(block) {
   var root_def;
   if (!block) {
     root_def = this.rootDef;
@@ -857,7 +878,7 @@ AppController.prototype.getBodyPartListCurr = function(block) {
     // var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
     // block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
     // BlockFactory.hiddenWorkspace.clear();
-    var root_block = block.getRootBlock();
+    var root_block = this.getRootBlock(block);
     var block_code = Blockly.JavaScript.blockToCode(root_block);
     try {
       var block_def = JSON.parse(block_code);
@@ -871,18 +892,20 @@ AppController.prototype.getBodyPartListCurr = function(block) {
     return [];
   }
   
+  var bplist = {};
   var def = root_def['body_parts'];
-  console.log(def);
-  for (body_part in def) {
-    console.log(body_part);
-    var desc = def[body_part];
-    console.log(desc);
+  for (bodypart in def) {
+    var bp = def[bodypart];
+    if (bp[0] != "pattern") {
+      continue;
+    }
+    bplist[bodypart] = true;
   }
   
   return Object.keys(def);
 };
 
-AppController.prototype.getBodyPartListExceptCurr = function(cur_block) {
+AppController.prototype.getBodyPartListExceptCurrActRate = function(cur_block) {
   var bplist = {};
   var allinlib = this.blockLibraryController.storage.blocks;
   var cur_act = cur_block.getRootBlock().getFieldValue('NAME');
@@ -906,14 +929,19 @@ AppController.prototype.getBodyPartListExceptCurr = function(cur_block) {
     if (!('body_parts' in block_def)) {
       continue;
     }
-    for (var bodypart in block_def['body_parts']) {
+    var def = block_def['body_parts'];
+    for (bodypart in def) {
+      var bp = def[bodypart];
+      if (bp[0] != "pattern") {
+        continue;
+      }
       bplist[bodypart] = true;
     }
   }
   return Object.keys(bplist);
 };
 
-AppController.prototype.getActivityListHasBodyPart = function(cur_block, bodypart) {
+AppController.prototype.getActivityListHasBodyPartRate = function(cur_block, bodypart) {
   var allinlib = this.blockLibraryController.storage.blocks;
   var actlist = [];
   var cur_act = cur_block.getRootBlock().getFieldValue('NAME');
@@ -936,9 +964,16 @@ AppController.prototype.getActivityListHasBodyPart = function(cur_block, bodypar
     if (!('body_parts' in block_def)) {
       continue;
     }
-    if (bodypart && !(bodypart in block_def['body_parts'])) {
+    if (!(bodypart in block_def['body_parts'])) {
       continue;
     }
+    var bp = block_def['body_parts'][bodypart];
+    if (bp[0] != "pattern") {
+      continue;
+    }
+    // if (!("rate" in bp[1])) {
+    //   continue;
+    // }
     
     actlist.push(pa_name);
   }

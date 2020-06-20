@@ -1902,12 +1902,12 @@ Blockly.Blocks['mov_motion'] = {
 };
 
 var dropdownTextMap = {
-  'left_ankle': 'Left Ankle',
-  'right_ankle': 'Right Ankle',
-  'left_wrist': 'Left Wrist',
-  'right_wrist': 'Right Wrist',
-  'left_thigh': 'Left Thigh',
-  'right_thigh': 'Right Thigh'
+  'left_ankle': 'Left ankle',
+  'right_ankle': 'Right ankle',
+  'left_wrist': 'Left wrist',
+  'right_wrist': 'Right wrist',
+  'left_thigh': 'Left thigh',
+  'right_thigh': 'Right thigh'
 };
 var getDropdownText = function(value) {
   return dropdownTextMap[value];
@@ -1938,6 +1938,8 @@ var getActDropdownList = function(actlist) {
           }
           return dropdown_list;
 }
+
+
 Blockly.Blocks['mov_manner_bodypart'] = {
   init: function() {
     var block = this;
@@ -1945,13 +1947,11 @@ Blockly.Blocks['mov_manner_bodypart'] = {
         .appendField("the movement is similar to");
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown(function () {
-          if (block.workspace != BlockFactory.mainWorkspace || !block.rendered) {
+          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
             return dropdownAllBP;
           }
-          var bplist = blocklyFactory.getBodyPartListCurr(block);
+          var bplist = blocklyFactory.getBodyPartListCurrActManner(block);
           return getBPDropdownList(bplist);
-          // var dropdown_list = [['', '']];
-          //return BlockFactory.
         }), "BODYPART")
         .appendField("of the current activity");
     this.setInputsInline(false);
@@ -1974,19 +1974,20 @@ Blockly.Blocks['mov_manner_bodypart_activity'] = {
         .appendField("the movement is similar to");
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown(function() {
-          if (block.workspace != BlockFactory.mainWorkspace || !block.rendered) {
+          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
             return dropdownAllBP;
           }
-          var bplist = blocklyFactory.getBodyPartListExceptCurr(block);
+          var bplist = blocklyFactory.getBodyPartListExceptCurrActManner(block);
           return getBPDropdownList(bplist);
         }), "BODYPART")
         .appendField("of")
         .appendField(new Blockly.FieldDropdown(function() {
-          if (block.workspace != BlockFactory.mainWorkspace || !block.rendered) {
+          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
             var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
             return getActDropdownList(actlist);
           }
-          var cur_bp = block.getFieldValue("BODYPART");
+          // var cur_bp = block.getFieldValue("BODYPART");
+          var cur_bp = null;
           var actlist = blocklyFactory.getActivityListHasBodyPartManner(block, cur_bp);
           return getActDropdownList(actlist);
         }), "ACT");
@@ -2007,16 +2008,13 @@ Blockly.Blocks['mov_manner_activity'] = {
     this.appendDummyInput()
         .appendField("the same body part of")
         .appendField(new Blockly.FieldDropdown(function() {
-          if (block.workspace != BlockFactory.mainWorkspace || !block.rendered) {
+          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
             var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
             return getActDropdownList(actlist);
           }
-          if (block.workspace != BlockFactory.mainWorkspace) {
-            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
-            return getActDropdownList(actlist);
-          }
-          var cur_bp = block.getParent().getParent().type;
-          var actlist = blocklyFactory.getActivityListHasBodyPart(block, cur_bp);
+          // var cur_bp = block.getParent().getParent().type;
+          var cur_bp = null;
+          var actlist = blocklyFactory.getActivityListHasBodyPartManner(block, cur_bp);
           return getActDropdownList(actlist);
         }), "ACT");
     this.setInputsInline(false);
@@ -2030,10 +2028,17 @@ Blockly.Blocks['mov_manner_activity'] = {
 
 Blockly.Blocks['mov_rate_bodypart'] = {
   init: function() {
+    var block = this;
     this.appendDummyInput()
         .appendField("the rate is similar to");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["",""]]), "BODYPART")
+        .appendField(new Blockly.FieldDropdown(function () {
+          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
+            return dropdownAllBP;
+          }
+          var bplist = blocklyFactory.getBodyPartListCurrActRate(block);
+          return getBPDropdownList(bplist);
+        }), "BODYPART")
         .appendField("of the current activity");
     this.setInputsInline(false);
     this.setPreviousStatement(true, "rate");
@@ -2045,12 +2050,28 @@ Blockly.Blocks['mov_rate_bodypart'] = {
 
 Blockly.Blocks['mov_rate_bodypart_activity'] = {
   init: function() {
+    var block = this;
     this.appendDummyInput()
         .appendField("the rate is similar to");
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["",""]]), "BODYPART")
+        .appendField(new Blockly.FieldDropdown(function() {
+          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
+            return dropdownAllBP;
+          }
+          var bplist = blocklyFactory.getBodyPartListExceptCurrActRate(block);
+          return getBPDropdownList(bplist);
+        }), "BODYPART")
         .appendField("of")
-        .appendField(new Blockly.FieldDropdown([["",""]]), "ACT");
+        .appendField(new Blockly.FieldDropdown(function() {
+          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
+            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
+            return getActDropdownList(actlist);
+          }
+          // var cur_bp = block.getFieldValue("BODYPART");
+          var cur_bp = null;
+          var actlist = blocklyFactory.getActivityListHasBodyPartRate(block, cur_bp);
+          return getActDropdownList(actlist);
+        }), "ACT");
     this.setInputsInline(false);
     this.setPreviousStatement(true, "rate");
     this.setColour(180);
@@ -2061,11 +2082,25 @@ Blockly.Blocks['mov_rate_bodypart_activity'] = {
 
 Blockly.Blocks['mov_rate_activity'] = {
   init: function() {
+    var block = this;
     this.appendDummyInput()
         .appendField("the rate is similar to");
     this.appendDummyInput()
         .appendField("the same body part of")
-        .appendField(new Blockly.FieldDropdown([["",""]]), "ACT");
+        .appendField(new Blockly.FieldDropdown(function() {
+          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) || !block.rendered) {
+            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
+            return getActDropdownList(actlist);
+          }
+          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) || !block.rendered) {
+            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
+            return getActDropdownList(actlist);
+          }
+          // var cur_bp = block.getParent().getParent().type;
+          var cur_bp = null;
+          var actlist = blocklyFactory.getActivityListHasBodyPartRate(block, cur_bp);
+          return getActDropdownList(actlist);
+        }), "ACT");
     this.setInputsInline(false);
     this.setPreviousStatement(true, "rate");
     this.setColour(180);
