@@ -13,6 +13,12 @@ Object.defineProperty(MyMutator.prototype, 'constructor', {
     value: MyMutator, 
     enumerable: false, // so that it does not appear in 'for in' loop
     writable: true });
+    
+MyMutator.prototype.createEditor_ = function() {
+  Blockly.Mutator.prototype.createEditor_.call(this);
+  this.getWorkspace().options['readOnly'] = true;
+  return this.svgDialog_;
+};
 
 MyMutator.prototype.resizeBubble_ = function() {
   var doubleBorderWidth = 2 * Blockly.Bubble.BORDER_WIDTH;

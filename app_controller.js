@@ -793,7 +793,7 @@ AppController.prototype.getBodyPartListCurrActManner = function(block) {
 AppController.prototype.getBodyPartListExceptCurrActManner = function(cur_block) {
   var bplist = {};
   var allinlib = this.blockLibraryController.storage.blocks;
-  var cur_act = cur_block.getRootBlock().getFieldValue('NAME');
+  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
   // console.log(cur_block.workspace == BlockFactory.mainWorkspace, cur_block.isInFlyout);
   for (var pa_name in allinlib) {
     if (pa_name == cur_act) {
@@ -832,7 +832,7 @@ AppController.prototype.getBodyPartListExceptCurrActManner = function(cur_block)
 AppController.prototype.getActivityListHasBodyPartManner = function(cur_block, bodypart) {
   var allinlib = this.blockLibraryController.storage.blocks;
   var actlist = [];
-  var cur_act = cur_block.getRootBlock().getFieldValue('NAME');
+  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
   for (var pa_name in allinlib) {
     if (pa_name == cur_act) {
       continue;
@@ -908,7 +908,7 @@ AppController.prototype.getBodyPartListCurrActRate = function(block) {
 AppController.prototype.getBodyPartListExceptCurrActRate = function(cur_block) {
   var bplist = {};
   var allinlib = this.blockLibraryController.storage.blocks;
-  var cur_act = cur_block.getRootBlock().getFieldValue('NAME');
+  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
   // console.log(cur_block.workspace == BlockFactory.mainWorkspace, cur_block.isInFlyout);
   for (var pa_name in allinlib) {
     if (pa_name == cur_act) {
@@ -944,7 +944,7 @@ AppController.prototype.getBodyPartListExceptCurrActRate = function(cur_block) {
 AppController.prototype.getActivityListHasBodyPartRate = function(cur_block, bodypart) {
   var allinlib = this.blockLibraryController.storage.blocks;
   var actlist = [];
-  var cur_act = cur_block.getRootBlock().getFieldValue('NAME');
+  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
   for (var pa_name in allinlib) {
     if (pa_name == cur_act) {
       continue;
@@ -979,6 +979,127 @@ AppController.prototype.getActivityListHasBodyPartRate = function(cur_block, bod
   }
   return actlist;
 };
+
+AppController.prototype.getBodyPartListCurrActPlane = function(block) {
+  var root_def;
+  if (!block) {
+    root_def = this.rootDef;
+  } else {
+    // var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
+    // BlockFactory.hiddenWorkspace.clear();
+    // var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
+    // block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
+    // BlockFactory.hiddenWorkspace.clear();
+    var root_block = this.getRootBlock(block);
+    var block_code = Blockly.JavaScript.blockToCode(root_block);
+    try {
+      var block_def = JSON.parse(block_code);
+    } catch (e) {
+      return [];
+    }
+    root_def = block_def;
+  }
+  
+  if (!('body_parts' in root_def)) {
+    return [];
+  }
+  
+  //var cur_bp = block.
+  var bplist = {};
+  var def = root_def['body_parts'];
+  console.log(def);
+  for (bodypart in def) {
+    var bp = def[bodypart];
+    if (bp[0] != "pattern") {
+      continue;
+    }
+    if (!("manner" in bp[1])) {
+      continue;
+    }
+    bplist[bodypart] = true;
+  }
+  
+  return Object.keys(bplist);
+};
+
+AppController.prototype.getBodyPartListExceptCurrActPlane = function(cur_block) {
+  var bplist = {};
+  var allinlib = this.blockLibraryController.storage.blocks;
+  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
+  // console.log(cur_block.workspace == BlockFactory.mainWorkspace, cur_block.isInFlyout);
+  for (var pa_name in allinlib) {
+    if (pa_name == cur_act) {
+      continue;
+    }
+    var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
+    BlockFactory.hiddenWorkspace.clear();
+    var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
+    block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
+    BlockFactory.hiddenWorkspace.clear();
+    try {
+      var block_def = JSON.parse(block);
+    } catch (e) {
+      console.log("activity: " + pa_name + " parse failed");
+      continue;
+    }
+
+    if (!('body_parts' in block_def)) {
+      continue;
+    }
+    for (var bodypart in block_def['body_parts']) {
+      var bp = block_def['body_parts'][bodypart];
+      if (bp[0] != "pattern") {
+        continue;
+      }
+      if (!("manner" in bp[1])) {
+        continue;
+      }
+
+      bplist[bodypart] = true;
+    }
+  }
+  return Object.keys(bplist);
+};
+
+AppController.prototype.getActivityListHasBodyPartPlane = function(cur_block, bodypart) {
+  var allinlib = this.blockLibraryController.storage.blocks;
+  var actlist = [];
+  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
+  for (var pa_name in allinlib) {
+    if (pa_name == cur_act) {
+      continue;
+    }
+    var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
+    BlockFactory.hiddenWorkspace.clear();
+    var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
+    block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
+    BlockFactory.hiddenWorkspace.clear();
+    try {
+      var block_def = JSON.parse(block);
+    } catch (e) {
+      console.log("activity: " + pa_name + " parse failed");
+      continue;
+    }
+
+    if (!('body_parts' in block_def)) {
+      continue;
+    }
+    if (!(bodypart in block_def['body_parts'])) {
+      continue;
+    }
+    var bp = block_def['body_parts'][bodypart];
+    if (bp[0] != "pattern") {
+      continue;
+    }
+    if (!("manner" in bp[1])) {
+      continue;
+    }
+    
+    actlist.push(pa_name);
+  }
+  return actlist;
+};
+
 
 AppController.prototype.setActivityDef = function(xml) {
   BlockFactory.hiddenWorkspace.clear();
@@ -1079,12 +1200,14 @@ AppController.prototype.addBlockFactoryEventListeners = function() {
     var mov_manner_bodypart = elems.find(function (el) {
       return el.getAttribute('type') == 'mov_manner_bodypart';
     });
-    if (!('body_parts' in root_def) || Object.keys(root_def['body_parts']).length <= 1) {
-      mov_manner_bodypart.setAttribute('disabled', true);
-    } else {
-      mov_manner_bodypart.setAttribute('disabled', false);
+    if (mov_manner_bodypart) {
+      if (!('body_parts' in root_def) || Object.keys(root_def['body_parts']).length <= 1) {
+        mov_manner_bodypart.setAttribute('disabled', true);
+      } else {
+        mov_manner_bodypart.setAttribute('disabled', false);
+      }
+      self.updateToolbox();
     }
-    self.updateToolbox();
       
     function updateBlocks(blocks) {
       for (var i = 0, block; block = blocks[i]; i++) {

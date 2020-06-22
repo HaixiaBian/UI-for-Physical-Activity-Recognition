@@ -7,7 +7,8 @@ goog.require('Blockly.FieldDropdown');
 goog.require('Blockly.FieldLabel');
 goog.require('Blockly.Mutator');
 
-Blockly.defineBlocksWithJsonArray([{
+Blockly.defineBlocksWithJsonArray([
+{
   "type": "pa_place",
   "message0": "I perform this PA only %1 in a certain place or places %2",
   "args0": [
@@ -720,7 +721,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "x",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     },
     {
@@ -728,7 +730,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "y",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     }
   ],
@@ -748,7 +751,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "x",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     },
     {
@@ -756,7 +760,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "y",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     }
   ],
@@ -776,7 +781,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "x",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     },
     {
@@ -784,7 +790,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "y",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     }
   ],
@@ -804,7 +811,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "x",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     },
     {
@@ -812,7 +820,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "y",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     }
   ],
@@ -832,7 +841,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "x",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     },
     {
@@ -840,7 +850,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "y",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     }
   ],
@@ -860,7 +871,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "x",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     },
     {
@@ -868,7 +880,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "y",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     }
   ],
@@ -888,7 +901,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "x",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     },
     {
@@ -896,7 +910,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "y",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     }
   ],
@@ -916,7 +931,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "x",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     },
     {
@@ -924,7 +940,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "y",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     }
   ],
@@ -944,7 +961,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "x",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     },
     {
@@ -952,7 +970,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "y",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     }
   ],
@@ -980,7 +999,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "y",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     }
   ],
@@ -1008,7 +1028,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "y",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     }
   ],
@@ -1028,7 +1049,8 @@ Blockly.defineBlocksWithJsonArray([{
       "name": "x",
       "check": [
         "activity",
-        "ex_object"
+        "ex_object",
+        "bodypart_desc"
       ]
     },
     {
@@ -1128,6 +1150,26 @@ Blockly.defineBlocksWithJsonArray([{
   "helpUrl": ""
 },
 {
+  "type": "body_parts_value_input",
+  "message0": "Body parts %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "BODYPART",
+      "check": [
+        "bodypart_desc",
+        "temporal_order_rel"
+      ]
+    }
+  ],
+  "inputsInline": false,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
   "type": "left_ankle",
   "message0": "Left ankle %1",
   "args0": [
@@ -1213,6 +1255,114 @@ Blockly.defineBlocksWithJsonArray([{
   ],
   "previousStatement": "bodypart_desc",
   "nextStatement": "bodypart_desc",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "left_ankle_left_output",
+  "message0": "Left ankle %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "movement",
+      "check": [
+        "pose",
+        "pattern"
+      ]
+    }
+  ],
+  "output": "bodypart_desc",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "right_ankle_left_output",
+  "message0": "Right ankle %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "movement",
+      "check": [
+        "pose",
+        "pattern"
+      ]
+    }
+  ],
+  "output": "bodypart_desc",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "right_wrist_left_output",
+  "message0": "Right wrist %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "movement",
+      "check": [
+        "pose",
+        "pattern"
+      ]
+    }
+  ],
+  "output": "bodypart_desc",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "left_wrist_left_output",
+  "message0": "Left wrist %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "movement",
+      "check": [
+        "pose",
+        "pattern"
+      ]
+    }
+  ],
+  "output": "bodypart_desc",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "left_thigh_left_output",
+  "message0": "Left thigh %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "movement",
+      "check": [
+        "pose",
+        "pattern"
+      ]
+    }
+  ],
+  "output": "bodypart_desc",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "right_thigh_left_output",
+  "message0": "Right thigh %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "movement",
+      "check": [
+        "pose",
+        "pattern"
+      ]
+    }
+  ],
+  "output": "bodypart_desc",
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
@@ -1880,6 +2030,190 @@ Blockly.defineBlocksWithJsonArray([{
   "colour": 180,
   "tooltip": "",
   "helpUrl": ""
+},
+{
+  "type": "mov_pattern_value_input",
+  "message0": "Repeating Pattern manner %1 rate %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "MANNER",
+      "check": "manner"
+    },
+    {
+      "type": "input_value",
+      "name": "RATE",
+      "check": "rate",
+      "align": "RIGHT"
+    }
+  ],
+  "output": "pattern",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_motion_left_output_value_input",
+  "message0": "type %1 plane %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "TYPE",
+      "check": "mov_type"
+    },
+    {
+      "type": "input_value",
+      "name": "PLANE",
+      "check": "mov_plane"
+    }
+  ],
+  "output": "manner",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_motion_type",
+  "message0": "in %1",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "TYPE",
+      "options": [
+        [
+          "an arc",
+          "arc"
+        ],
+        [
+          "a circle",
+          "circle"
+        ],
+        [
+          "a line",
+          "line"
+        ]
+      ]
+    }
+  ],
+  "output": "mov_type",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_motion_plane",
+  "message0": "%1",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "PLANE",
+      "options": [
+        [
+          "up-down",
+          "updown"
+        ],
+        [
+          "left-right",
+          "leftright"
+        ],
+        [
+          "front-back",
+          "frontback"
+        ],
+        [
+          "up-parallel to ground",
+          "uplevel"
+        ],
+        [
+          "down-parallel to ground",
+          "downlevel"
+        ]
+      ]
+    }
+  ],
+  "output": "mov_plane",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_motion_plane_sim_bodypart",
+  "message0": "similar to %1 %2 of the current activity",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "BODYPART",
+      "options": [
+        [
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy"
+    }
+  ],
+  "output": "mov_plane",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_motion_plane_sim_bodypart_activity",
+  "message0": "similar to %1 %2 of %3",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "BODYPART",
+      "options": [
+        [
+          "",
+          ""
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "ACT",
+      "options": [
+        [
+          "",
+          ""
+        ]
+      ]
+    }
+  ],
+  "output": "mov_plane",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "mov_motion_plane_sim_activity",
+  "message0": "similar to the same bodypart %1 of %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "ACT",
+      "options": [
+        [
+          "",
+          ""
+        ]
+      ]
+    }
+  ],
+  "output": "mov_plane",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
 }
 ]);
 
@@ -1939,6 +2273,15 @@ var getActDropdownList = function(actlist) {
           return dropdown_list;
 }
 
+var needDynamicFields = function(block) {
+  if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace)) {
+    return false;
+  }
+  //if (!block.rendered && block.workspace == BlockFactory.mainWorkspace) {
+  //  return false;
+  //}
+  return true;
+};
 
 Blockly.Blocks['mov_manner_bodypart'] = {
   init: function() {
@@ -1947,7 +2290,7 @@ Blockly.Blocks['mov_manner_bodypart'] = {
         .appendField("the movement is similar to");
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown(function () {
-          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
+          if (!needDynamicFields(block)) {
             return dropdownAllBP;
           }
           var bplist = blocklyFactory.getBodyPartListCurrActManner(block);
@@ -1974,7 +2317,7 @@ Blockly.Blocks['mov_manner_bodypart_activity'] = {
         .appendField("the movement is similar to");
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown(function() {
-          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
+          if (!needDynamicFields(block)) {
             return dropdownAllBP;
           }
           var bplist = blocklyFactory.getBodyPartListExceptCurrActManner(block);
@@ -1982,12 +2325,11 @@ Blockly.Blocks['mov_manner_bodypart_activity'] = {
         }), "BODYPART")
         .appendField("of")
         .appendField(new Blockly.FieldDropdown(function() {
-          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
+          if (!needDynamicFields(block)) {
             var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
             return getActDropdownList(actlist);
           }
-          // var cur_bp = block.getFieldValue("BODYPART");
-          var cur_bp = null;
+          var cur_bp = block.getFieldValue("BODYPART");
           var actlist = blocklyFactory.getActivityListHasBodyPartManner(block, cur_bp);
           return getActDropdownList(actlist);
         }), "ACT");
@@ -2008,7 +2350,7 @@ Blockly.Blocks['mov_manner_activity'] = {
     this.appendDummyInput()
         .appendField("the same body part of")
         .appendField(new Blockly.FieldDropdown(function() {
-          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
+          if (!needDynamicFields(block)) {
             var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
             return getActDropdownList(actlist);
           }
@@ -2033,7 +2375,7 @@ Blockly.Blocks['mov_rate_bodypart'] = {
         .appendField("the rate is similar to");
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown(function () {
-          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
+          if (!needDynamicFields(block)) {
             return dropdownAllBP;
           }
           var bplist = blocklyFactory.getBodyPartListCurrActRate(block);
@@ -2055,7 +2397,7 @@ Blockly.Blocks['mov_rate_bodypart_activity'] = {
         .appendField("the rate is similar to");
     this.appendDummyInput()
         .appendField(new Blockly.FieldDropdown(function() {
-          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
+          if (!needDynamicFields(block)) {
             return dropdownAllBP;
           }
           var bplist = blocklyFactory.getBodyPartListExceptCurrActRate(block);
@@ -2063,12 +2405,11 @@ Blockly.Blocks['mov_rate_bodypart_activity'] = {
         }), "BODYPART")
         .appendField("of")
         .appendField(new Blockly.FieldDropdown(function() {
-          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) ) {
+          if (!needDynamicFields(block)) {
             var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
             return getActDropdownList(actlist);
           }
-          // var cur_bp = block.getFieldValue("BODYPART");
-          var cur_bp = null;
+          var cur_bp = block.getFieldValue("BODYPART");
           var actlist = blocklyFactory.getActivityListHasBodyPartRate(block, cur_bp);
           return getActDropdownList(actlist);
         }), "ACT");
@@ -2088,11 +2429,7 @@ Blockly.Blocks['mov_rate_activity'] = {
     this.appendDummyInput()
         .appendField("the same body part of")
         .appendField(new Blockly.FieldDropdown(function() {
-          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) || !block.rendered) {
-            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
-            return getActDropdownList(actlist);
-          }
-          if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace) || !block.rendered) {
+          if (!needDynamicFields(block)) {
             var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
             return getActDropdownList(actlist);
           }
@@ -2103,6 +2440,245 @@ Blockly.Blocks['mov_rate_activity'] = {
         }), "ACT");
     this.setInputsInline(false);
     this.setPreviousStatement(true, "rate");
+    this.setColour(180);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+
+Blockly.Blocks['mov_manner_bodypart_left_output'] = {
+  init: function() {
+    var block = this;
+    this.appendDummyInput()
+        .appendField("the movement is similar to");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(function () {
+          if (!needDynamicFields(block)) {
+            return dropdownAllBP;
+          }
+          var bplist = blocklyFactory.getBodyPartListCurrActManner(block);
+          return getBPDropdownList(bplist);
+        }), "BODYPART")
+        .appendField("of the current activity");
+    this.setInputsInline(false);
+    this.setOutput(true, "manner");
+    this.setColour(180);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+  customUpdate: function() {
+    var field = this.getField("BODYPART");
+    console.log(field);
+  }
+};
+
+Blockly.Blocks['mov_manner_bodypart_activity_left_output'] = {
+  init: function() {
+    var block = this;
+    this.appendDummyInput()
+        .appendField("the movement is similar to");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(function() {
+          if (!needDynamicFields(block)) {
+            return dropdownAllBP;
+          }
+          var bplist = blocklyFactory.getBodyPartListExceptCurrActManner(block);
+          return getBPDropdownList(bplist);
+        }), "BODYPART")
+        .appendField("of")
+        .appendField(new Blockly.FieldDropdown(function() {
+          if (!needDynamicFields(block)) {
+            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
+            return getActDropdownList(actlist);
+          }
+          var cur_bp = block.getFieldValue("BODYPART");
+          var actlist = blocklyFactory.getActivityListHasBodyPartManner(block, cur_bp);
+          return getActDropdownList(actlist);
+        }), "ACT");
+    this.setInputsInline(false);
+    this.setOutput(true, "manner");
+    this.setColour(180);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['mov_manner_activity_left_output'] = {
+  init: function() {
+    var block = this;
+    this.appendDummyInput()
+        .appendField("the movement is similar to");
+    this.appendDummyInput()
+        .appendField("the same body part of")
+        .appendField(new Blockly.FieldDropdown(function() {
+          if (!needDynamicFields(block)) {
+            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
+            return getActDropdownList(actlist);
+          }
+          // var cur_bp = block.getParent().getParent().type;
+          var cur_bp = null;
+          var actlist = blocklyFactory.getActivityListHasBodyPartManner(block, cur_bp);
+          return getActDropdownList(actlist);
+        }), "ACT");
+    this.setInputsInline(false);
+    this.setOutput(true, "manner");
+    this.setColour(180);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['mov_rate_bodypart_left_output'] = {
+  init: function() {
+    var block = this;
+    this.appendDummyInput()
+        .appendField("the rate is similar to");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(function () {
+          if (!needDynamicFields(block)) {
+            return dropdownAllBP;
+          }
+          var bplist = blocklyFactory.getBodyPartListCurrActRate(block);
+          return getBPDropdownList(bplist);
+        }), "BODYPART")
+        .appendField("of the current activity");
+    this.setInputsInline(false);
+    this.setOutput(true, "rate");
+    this.setColour(180);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['mov_rate_bodypart_activity_left_output'] = {
+  init: function() {
+    var block = this;
+    this.appendDummyInput()
+        .appendField("the rate is similar to");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(function() {
+          if (!needDynamicFields(block)) {
+            return dropdownAllBP;
+          }
+          var bplist = blocklyFactory.getBodyPartListExceptCurrActRate(block);
+          return getBPDropdownList(bplist);
+        }), "BODYPART")
+        .appendField("of")
+        .appendField(new Blockly.FieldDropdown(function() {
+          if (!needDynamicFields(block)) {
+            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
+            return getActDropdownList(actlist);
+          }
+          var cur_bp = block.getFieldValue("BODYPART");
+          var actlist = blocklyFactory.getActivityListHasBodyPartRate(block, cur_bp);
+          return getActDropdownList(actlist);
+        }), "ACT");
+    this.setInputsInline(false);
+    this.setOutput(true, "rate");
+    this.setColour(180);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['mov_rate_activity_left_output'] = {
+  init: function() {
+    var block = this;
+    this.appendDummyInput()
+        .appendField("the rate is similar to");
+    this.appendDummyInput()
+        .appendField("the same body part of")
+        .appendField(new Blockly.FieldDropdown(function() {
+          if (!needDynamicFields(block)) {
+            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
+            return getActDropdownList(actlist);
+          }
+          // var cur_bp = block.getParent().getParent().type;
+          var cur_bp = null;
+          var actlist = blocklyFactory.getActivityListHasBodyPartRate(block, cur_bp);
+          return getActDropdownList(actlist);
+        }), "ACT");
+    this.setInputsInline(false);
+    this.setOutput(true, "rate");
+    this.setColour(180);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['mov_motion_plane_sim_bodypart'] = {
+  init: function() {
+    var block = this;
+    this.appendDummyInput()
+        .appendField("the plane is similar to");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(function () {
+          if (!needDynamicFields(block)) {
+            return dropdownAllBP;
+          }
+          var bplist = blocklyFactory.getBodyPartListCurrActPlane(block);
+          return getBPDropdownList(bplist);
+        }), "BODYPART")
+        .appendField("of the current activity");
+    this.setInputsInline(false);
+    this.setOutput(true, "mov_plane");
+    this.setColour(180);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['mov_motion_plane_sim_bodypart_activity'] = {
+  init: function() {
+    var block = this;
+    this.appendDummyInput()
+        .appendField("the plane is similar to");
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown(function() {
+          if (!needDynamicFields(block)) {
+            return dropdownAllBP;
+          }
+          var bplist = blocklyFactory.getBodyPartListExceptCurrActPlane(block);
+          return getBPDropdownList(bplist);
+        }), "BODYPART")
+        .appendField("of")
+        .appendField(new Blockly.FieldDropdown(function() {
+          if (!needDynamicFields(block)) {
+            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
+            return getActDropdownList(actlist);
+          }
+          var cur_bp = block.getFieldValue("BODYPART");
+          var actlist = blocklyFactory.getActivityListHasBodyPartPlane(block, cur_bp);
+          return getActDropdownList(actlist);
+        }), "ACT");
+    this.setInputsInline(false);
+    this.setOutput(true, "mov_plane");
+    this.setColour(180);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['mov_motion_plane_sim_activity'] = {
+  init: function() {
+    var block = this;
+    this.appendDummyInput()
+        .appendField("the plane is similar to");
+    this.appendDummyInput()
+        .appendField("the same body part of")
+        .appendField(new Blockly.FieldDropdown(function() {
+          if (!needDynamicFields(block)) {
+            var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
+            return getActDropdownList(actlist);
+          }
+          // var cur_bp = block.getParent().getParent().type;
+          var cur_bp = null;
+          var actlist = blocklyFactory.getActivityListHasBodyPartPlane(block, cur_bp);
+          return getActDropdownList(actlist);
+        }), "ACT");
+    this.setInputsInline(false);
+    this.setOutput(true, "mov_plane");
     this.setColour(180);
  this.setTooltip("");
  this.setHelpUrl("");

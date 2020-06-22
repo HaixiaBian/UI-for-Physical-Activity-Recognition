@@ -293,24 +293,78 @@ button, .buttonStyle {
 			<block type="ex_object_stove"></block>
 		</category>
 		<category name="Body parts" colour=180>
-			<block type="body_parts"></block>
-			<block type="left_ankle"></block>
+			<block type="body_parts_value_input"></block>
+			<!--block type="left_ankle"></block>
 			<block type="right_ankle"></block>
 			<block type="left_thigh"></block>
 			<block type="right_thigh"></block>
 			<block type="left_wrist"></block>
-			<block type="right_wrist"></block>
+			<block type="right_wrist"></block-->
+			
+			<block type="left_ankle_left_output"></block>
+			<block type="right_ankle_left_output"></block>
+			<block type="left_thigh_left_output"></block>
+			<block type="right_thigh_left_output"></block>
+			<block type="left_wrist_left_output"></block>
+			<block type="right_wrist_left_output"></block>
 			
 			<block type="pos_still"></block>
 			<block type="occa_moving"></block>
-			<block type="mov_pattern"></block>
+			
+            <block type="mov_pattern_value_input">
+              <value name="MANNER">
+                <shadow type="mov_motion_left_output_value_input">
+                  <value name="TYPE">
+                    <shadow type="mov_motion_type">
+                      <field name="TYPE">arc</field>
+                    </shadow>
+                  </value>
+                  <value name="PLANE">
+                    <shadow type="mov_motion_plane">
+                      <field name="PLANE">updown</field>
+                    </shadow>
+                  </value>
+                </shadow>
+              </value>
+            </block>
+            <block type="mov_motion_left_output_value_input">
+              <value name="TYPE">
+                <shadow type="mov_motion_type">
+                  <field name="TYPE">arc</field>
+                </shadow>
+              </value>
+              <value name="PLANE">
+                <shadow type="mov_motion_plane">
+                  <field name="PLANE">updown</field>
+                </shadow>
+              </value>
+            </block>
+			<!--block type="mov_pattern_value_input"></block>
+			<block type="mov_motion_left_output_value_input"></block-->
+			<block type="mov_motion_type"></block>
+			<block type="mov_motion_plane"></block>
+			
+			<block type="mov_motion_plane_sim_bodypart"></block>
+			<block type="mov_motion_plane_sim_activity"></block>
+			<block type="mov_motion_plane_sim_bodypart_activity"></block>
+			
+			<block type="mov_manner_bodypart_left_output"></block>
+			<block type="mov_manner_activity_left_output"></block>
+			<block type="mov_manner_bodypart_activity_left_output"></block>
+			
+			<block type="mov_rate_bodypart_left_output"></block>
+			<block type="mov_rate_activity_left_output"></block>
+			<block type="mov_rate_bodypart_activity_left_output"></block>
+			
+			<!--block type="mov_pattern"></block>
 			<block type="mov_motion"></block>
 			<block type="mov_manner_bodypart"></block>
 			<block type="mov_manner_activity"></block>
 			<block type="mov_manner_bodypart_activity"></block>
 			<block type="mov_rate_bodypart"></block>
 			<block type="mov_rate_activity"></block>
-			<block type="mov_rate_bodypart_activity"></block>
+			<block type="mov_rate_bodypart_activity"></block-->
+			
 			<!--category name="Position" colour=180>
 			</category>
 			<category name="Repeat pattern" colour=180>
