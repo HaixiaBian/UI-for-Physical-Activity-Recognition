@@ -10,32 +10,50 @@ Blockly.JavaScript['activity'] = function(block) {
   return code;
 };
 
-var genItem = function(ctype, args) {
+var genItemArray = function(ctype, args) {
+  //var code = '["' + ctype + '", ' + args + '],\n';
+  var code = '["' + ctype + '", [' + args + ']],\n';
+  return code;
+};
+
+var genItemArrayNewLine = function(ctype, args) {
+  //var code = '["' + ctype + '", ' + args + '],\n';
+  var code = '["' + ctype + '", [\n' + args + '\n]],\n';
+  return code;
+};
+
+var genItemDict = function(ctype, args) {
+  //var code = '["' + ctype + '", ' + args + '],\n';
+  var code = '["' + ctype + '", {\n' + args + '\n}],\n';
+  return code;
+};
+
+var genDictItemArray = function(ctype, args) {
   //var code = '["' + ctype + '", ' + args + '],\n';
   var code = '"' + ctype + '": [' + args + '],\n';
   return code;
 };
 
-var genDictItem = function(ctype, args) {
+var genDictItemDict = function(ctype, args) {
   //var code = '["' + ctype + '", ' + args + '],\n';
   var code = '"' + ctype + '": {\n' + args + '\n},\n';
   return code;
 };
 
-var convertToDict = function(arr) {
-  var d = {};
-  for (i in arr) {
-    var row = arr[i];
-    var k = row[0];
-    if (row.length == 1) {
-      var args = true;
-    } else if (row.length == 2) {
-      var args = row[1];
-    } else {
-      var args = row.slice(1);
-    }
-  }
-}
+// var convertToDict = function(arr) { // not finished
+//   var d = {};
+//   for (i in arr) {
+//     var row = arr[i];
+//     var k = row[0];
+//     if (row.length == 1) {
+//       var args = true;
+//     } else if (row.length == 2) {
+//       var args = row[1];
+//     } else {
+//       var args = row.slice(1);
+//     }
+//   }
+// }
 
 Blockly.JavaScript['pa_in_place'] = function(block) {
   var value_pa_place = Blockly.JavaScript.valueToCode(block, 'pa_place', Blockly.JavaScript.ORDER_ATOMIC);
@@ -44,7 +62,7 @@ Blockly.JavaScript['pa_in_place'] = function(block) {
     value_pa_place = '""';
     return '';
   }
-  var code = genItem("place", value_pa_place);
+  var code = genDictItemArray("place", value_pa_place);
   return code;
 };
 
@@ -55,7 +73,7 @@ Blockly.JavaScript['pa_at_time'] = function(block) {
     value_pa_time = '""';
     return '';
   }
-  var code = genItem("time", value_pa_time);
+  var code = genDictItemArray("time", value_pa_time);
   return code;
 };
 
@@ -66,7 +84,7 @@ Blockly.JavaScript['pa_at_day'] = function(block) {
     value_pa_day = '""';
     return '';
   }
-  var code = genItem("day", value_pa_day);
+  var code = genDictItemArray("day", value_pa_day);
   return code;
 };
 
@@ -77,7 +95,7 @@ Blockly.JavaScript['pa_on_day'] = function(block) {
     value_pa_day = '""';
     return '';
   }
-  var code = genItem("day", value_pa_day);
+  var code = genDictItemArray("day", value_pa_day);
   return code;
 };
 
@@ -88,7 +106,7 @@ Blockly.JavaScript['pa_last_for'] = function(block) {
     value_duration = '""';
     return '';
   }
-  var code = genItem("duration", value_duration);
+  var code = genDictItemArray("duration", value_duration);
   return code;
 };
 
@@ -99,7 +117,7 @@ Blockly.JavaScript['pa_br'] = function(block) {
     value_br = '""';
     return '';
   }
-  var code = genItem("breathing_rate", value_br);
+  var code = genDictItemArray("breathing_rate", value_br);
   return code;
 };
 
@@ -110,7 +128,7 @@ Blockly.JavaScript['pa_object'] = function(block) {
     value_obj = '""';
     return '';
   }
-  var code = genItem("object", value_obj);
+  var code = genDictItemArray("object", value_obj);
   return code;
 };
 
@@ -121,7 +139,7 @@ Blockly.JavaScript['body_parts'] = function(block) {
     statements_bodypart = '""';
     return '';
   }
-  var code = genDictItem("body_parts", statements_bodypart.slice(0,-2));
+  var code = genDictItemArray("body_parts", "\n"+statements_bodypart.slice(0,-2)+"\n");
   return code;
 };
 
@@ -132,7 +150,7 @@ Blockly.JavaScript['body_parts_value_input'] = function(block) {
     value_bodypart = '""';
     return '';
   }
-  var code = genDictItem("body_parts", value_bodypart.slice(0,-2));
+  var code = genDictItemDict("body_parts", value_bodypart.slice(0,-2));
   return code;
 };
 
@@ -143,7 +161,7 @@ Blockly.JavaScript['temporal_order_before'] = function(block) {
     value_x = '""';
     return '';
   }
-  var code = genItem("before", value_x);
+  var code = genDictItemArray("before", value_x);
   return code;
 };
 
@@ -154,7 +172,7 @@ Blockly.JavaScript['temporal_order_after'] = function(block) {
     value_x = '""';
     return '';
   }
-  var code = genItem("after", value_x);
+  var code = genDictItemArray("after", value_x);
   return code;
 };
 
@@ -165,7 +183,7 @@ Blockly.JavaScript['temporal_order_meets'] = function(block) {
     value_x = '""';
     return '';
   }
-  var code = genItem("meets", value_x);
+  var code = genDictItemArray("meets", value_x);
   return code;
 };
 
@@ -176,7 +194,7 @@ Blockly.JavaScript['temporal_order_overlaps'] = function(block) {
     value_x = '""';
     return '';
   }
-  var code = genItem("overlaps", value_x);
+  var code = genDictItemArray("overlaps", value_x);
   return code;
 };
 
@@ -187,7 +205,7 @@ Blockly.JavaScript['temporal_order_starts'] = function(block) {
     value_x = '""';
     return '';
   }
-  var code = genItem("starts", value_x);
+  var code = genDictItemArray("starts", value_x);
   return code;
 };
 
@@ -198,7 +216,7 @@ Blockly.JavaScript['temporal_order_during'] = function(block) {
     value_x = '""';
     return '';
   }
-  var code = genItem("during", value_x);
+  var code = genDictItemArray("during", value_x);
   return code;
 };
 
@@ -354,7 +372,7 @@ Blockly.JavaScript['left_ankle'] = function(block) {
     value_movement = '""';
     return '';
   }
-  var code = genItem("left_ankle", value_movement);
+  var code = genItemArray("left_ankle", value_movement);
   return code;
 };
 
@@ -365,7 +383,7 @@ Blockly.JavaScript['right_ankle'] = function(block) {
     value_movement = '""';
     return '';
   }
-  var code = genItem("right_ankle", value_movement);
+  var code = genItemArray("right_ankle", value_movement);
   return code;
 };
 
@@ -376,7 +394,7 @@ Blockly.JavaScript['left_wrist'] = function(block) {
     value_movement = '""';
     return '';
   }
-  var code = genItem("left_wrist", value_movement);
+  var code = genItemArray("left_wrist", value_movement);
   return code;
 };
 
@@ -387,7 +405,7 @@ Blockly.JavaScript['right_wrist'] = function(block) {
     value_movement = '""';
     return '';
   }
-  var code = genItem("right_wrist", value_movement);
+  var code = genItemArray("right_wrist", value_movement);
   return code;
 };
 
@@ -398,7 +416,7 @@ Blockly.JavaScript['left_thigh'] = function(block) {
     value_movement = '""';
     return '';
   }
-  var code = genItem("left_thigh", value_movement);
+  var code = genItemArray("left_thigh", value_movement);
   return code;
 };
 
@@ -410,7 +428,7 @@ Blockly.JavaScript['right_thigh'] = function(block) {
     return '';
   }
   // var code = '{"right_thigh": [' + value_movement + ']"},\n';
-  var code = genItem("right_thigh", value_movement);
+  var code = genItemArray("right_thigh", value_movement);
   return code;
 };
 
@@ -422,7 +440,7 @@ Blockly.JavaScript['left_ankle_left_output'] = function(block) {
     return '';
   }
   // var code = '"left_ankle", [' + value_movement + ']';
-  var code = genItem("left_ankle", value_movement);
+  var code = genDictItemArray("left_ankle", value_movement);
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -434,7 +452,7 @@ Blockly.JavaScript['right_ankle_left_output'] = function(block) {
     return '';
   }
   // var code = '"left_ankle", [' + value_movement + ']';
-  var code = genItem("right_ankle", value_movement);
+  var code = genDictItemArray("right_ankle", value_movement);
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -446,7 +464,7 @@ Blockly.JavaScript['left_wrist_left_output'] = function(block) {
     return '';
   }
   // var code = '"left_ankle", [' + value_movement + ']';
-  var code = genItem("left_wrist", value_movement);
+  var code = genDictItemArray("left_wrist", value_movement);
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -458,7 +476,7 @@ Blockly.JavaScript['right_wrist_left_output'] = function(block) {
     return '';
   }
   // var code = '"left_ankle", [' + value_movement + ']';
-  var code = genItem("right_wrist", value_movement);
+  var code = genDictItemArray("right_wrist", value_movement);
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -470,7 +488,7 @@ Blockly.JavaScript['left_thigh_left_output'] = function(block) {
     return '';
   }
   // var code = '"left_ankle", [' + value_movement + ']';
-  var code = genItem("left_thigh", value_movement);
+  var code = genDictItemArray("left_thigh", value_movement);
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
@@ -770,10 +788,31 @@ Blockly.JavaScript['mov_motion_left_output_value_input'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
+Blockly.JavaScript['mov_motion_type_ghost'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['mov_motion_plane_ghost'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
 Blockly.JavaScript['mov_motion_type'] = function(block) {
   var dropdown_type = block.getFieldValue('TYPE');
+  var value_plane = Blockly.JavaScript.valueToCode(block, 'PLANE', Blockly.JavaScript.ORDER_ATOMIC);
+  var def = {
+    type: dropdown_type,
+  };
+  if (value_plane) {
+    def['plane'] = JSON.parse(value_plane);
+  }
   // TODO: Assemble JavaScript into code variable.
-  var code = JSON.stringify(dropdown_type);
+  var code = JSON.stringify(def);
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -888,6 +927,28 @@ Blockly.JavaScript['mov_rate_activity_left_output'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
+Blockly.JavaScript['mov_sequential'] = function(block) {
+  var statements_list = Blockly.JavaScript.statementToCode(block, 'LIST');
+  // TODO: Assemble JavaScript into code variable.
+  var code = genItemArrayNewLine("seq", statements_list.slice(0, -2));
+  return code;
+};
+
+Blockly.JavaScript['mov_simultaneous'] = function(block) {
+  var statements_list = Blockly.JavaScript.statementToCode(block, 'LIST');
+  // TODO: Assemble JavaScript into code variable.
+  var code = genItemArrayNewLine("simul", statements_list.slice(0, -2));
+  return code;
+};
+
+Blockly.JavaScript['mov_sequential_with_option'] = function(block) {
+  var dropdown_order = block.getFieldValue('ORDER');
+  var statements_list = Blockly.JavaScript.statementToCode(block, 'LIST');
+  // TODO: Assemble JavaScript into code variable.
+  var code = genItemArrayNewLine(dropdown_order, statements_list.slice(0, -2));
+  return code;
+};
+
 //----------------------------------------------------
 
 Blockly.JavaScript['pa_activity_defined'] = function(block) {
@@ -902,7 +963,7 @@ Blockly.JavaScript['pa_activity_defined'] = function(block) {
 Blockly.JavaScript['order_in_time'] = function(block) {
   var value_order = Blockly.JavaScript.valueToCode(block, 'order', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = genItem('order_in_time', value_order);
+  var code = genDictItemArray('order_in_time', value_order);
   return code;
 };
 

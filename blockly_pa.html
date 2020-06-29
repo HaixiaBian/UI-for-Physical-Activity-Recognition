@@ -293,26 +293,34 @@ button, .buttonStyle {
 			<block type="ex_object_stove"></block>
 		</category>
 		<category name="Body parts" colour=180>
-			<block type="body_parts_value_input"></block>
-			<!--block type="left_ankle"></block>
+			<block type="body_parts"></block>
+			<block type="left_ankle"></block>
 			<block type="right_ankle"></block>
 			<block type="left_thigh"></block>
 			<block type="right_thigh"></block>
 			<block type="left_wrist"></block>
-			<block type="right_wrist"></block-->
+			<block type="right_wrist"></block>
 			
-			<block type="left_ankle_left_output"></block>
+			<block type="mov_sequential"></block>
+			<block type="mov_simultaneous"></block>
+			<block type="mov_sequential_with_option"></block>
+			
+			<!--block type="left_ankle_left_output"></block>
 			<block type="right_ankle_left_output"></block>
 			<block type="left_thigh_left_output"></block>
 			<block type="right_thigh_left_output"></block>
 			<block type="left_wrist_left_output"></block>
-			<block type="right_wrist_left_output"></block>
+			<block type="right_wrist_left_output"></block-->
 			
 			<block type="pos_still"></block>
 			<block type="occa_moving"></block>
 			
             <block type="mov_pattern_value_input">
               <value name="MANNER">
+                <shadow type="mov_motion_type_ghost"/>
+              </value>
+            </block>
+              <!--value name="MANNER">
                 <shadow type="mov_motion_left_output_value_input">
                   <value name="TYPE">
                     <shadow type="mov_motion_type">
@@ -325,10 +333,10 @@ button, .buttonStyle {
                     </shadow>
                   </value>
                 </shadow>
-              </value>
-            </block>
-            <block type="mov_motion_left_output_value_input">
-              <value name="TYPE">
+              </value-->
+            <!--block type="mov_motion_left_output_value_input">
+            </block-->
+              <!--value name="TYPE">
                 <shadow type="mov_motion_type">
                   <field name="TYPE">arc</field>
                 </shadow>
@@ -337,12 +345,16 @@ button, .buttonStyle {
                 <shadow type="mov_motion_plane">
                   <field name="PLANE">updown</field>
                 </shadow>
-              </value>
-            </block>
+              </value-->
 			<!--block type="mov_pattern_value_input"></block>
 			<block type="mov_motion_left_output_value_input"></block-->
-			<block type="mov_motion_type"></block>
-			<block type="mov_motion_plane"></block>
+			<block type="mov_motion_type">
+              <value name="PLANE">
+                <shadow type="mov_motion_plane_ghost"/>
+              </value>
+			</block>
+			<block type="mov_motion_plane">
+			</block>
 			
 			<block type="mov_motion_plane_sim_bodypart"></block>
 			<block type="mov_motion_plane_sim_activity"></block>

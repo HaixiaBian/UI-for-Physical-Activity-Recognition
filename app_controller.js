@@ -687,12 +687,32 @@ var matchExact = function(src, target) {
 };
 
 AppController.prototype.getRootBlock = function(block) {
-  var root_block = block.getRootBlock();
-  if (root_block.type != 'activity') {
-    root_block = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
-  }
+  var root_block = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
   return root_block;
 };
+
+AppController.prototype.getRootDef = function() {
+  return this.rootDef;
+  var root_block = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
+  if (root_block) {
+    var block_code = Blockly.JavaScript.blockToCode(root_block);
+    try {
+      var block_def = JSON.parse(block_code);
+    } catch (e) {
+      return [];
+    }
+    root_def = block_def;
+  } else {
+    root_def = this.rootDef;
+  }
+  return root_def;
+}
+
+var allBP = [
+  'left_ankle', 'right_ankle',
+  'left_wrist', 'right_wrist',
+  'left_thigh', 'right_thigh'
+];
 
 AppController.prototype.libraryMatch = function(event) {
   if (event.type == Blockly.Events.MOVE ||
@@ -748,236 +768,34 @@ AppController.prototype.libraryMatch = function(event) {
   }
 };
 
-AppController.prototype.getBodyPartListCurrActManner = function(block) {
-  var root_def;
-  if (!block) {
-    root_def = this.rootDef;
-  } else {
-    // var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
-    // BlockFactory.hiddenWorkspace.clear();
-    // var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
-    // block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
-    // BlockFactory.hiddenWorkspace.clear();
-    var root_block = this.getRootBlock(block);
-    var block_code = Blockly.JavaScript.blockToCode(root_block);
-    try {
-      var block_def = JSON.parse(block_code);
-    } catch (e) {
-      return [];
+var forEachBP = function(desc_list, callback) {
+  for (var item of desc_list) {
+    var key = item[0];
+    var val = item[1];
+    if (key == 'seq' || key == 'simul') {
+      forEachBP(val, callback);
+    } else {
+      callback(key, val);
     }
-    root_def = block_def;
   }
-  
-  if (!('body_parts' in root_def)) {
-    return [];
-  }
-  
-  //var cur_bp = block.
-  var bplist = {};
-  var def = root_def['body_parts'];
-  console.log(def);
-  for (bodypart in def) {
-    var bp = def[bodypart];
-    if (bp[0] != "pattern") {
-      continue;
-    }
-    if (!("manner" in bp[1])) {
-      continue;
-    }
-    bplist[bodypart] = true;
-  }
-  
-  return Object.keys(bplist);
 };
 
-AppController.prototype.getBodyPartListExceptCurrActManner = function(cur_block) {
-  var bplist = {};
-  var allinlib = this.blockLibraryController.storage.blocks;
-  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
-  // console.log(cur_block.workspace == BlockFactory.mainWorkspace, cur_block.isInFlyout);
-  for (var pa_name in allinlib) {
-    if (pa_name == cur_act) {
-      continue;
-    }
-    var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
-    BlockFactory.hiddenWorkspace.clear();
-    var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
-    block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
-    BlockFactory.hiddenWorkspace.clear();
-    try {
-      var block_def = JSON.parse(block);
-    } catch (e) {
-      console.log("activity: " + pa_name + " parse failed");
-      continue;
-    }
-
-    if (!('body_parts' in block_def)) {
-      continue;
-    }
-    for (var bodypart in block_def['body_parts']) {
-      var bp = block_def['body_parts'][bodypart];
-      if (bp[0] != "pattern") {
-        continue;
+var findBP = function(desc_list, bodypart, callback) {
+  for (var item of desc_list) {
+    var key = item[0];
+    var val = item[1];
+    if (key == 'seq' || key == 'simul') {
+      if (findBP(val, bodypart, callback)) {
+        return true;
       }
-      if (!("manner" in bp[1])) {
-        continue;
+    } else {
+      if (key == bodypart) {
+        callback(val);
+        return true;
       }
-
-      bplist[bodypart] = true;
     }
   }
-  return Object.keys(bplist);
-};
-
-AppController.prototype.getActivityListHasBodyPartManner = function(cur_block, bodypart) {
-  var allinlib = this.blockLibraryController.storage.blocks;
-  var actlist = [];
-  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
-  for (var pa_name in allinlib) {
-    if (pa_name == cur_act) {
-      continue;
-    }
-    var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
-    BlockFactory.hiddenWorkspace.clear();
-    var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
-    block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
-    BlockFactory.hiddenWorkspace.clear();
-    try {
-      var block_def = JSON.parse(block);
-    } catch (e) {
-      console.log("activity: " + pa_name + " parse failed");
-      continue;
-    }
-
-    if (!('body_parts' in block_def)) {
-      continue;
-    }
-    if (!(bodypart in block_def['body_parts'])) {
-      continue;
-    }
-    var bp = block_def['body_parts'][bodypart];
-    if (bp[0] != "pattern") {
-      continue;
-    }
-    if (!("manner" in bp[1])) {
-      continue;
-    }
-    
-    actlist.push(pa_name);
-  }
-  return actlist;
-};
-
-AppController.prototype.getBodyPartListCurrActRate = function(block) {
-  var root_def;
-  if (!block) {
-    root_def = this.rootDef;
-  } else {
-    // var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
-    // BlockFactory.hiddenWorkspace.clear();
-    // var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
-    // block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
-    // BlockFactory.hiddenWorkspace.clear();
-    var root_block = this.getRootBlock(block);
-    var block_code = Blockly.JavaScript.blockToCode(root_block);
-    try {
-      var block_def = JSON.parse(block_code);
-    } catch (e) {
-      return [];
-    }
-    root_def = block_def;
-  }
-  
-  if (!('body_parts' in root_def)) {
-    return [];
-  }
-  
-  var bplist = {};
-  var def = root_def['body_parts'];
-  for (bodypart in def) {
-    var bp = def[bodypart];
-    if (bp[0] != "pattern") {
-      continue;
-    }
-    bplist[bodypart] = true;
-  }
-  
-  return Object.keys(def);
-};
-
-AppController.prototype.getBodyPartListExceptCurrActRate = function(cur_block) {
-  var bplist = {};
-  var allinlib = this.blockLibraryController.storage.blocks;
-  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
-  // console.log(cur_block.workspace == BlockFactory.mainWorkspace, cur_block.isInFlyout);
-  for (var pa_name in allinlib) {
-    if (pa_name == cur_act) {
-      continue;
-    }
-    var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
-    BlockFactory.hiddenWorkspace.clear();
-    var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
-    block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
-    BlockFactory.hiddenWorkspace.clear();
-    try {
-      var block_def = JSON.parse(block);
-    } catch (e) {
-      console.log("activity: " + pa_name + " parse failed");
-      continue;
-    }
-
-    if (!('body_parts' in block_def)) {
-      continue;
-    }
-    var def = block_def['body_parts'];
-    for (bodypart in def) {
-      var bp = def[bodypart];
-      if (bp[0] != "pattern") {
-        continue;
-      }
-      bplist[bodypart] = true;
-    }
-  }
-  return Object.keys(bplist);
-};
-
-AppController.prototype.getActivityListHasBodyPartRate = function(cur_block, bodypart) {
-  var allinlib = this.blockLibraryController.storage.blocks;
-  var actlist = [];
-  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
-  for (var pa_name in allinlib) {
-    if (pa_name == cur_act) {
-      continue;
-    }
-    var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
-    BlockFactory.hiddenWorkspace.clear();
-    var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
-    block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
-    BlockFactory.hiddenWorkspace.clear();
-    try {
-      var block_def = JSON.parse(block);
-    } catch (e) {
-      console.log("activity: " + pa_name + " parse failed");
-      continue;
-    }
-
-    if (!('body_parts' in block_def)) {
-      continue;
-    }
-    if (!(bodypart in block_def['body_parts'])) {
-      continue;
-    }
-    var bp = block_def['body_parts'][bodypart];
-    if (bp[0] != "pattern") {
-      continue;
-    }
-    // if (!("rate" in bp[1])) {
-    //   continue;
-    // }
-    
-    actlist.push(pa_name);
-  }
-  return actlist;
+  return false;
 };
 
 AppController.prototype.getBodyPartListCurrActPlane = function(block) {
@@ -1008,16 +826,11 @@ AppController.prototype.getBodyPartListCurrActPlane = function(block) {
   var bplist = {};
   var def = root_def['body_parts'];
   console.log(def);
-  for (bodypart in def) {
-    var bp = def[bodypart];
-    if (bp[0] != "pattern") {
-      continue;
+  forEachBP(def, function(bodypart, bp) {
+    if (bp[0] == "pattern" && ("manner" in bp[1])) {
+      bplist[bodypart] = true;
     }
-    if (!("manner" in bp[1])) {
-      continue;
-    }
-    bplist[bodypart] = true;
-  }
+  });
   
   return Object.keys(bplist);
 };
@@ -1046,17 +859,11 @@ AppController.prototype.getBodyPartListExceptCurrActPlane = function(cur_block) 
     if (!('body_parts' in block_def)) {
       continue;
     }
-    for (var bodypart in block_def['body_parts']) {
-      var bp = block_def['body_parts'][bodypart];
-      if (bp[0] != "pattern") {
-        continue;
+    forEachBP(block_def['body_parts'], function(bodypart, bp) {
+      if (bp[0] == "pattern" && ("manner" in bp[1])) {
+        bplist[bodypart] = true;
       }
-      if (!("manner" in bp[1])) {
-        continue;
-      }
-
-      bplist[bodypart] = true;
-    }
+    });
   }
   return Object.keys(bplist);
 };
@@ -1084,22 +891,280 @@ AppController.prototype.getActivityListHasBodyPartPlane = function(cur_block, bo
     if (!('body_parts' in block_def)) {
       continue;
     }
-    if (!(bodypart in block_def['body_parts'])) {
-      continue;
-    }
-    var bp = block_def['body_parts'][bodypart];
-    if (bp[0] != "pattern") {
-      continue;
-    }
-    if (!("manner" in bp[1])) {
-      continue;
-    }
-    
-    actlist.push(pa_name);
+    findBP(block_def['body_parts'], bodypart, function(bp) {    
+      if (bp[0] == "pattern" && ("manner" in bp[1])) {
+        actlist.push(pa_name);
+      }
+    });
   }
   return actlist;
 };
 
+AppController.prototype.getBodyPartListCurrActManner = function(block) {
+  var root_def;
+  if (!block) {
+    root_def = this.rootDef;
+  } else {
+    // var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
+    // BlockFactory.hiddenWorkspace.clear();
+    // var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
+    // block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
+    // BlockFactory.hiddenWorkspace.clear();
+    var root_block = this.getRootBlock(block);
+    var block_code = Blockly.JavaScript.blockToCode(root_block);
+    try {
+      var block_def = JSON.parse(block_code);
+    } catch (e) {
+      return [];
+    }
+    root_def = block_def;
+  }
+  
+  if (!('body_parts' in root_def)) {
+    return [];
+  }
+  
+  //var cur_bp = block.
+  var bplist = {};
+  var def = root_def['body_parts'];
+  console.log(def);
+  forEachBP(def, function(bodypart, bp) {
+    if (bp[0] == "pattern" && ("manner" in bp[1])) {
+      bplist[bodypart] = true;
+    }
+  });
+  
+  return Object.keys(bplist);
+};
+
+AppController.prototype.getBodyPartListExceptCurrActManner = function(cur_block) {
+  var bplist = {};
+  var allinlib = this.blockLibraryController.storage.blocks;
+  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
+  // console.log(cur_block.workspace == BlockFactory.mainWorkspace, cur_block.isInFlyout);
+  for (var pa_name in allinlib) {
+    if (pa_name == cur_act) {
+      continue;
+    }
+    var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
+    BlockFactory.hiddenWorkspace.clear();
+    var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
+    block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
+    BlockFactory.hiddenWorkspace.clear();
+    try {
+      var block_def = JSON.parse(block);
+    } catch (e) {
+      console.log("activity: " + pa_name + " parse failed");
+      continue;
+    }
+
+    if (!('body_parts' in block_def)) {
+      continue;
+    }
+    forEachBP(block_def['body_parts'], function(bodypart, bp) {
+      if (bp[0] == "pattern" && ("manner" in bp[1])) {
+        bplist[bodypart] = true;
+      }
+    });
+  }
+  return Object.keys(bplist);
+};
+
+AppController.prototype.getActivityListHasBodyPartManner = function(cur_block, bodypart) {
+  var allinlib = this.blockLibraryController.storage.blocks;
+  var actlist = [];
+  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
+  for (var pa_name in allinlib) {
+    if (pa_name == cur_act) {
+      continue;
+    }
+    var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
+    BlockFactory.hiddenWorkspace.clear();
+    var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
+    block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
+    BlockFactory.hiddenWorkspace.clear();
+    try {
+      var block_def = JSON.parse(block);
+    } catch (e) {
+      console.log("activity: " + pa_name + " parse failed");
+      continue;
+    }
+
+    if (!('body_parts' in block_def)) {
+      continue;
+    }
+    findBP(block_def['body_parts'], bodypart, function(bp) {    
+      if (bp[0] == "pattern" && ("manner" in bp[1])) {
+        actlist.push(pa_name);
+      }
+    });
+  }
+  return actlist;
+};
+
+AppController.prototype.getBodyPartListCurrActRate = function(block) {
+  var root_def;
+  if (!block) {
+    root_def = this.rootDef;
+  } else {
+    // var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
+    // BlockFactory.hiddenWorkspace.clear();
+    // var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
+    // block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
+    // BlockFactory.hiddenWorkspace.clear();
+    var root_block = this.getRootBlock(block);
+    var block_code = Blockly.JavaScript.blockToCode(root_block);
+    try {
+      var block_def = JSON.parse(block_code);
+    } catch (e) {
+      return [];
+    }
+    root_def = block_def;
+  }
+  
+  if (!('body_parts' in root_def)) {
+    return [];
+  }
+  
+  var bplist = {};
+  var def = root_def['body_parts'];
+  forEachBP(def, function(bodypart, bp) {
+    if (bp[0] == "pattern") {
+      bplist[bodypart] = true;
+    }
+  });
+  
+  return Object.keys(bplist);
+};
+
+AppController.prototype.getBodyPartListExceptCurrActRate = function(cur_block) {
+  var bplist = {};
+  var allinlib = this.blockLibraryController.storage.blocks;
+  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
+  // console.log(cur_block.workspace == BlockFactory.mainWorkspace, cur_block.isInFlyout);
+  for (var pa_name in allinlib) {
+    if (pa_name == cur_act) {
+      continue;
+    }
+    var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
+    BlockFactory.hiddenWorkspace.clear();
+    var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
+    block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
+    BlockFactory.hiddenWorkspace.clear();
+    try {
+      var block_def = JSON.parse(block);
+    } catch (e) {
+      console.log("activity: " + pa_name + " parse failed");
+      continue;
+    }
+
+    if (!('body_parts' in block_def)) {
+      continue;
+    }
+    var def = block_def['body_parts'];
+    forEachBP(def, function(bodypart, bp) {
+      if (bp[0] == "pattern") {
+        bplist[bodypart] = true;
+      }
+    });
+  }
+  return Object.keys(bplist);
+};
+
+AppController.prototype.getActivityListHasBodyPartRate = function(cur_block, bodypart) {
+  var allinlib = this.blockLibraryController.storage.blocks;
+  var actlist = [];
+  var cur_act = this.getRootBlock(cur_block).getFieldValue('NAME');
+  for (var pa_name in allinlib) {
+    if (pa_name == cur_act) {
+      continue;
+    }
+    var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
+    BlockFactory.hiddenWorkspace.clear();
+    var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
+    block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
+    BlockFactory.hiddenWorkspace.clear();
+    try {
+      var block_def = JSON.parse(block);
+    } catch (e) {
+      console.log("activity: " + pa_name + " parse failed");
+      continue;
+    }
+
+    if (!('body_parts' in block_def)) {
+      continue;
+    }
+    findBP(block_def['body_parts'], bodypart, function(bp) {    
+      if (bp[0] == "pattern") {
+        actlist.push(pa_name);
+      }
+    });
+  }
+  return actlist;
+};
+
+var allInputsFilled = function(block) {
+  for (var input of block.inputList) {
+    if (input.type == 5) {
+      continue;
+    }
+    if (!input.connection || !input.connection.isConnected() || input.connection.targetBlock().isShadow()) {
+      return false;
+    }
+  }
+  return true;
+};
+var atLeastOneInputFilled = function(block) {
+  for (var input of block.inputList) {
+    if (input.type == 5) {
+      continue;
+    }
+    if (input.connection && input.connection.isConnected() && !input.connection.targetBlock().isShadow()) {
+      return true;
+    }
+  }
+  return false;
+};
+var inputCheck = {
+  'activity': allInputsFilled,
+  'pa_in_place': allInputsFilled,
+  'pa_at_time': allInputsFilled,
+  'pa_on_day': allInputsFilled,
+  'pa_last_for': allInputsFilled,
+  'pa_br': allInputsFilled,
+  'pa_object': allInputsFilled,
+  'body_parts': allInputsFilled,
+  'mov_sequential': allInputsFilled,
+  'mov_simultaneous': allInputsFilled,
+  // 'mov_pattern_value_input': atLeastOneInputFilled,
+};
+var checkBlockInput = function(block) {
+  if (block.isShadow()) {
+    return true;
+  }
+  if (block.type in inputCheck) {
+    if (!inputCheck[block.type](block)) {
+      return false;
+    }
+  }
+  // else {
+  //   if (!allInputsFilled(block)) {
+  //     return false;
+  //   }
+  // }
+  return true;
+};
+AppController.prototype.checkInputs = function(block) {
+  if (!checkBlockInput(block)) {
+    return false;
+  }
+  for (var child of block.getChildren()) {
+    if (!this.checkInputs(child)) {
+      return false;
+    }
+  }
+  return true;
+};
 
 AppController.prototype.setActivityDef = function(xml) {
   BlockFactory.hiddenWorkspace.clear();
@@ -1126,7 +1191,8 @@ AppController.prototype.checkValidDefinition = function(root_def) {
   var self = this;
   
   var rootBlock = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
-  if (!rootBlock.allInputsFilled()) {
+  //if (!rootBlock.allInputsFilled()) {
+  if (!this.checkInputs(rootBlock)) {
       //true means the definition is same in library so disable the button
       self.blockLibraryController.updateButtons(true);
       return;
