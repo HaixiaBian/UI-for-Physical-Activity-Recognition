@@ -714,6 +714,101 @@ var allBP = [
   'left_thigh', 'right_thigh'
 ];
 
+
+function _addChildren(node, def) {
+  if (typeof def === 'string') {
+    var newnode = {id: def};
+    node.children.push(newnode);
+  } else if (Array.isArray(def)) {
+    if (typeof def[0] === 'string') { // def is a single subtree
+      var newnode = _arrayToTree(def);
+      node.children.push(newnode);
+    } else { // def is several subtrees
+      var key_counts = {}
+      for (var val of def) { // each element is a subtree
+        // elements could have duplicate keys
+        var newnode = _arrayToTree(val, key_counts);
+        node.children.push(newnode);
+      }
+    }
+  } else { // is a dictionary
+    // sort keys
+    // var sorted_keys
+    for (var key of Object.keys(def).sort()) {
+      var val = def[key];
+      var newnode = {id: key, children: []};
+      _addChildren(newnode, val);
+      node.children.push(newnode);
+    }
+  }
+}
+
+// array represented tree, numbering keys
+function _arrayToTree(arrdef, key_counts) {
+  // arrdef[0] become key and arrdef[1:] become children of the new node
+  var key = arrdef[0];
+  if (key_counts) {
+    if (key in key_counts) {
+      key_counts[key] += 1;
+      key = key + (key_counts[key]).toString();
+    } else {
+      key_counts[key] = 1;
+    }
+  }
+  var node = {id: key, children: []};
+  if (arrdef.length == 2) {
+    _addChildren(node, arrdef[1]);
+  } else {
+    _addChildren(node, arrdef.slice(1));
+  }
+  // for (var i = 1; i < arrdef.length; i++) {
+  //   var newnode = _defToTree(arrdef[i]);
+  //   node.children.push(newnode);
+  // }
+  return node;
+}
+
+
+
+AppController.prototype.defToTree = function(blockdef) {
+  var tree = {id: 'activity', children: []};
+  _addChildren(tree, blockdef);
+  // console.log(JSON.stringify(tree, null, "  "));
+  return tree;
+};
+
+AppController.prototype.editDistanceBlock = function(def1, def2) {
+  var insert, remove, update;
+  insert = remove = function(node) { return 1; };
+  update = function(nodeA, nodeB) { return nodeA.id !== nodeB.id ? 1 : 0; };
+  
+  var tree1 = this.defToTree(def1);
+  var tree2 = this.defToTree(def2);
+  
+  var children = function(node) { return node.children; };
+  var ted = editDistance.ted(tree1, tree2, children, insert, remove, update);
+  // console.log('Tree Edit Distance', ted.distance, ted.pairs(), ted.alignment());
+  console.log('Tree Edit Distance', ted.distance);
+  return ted.distance;
+};
+
+AppController.prototype.showMatches = function(matches) {
+  BlockFactory.matchesWorkspace.clear();
+  
+  var cur_y = 10;
+  for (var match of matches) {
+    var xml = match[1];
+    
+    xml.children[0].removeAttribute('x');
+    // xml.children[0].removeAttribute('y');
+    xml.children[0].setAttribute('y', cur_y);
+    // matches.appendChild(xml.children[0]);
+    var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.matchesWorkspace);
+    block = BlockFactory.matchesWorkspace.getBlockById(block);
+    cur_y += block.height + 10;
+  }
+};
+
 AppController.prototype.libraryMatch = function(event) {
   if (event.type == Blockly.Events.MOVE ||
       event.type == Blockly.Events.CREATE ||
@@ -728,12 +823,13 @@ AppController.prototype.libraryMatch = function(event) {
     } catch (e) {
       return;
     }
-      
+    this.defToTree(root_def);
     BlockFactory.matchesWorkspace.clear();
     
     var allinlib = this.blockLibraryController.storage.blocks;
-    var matches = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
-    matches = Blockly.Xml.textToDom(matches);
+    //var matches = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
+    //matches = Blockly.Xml.textToDom(matches);
+    var matches = []
     var cur_y = 10;
     for (var pa_name in allinlib) {
       // console.log(pa_name);
@@ -752,17 +848,22 @@ AppController.prototype.libraryMatch = function(event) {
       if (!matchBlock(root_def, block_def)) {
         continue;
       }
-      xml.children[0].removeAttribute('x');
-      // xml.children[0].removeAttribute('y');
-      xml.children[0].setAttribute('y', cur_y);
-      // matches.appendChild(xml.children[0]);
-      var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.matchesWorkspace);
-      block = BlockFactory.matchesWorkspace.getBlockById(block);
-      cur_y += block.height + 10;
+      var d = this.editDistanceBlock(root_def, block_def);
+      matches.push([d, xml]);
     }
     BlockFactory.hiddenWorkspace.clear();
-	
+    
     // Blockly.Xml.domToWorkspace(matches, BlockFactory.matchesWorkspace);
+    matches.sort(function (m1, m2) {
+      if (m1[0] > m2[0]) {
+        return 1;
+      } else if (m1[0] < m2[0]) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    this.showMatches(matches);
 
     return;
   }

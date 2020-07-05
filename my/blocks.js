@@ -2292,23 +2292,23 @@ Blockly.defineBlocksWithJsonArray([
       "options": [
         [
           "Sequence",
-          "SEQ"
+          "seq"
         ],
         [
           "Meet",
-          "MEET"
+          "meet"
         ],
         [
           "Overlap",
-          "OVERLAP"
+          "overlap"
         ],
         [
           "During",
-          "DURING"
+          "during"
         ],
         [
           "Start",
-          "START"
+          "start"
         ]
       ]
     },
