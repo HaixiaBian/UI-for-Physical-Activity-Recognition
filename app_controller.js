@@ -788,7 +788,7 @@ AppController.prototype.editDistanceBlock = function(def1, def2) {
   var children = function(node) { return node.children; };
   var ted = editDistance.ted(tree1, tree2, children, insert, remove, update);
   // console.log('Tree Edit Distance', ted.distance, ted.pairs(), ted.alignment());
-  console.log('Tree Edit Distance', ted.distance);
+  // console.log('Tree Edit Distance', ted.distance);
   return ted.distance;
 };
 
@@ -845,9 +845,9 @@ AppController.prototype.libraryMatch = function(event) {
         continue;
       }
       
-      if (!matchBlock(root_def, block_def)) {
-        continue;
-      }
+      // if (!matchBlock(root_def, block_def)) {
+      //   continue;
+      // }
       var d = this.editDistanceBlock(root_def, block_def);
       matches.push([d, xml]);
     }
@@ -863,6 +863,12 @@ AppController.prototype.libraryMatch = function(event) {
         return 0;
       }
     });
+    for (elem of matches) {
+      var d = elem[0];
+      var xml = elem[1];
+      var act_name = xml.children[0].children[0].textContent;
+      console.log('Tree Edit Distance', act_name, d);
+    }
     this.showMatches(matches);
 
     return;
