@@ -1327,6 +1327,30 @@ AppController.prototype.checkValidDefinition = function(root_def) {
   }
 };
 
+var treeify = function(tree, indent) {
+  if (!tree) {
+    return '';
+  }
+  if (!indent) {
+    var ret = tree['id'] + '\n';
+  } else {
+    var ret = indent.slice(0,-1) + '|-' + tree['id'] + '\n';
+  }
+  if (!tree.children) {
+    return ret;
+  }
+  var n = tree.children.length;
+  if (!n) {
+    return ret;
+  }
+  for (var i = 0; i < n-1; i++) {
+    ret += treeify(tree.children[i], indent+' |');
+  }
+  ret += treeify(tree.children[n-1], indent+'  ');
+  return ret;
+};
+
+
 /**
  * Add event listeners for the block factory.
  */
@@ -1368,6 +1392,9 @@ AppController.prototype.addBlockFactoryEventListeners = function() {
     self.rootDef = root_def;
     
     self.checkValidDefinition(root_def);
+    
+    var tree = self.defToTree(root_def);
+    console.log(treeify(tree, ''));
   
     var elems = Array.prototype.slice.call(toolbox.getElementsByTagName('block'), 0);
     var mov_manner_bodypart = elems.find(function (el) {
