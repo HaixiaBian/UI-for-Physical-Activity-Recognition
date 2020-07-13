@@ -1243,6 +1243,7 @@ var inputCheck = {
   'body_parts': allInputsFilled,
   'mov_sequential': allInputsFilled,
   'mov_simultaneous': allInputsFilled,
+  'order_in_time': allInputsFilled,
   // 'mov_pattern_value_input': atLeastOneInputFilled,
 };
 var checkBlockInput = function(block) {

@@ -971,7 +971,7 @@ Blockly.JavaScript['temporal_order_before_leftoutput'] = function(block) {
   var value_x = Blockly.JavaScript.valueToCode(block, 'x', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y = Blockly.JavaScript.valueToCode(block, 'y', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '"before", ' + value_x + ', ' + value_y + '';
+  var code = '"before", [' + value_x + '], [' + value_y + ']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -980,7 +980,7 @@ Blockly.JavaScript['temporal_order_after_leftoutput'] = function(block) {
   var value_x = Blockly.JavaScript.valueToCode(block, 'x', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y = Blockly.JavaScript.valueToCode(block, 'y', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '"before", ' + value_x + ', ' + value_y + '';
+  var code = '"before", [' + value_y + '], [' + value_x + ']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -989,7 +989,7 @@ Blockly.JavaScript['temporal_order_meets_leftoutput'] = function(block) {
   var value_x = Blockly.JavaScript.valueToCode(block, 'x', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y = Blockly.JavaScript.valueToCode(block, 'y', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '"before", "' + value_x + '", "' + value_y + '"';
+  var code = '"meets", [' + value_x + '], [' + value_y + ']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -998,7 +998,7 @@ Blockly.JavaScript['temporal_order_overlaps_leftoutput'] = function(block) {
   var value_x = Blockly.JavaScript.valueToCode(block, 'x', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y = Blockly.JavaScript.valueToCode(block, 'y', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '"before", "' + value_x + '", "' + value_y + '"';
+  var code = '"overlaps", [' + value_x + '], [' + value_y + ']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -1007,7 +1007,7 @@ Blockly.JavaScript['temporal_order_starts_leftoutput'] = function(block) {
   var value_x = Blockly.JavaScript.valueToCode(block, 'x', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y = Blockly.JavaScript.valueToCode(block, 'y', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '"before", "' + value_x + '", "' + value_y + '"';
+  var code = '"starts", [' + value_x + '], [' + value_y + ']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -1016,7 +1016,7 @@ Blockly.JavaScript['temporal_order_during_leftoutput'] = function(block) {
   var value_x = Blockly.JavaScript.valueToCode(block, 'x', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y = Blockly.JavaScript.valueToCode(block, 'y', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '"before", "' + value_x + '", "' + value_y + '"';
+  var code = '"during", [' + value_x + '], [' + value_y + ']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
