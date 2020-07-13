@@ -256,9 +256,11 @@ Blockly.JavaScript['other'] = function(block) {
 Blockly.JavaScript['time'] = function(block) {
   var dropdown_hour = block.getFieldValue('hour');
   var dropdown_minute = block.getFieldValue('minute');
+  var dropdown_hour2 = block.getFieldValue('hour2');
+  var dropdown_minute2 = block.getFieldValue('minute2');
   var dropdown_ampm = block.getFieldValue('ampm');
   // TODO: Assemble JavaScript into code variable.
-  var code = '"' + dropdown_hour + ':' + dropdown_minute + dropdown_ampm + '"';
+  var code = '["' + dropdown_hour + ':' + dropdown_minute + '"],["' + dropdown_hour2 + ':' + dropdown_minute2 + '"],["' + dropdown_ampm + '"]';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -1110,7 +1112,7 @@ Blockly.JavaScript['op_and'] = function(block) {
   var value_x = Blockly.JavaScript.valueToCode(block, 'x', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y = Blockly.JavaScript.valueToCode(block, 'y', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  var code = '"and", [' + value_x + '], [' + value_y + ']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -1119,7 +1121,7 @@ Blockly.JavaScript['op_or'] = function(block) {
   var value_x = Blockly.JavaScript.valueToCode(block, 'x', Blockly.JavaScript.ORDER_ATOMIC);
   var value_y = Blockly.JavaScript.valueToCode(block, 'y', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  var code = '"or", [' + value_x + '], [' + value_y + ']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -1127,7 +1129,7 @@ Blockly.JavaScript['op_or'] = function(block) {
 Blockly.JavaScript['op_not'] = function(block) {
   var value_x = Blockly.JavaScript.valueToCode(block, 'x', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  var code = '"not", [' + value_x + ']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -1143,7 +1145,7 @@ Blockly.JavaScript['duration_act'] = function(block) {
 Blockly.JavaScript['ass_similar_to'] = function(block) {
   var value_assignments = Blockly.JavaScript.valueToCode(block, 'assignments', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  var code = '"similar_to", [' + value_assignments + ']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -1151,7 +1153,7 @@ Blockly.JavaScript['ass_similar_to'] = function(block) {
 Blockly.JavaScript['ass_different_from'] = function(block) {
   var value_assignments = Blockly.JavaScript.valueToCode(block, 'assignments', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  var code = '"different_from", [' + value_assignments + ']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -1159,7 +1161,7 @@ Blockly.JavaScript['ass_different_from'] = function(block) {
 Blockly.JavaScript['ass_greater_than'] = function(block) {
   var value_assignments = Blockly.JavaScript.valueToCode(block, 'assignments', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  var code = '"greater_than", [' + value_assignments + ']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -1167,7 +1169,7 @@ Blockly.JavaScript['ass_greater_than'] = function(block) {
 Blockly.JavaScript['ass_lower_than'] = function(block) {
   var value_assignments = Blockly.JavaScript.valueToCode(block, 'assignments', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '...';
+  var code = '"lower_than", [' + value_assignments + ']';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };

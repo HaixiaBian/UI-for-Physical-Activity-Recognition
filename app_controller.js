@@ -779,8 +779,8 @@ AppController.prototype.defToTree = function(blockdef) {
 
 AppController.prototype.editDistanceBlock = function(def1, def2) {
   var insert, remove, update;
-  insert = remove = function(node) { return 1; };
-  update = function(nodeA, nodeB) { return nodeA.id !== nodeB.id ? 1 : 0; };
+  insert = remove = function(node) { return 0.1; }; //uplist the mathched nodes
+  update = function(nodeA, nodeB) { return nodeA.id !== nodeB.id ? 1 : -1; };
   
   var tree1 = this.defToTree(def1);
   var tree2 = this.defToTree(def2);

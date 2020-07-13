@@ -1373,7 +1373,7 @@ Blockly.defineBlocksWithJsonArray([
   "args0": [
     {
       "type": "input_value",
-      "name": "sim"
+      "name": "assignments"
     }
   ],
   "output": null,
@@ -1387,7 +1387,7 @@ Blockly.defineBlocksWithJsonArray([
   "args0": [
     {
       "type": "input_value",
-      "name": "diff"
+      "name": "assignments"
     }
   ],
   "output": null,
@@ -1401,7 +1401,7 @@ Blockly.defineBlocksWithJsonArray([
   "args0": [
     {
       "type": "input_value",
-      "name": "gt"
+      "name": "assignments"
     }
   ],
   "output": null,
@@ -1415,7 +1415,7 @@ Blockly.defineBlocksWithJsonArray([
   "args0": [
     {
       "type": "input_value",
-      "name": "lt"
+      "name": "assignments"
     }
   ],
   "output": null,
