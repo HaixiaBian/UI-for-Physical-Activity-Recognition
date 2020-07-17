@@ -1,0 +1,1610 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="activity" id="/MRJn}_-ehR`O,MhO6E7" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">standing</field>
+    <statement name="DESC">
+      <block type="pa_br" id="4msz81nczRNmXHaj|/pJ">
+        <value name="BR">
+          <block type="br_normal" id="5hX!R5zDrv@H?6(jg.%("></block>
+        </value>
+        <next>
+          <block type="body_parts" id="ZDM+dNI#4Np,+ZPN8(rr">
+            <statement name="BODYPART">
+              <block type="left_ankle" id="]Ke9fu]Yb*-~Y=-8}dK@">
+                <value name="movement">
+                  <block type="pos_still" id="9neNuGLJDe;,9m1!#V8S">
+                    <field name="pos">down</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_ankle" id="M~GE2cSBIc#CNI)NtU3A">
+                    <value name="movement">
+                      <block type="pos_still" id="jocC?CwgV8yklD7R_T$q">
+                        <field name="pos">down</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_thigh" id="@s{des9C0);N2~)r/jVF">
+                        <value name="movement">
+                          <block type="pos_still" id="iV5V;-aa+1j+lnTf^v}~">
+                            <field name="pos">down</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_thigh" id="z+TTP)%,s*a|^]r;?zOP">
+                            <value name="movement">
+                              <block type="pos_still" id="4BKve7T4P4/1@/=u{s!S">
+                                <field name="pos">down</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_wrist" id="jzbW~yuD*ZJ2/oyw2Lsm">
+                                <value name="movement">
+                                  <block type="pos_still" id=":ynhvg2a64VZfE=/(z68">
+                                    <field name="pos">down</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_wrist" id="-i[FXLi2bNhxd-BVqNw.">
+                                    <value name="movement">
+                                      <block type="pos_still" id="f4RCx|JpY`GAi^(9%~x5">
+                                        <field name="pos">down</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="9|`Yx8ktPMD$P_(.S9^8" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">walking</field>
+    <statement name="DESC">
+      <block type="pa_br" id="[,Sg*4Ihx_w.4pUFY9c)">
+        <value name="BR">
+          <block type="ass_greater_than" id="xiPZybg:#_M:#BexPg#!">
+            <value name="assignments">
+              <block type="br_normal" id="}b{[wsY[$p+`2R[J;1h^"></block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="body_parts" id="/X3ji=?(+-m4OF`dSXNw">
+            <statement name="BODYPART">
+              <block type="left_ankle" id="%J%]KJR)Fqp}V(n!{K%Y">
+                <value name="movement">
+                  <block type="mov_pattern_value_input" id="@Cy!~g-at][^0:gErk5K">
+                    <value name="MANNER">
+                      <shadow type="mov_motion_type_ghost" id="79*[JL(:4-4O/sl7o!9N"></shadow>
+                      <block type="mov_motion_type" id="6:Pi}+gS8ppRHp*.a$Xs">
+                        <field name="TYPE">line</field>
+                        <value name="PLANE">
+                          <shadow type="mov_motion_plane_ghost" id="jc/zSHvCNSBc=YDTCuAo"></shadow>
+                          <block type="mov_motion_plane" id="+]R?{ohz!0Z!tcViJ^(c">
+                            <field name="PLANE">frontback</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_ankle" id="AO=#W%yh}~+Kb,.L6PW-">
+                    <value name="movement">
+                      <block type="mov_pattern_value_input" id="Wb*^oXrz]zc$iWLP%KuM">
+                        <value name="MANNER">
+                          <shadow type="mov_motion_type_ghost" id="6+GKi}f#sP4$wXe_)$VO"></shadow>
+                          <block type="mov_manner_bodypart_left_output" id="3zr`a(f!$:y{UT=7Zo2P">
+                            <field name="BODYPART">left_ankle</field>
+                          </block>
+                        </value>
+                        <value name="RATE">
+                          <block type="mov_rate_bodypart_left_output" id="nG.]T=Il@NNMq`dUfRoD">
+                            <field name="BODYPART">left_ankle</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_thigh" id="s!I1fqhhB:ct8I|v?X#P">
+                        <value name="movement">
+                          <block type="mov_pattern_value_input" id="oRGfgRXI8$$sS|WI|XIV">
+                            <value name="MANNER">
+                              <shadow type="mov_motion_type_ghost"></shadow>
+                              <block type="mov_manner_bodypart_left_output" id="y{%H(#;}[([:n%!F]P?:">
+                                <field name="BODYPART">left_ankle</field>
+                              </block>
+                            </value>
+                            <value name="RATE">
+                              <block type="mov_rate_bodypart_left_output" id="Q39$9.@}AK|;5@ulHQLa">
+                                <field name="BODYPART">left_ankle</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_thigh" id="T{@3Z@N7;l-1ow#c=6Ga">
+                            <value name="movement">
+                              <block type="mov_pattern_value_input" id="M0?D%DFT7F:~Ml5@P9Vg">
+                                <value name="MANNER">
+                                  <shadow type="mov_motion_type_ghost"></shadow>
+                                  <block type="mov_manner_bodypart_left_output" id="Vx@n2v^t|a6]DitRM=_A">
+                                    <field name="BODYPART">left_ankle</field>
+                                  </block>
+                                </value>
+                                <value name="RATE">
+                                  <block type="mov_rate_bodypart_left_output" id="#XF%V!BAVVX8-n:!{0Bd">
+                                    <field name="BODYPART">left_ankle</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_wrist" id="E*LS=9!@th]4S*f!`I,H">
+                                <value name="movement">
+                                  <block type="mov_pattern_value_input" id="kAQ$9|J.-TM$Gw4@mI!=">
+                                    <value name="MANNER">
+                                      <shadow type="mov_motion_type_ghost"></shadow>
+                                      <block type="mov_manner_bodypart_left_output" id="/s`~809Qu9Du^fzcn/G!">
+                                        <field name="BODYPART">left_ankle</field>
+                                      </block>
+                                    </value>
+                                    <value name="RATE">
+                                      <block type="mov_rate_bodypart_left_output" id="F!7%fFoD^4SHOj5e=SF=">
+                                        <field name="BODYPART">left_ankle</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_wrist" id="12GAAEh5utj{2vTG6FNO">
+                                    <value name="movement">
+                                      <block type="mov_pattern_value_input" id="mPQ`U4{$)M5YriC]A`4a">
+                                        <value name="MANNER">
+                                          <shadow type="mov_motion_type_ghost"></shadow>
+                                          <block type="mov_manner_bodypart_left_output" id="*QJBz;+1-nLkXF^++bU5">
+                                            <field name="BODYPART">left_ankle</field>
+                                          </block>
+                                        </value>
+                                        <value name="RATE">
+                                          <block type="mov_rate_bodypart_left_output" id="8~jn]#4j^tS~2C9`:D8G">
+                                            <field name="BODYPART">left_ankle</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">sitting and typing on a laptop</field>
+    <statement name="DESC">
+      <block type="pa_br" id="Dc+%#^^GE7,Snrrh3^Ok">
+        <value name="BR">
+          <block type="br_normal" id="OK963^x[x@M8dM3aNOHf"></block>
+        </value>
+        <next>
+          <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+            <statement name="BODYPART">
+              <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                <value name="movement">
+                  <block type="occa_moving" id="8=(Unp,aN!CYIlLOLx0u">
+                    <field name="pos">parallel</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                    <value name="movement">
+                      <block type="occa_moving" id="P@v/X|C{DKkYaI1M.~ic">
+                        <field name="pos">parallel</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                        <value name="movement">
+                          <block type="pos_still" id="|@?2B}m5MAN;*XewZ6L3">
+                            <field name="pos">down</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                            <value name="movement">
+                              <block type="pos_still" id="P%+52!IS1@v1v$[h`[m:">
+                                <field name="pos">down</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                <value name="movement">
+                                  <block type="pos_still" id=",y+#JNYuRUO2RmRFoP8n">
+                                    <field name="pos">parallel</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                    <value name="movement">
+                                      <block type="pos_still" id="N!{w$]Y}np(W-5THQvB]">
+                                        <field name="pos">parallel</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">sitting</field>
+    <statement name="DESC">
+      <block type="pa_br" id="?%RSX;@`v5i-XVmj~A$8">
+        <value name="BR">
+          <block type="br_normal" id="D~^0N.~_efDMX)b{:vBw"></block>
+        </value>
+        <next>
+          <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+            <statement name="BODYPART">
+              <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                <value name="movement">
+                  <block type="pos_still" id="Q{-h1eEmE,s?~=.B_.w,">
+                    <field name="pos">parallel</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                    <value name="movement">
+                      <block type="pos_still" id="cQ[-P;Pk=zZQ;:@-b,rx">
+                        <field name="pos">parallel</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                        <value name="movement">
+                          <block type="pos_still" id="|@?2B}m5MAN;*XewZ6L3">
+                            <field name="pos">down</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                            <value name="movement">
+                              <block type="pos_still" id="P%+52!IS1@v1v$[h`[m:">
+                                <field name="pos">down</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                <value name="movement">
+                                  <block type="pos_still" id=",y+#JNYuRUO2RmRFoP8n">
+                                    <field name="pos">parallel</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                    <value name="movement">
+                                      <block type="pos_still" id="N!{w$]Y}np(W-5THQvB]">
+                                        <field name="pos">parallel</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="L}nYm%7kvHY@8h7_kdZ^" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">riding a bus</field>
+    <statement name="DESC">
+      <block type="pa_br" id="Ej)3_8AwrMp3QSFN03x#">
+        <value name="BR">
+          <block type="br_normal" id="QT@e]K;9=?;)7T%J(mI-"></block>
+        </value>
+        <next>
+          <block type="body_parts" id="hwBU$cbZE98%O06M!]{L">
+            <statement name="BODYPART">
+              <block type="left_wrist" id="Xk~;Y5jf--IzskHaq5L+">
+                <value name="movement">
+                  <block type="pos_still" id="RSi2dWAX4C_J.w0.z?u^">
+                    <field name="pos">up</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_wrist" id="G:RL-clufktKpqq(1u4J">
+                    <value name="movement">
+                      <block type="pos_still" id="3l:ZYY)c40=!wJqX0UHR">
+                        <field name="pos">down</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_ankle" id="Aky31C@wGO--62IX(~1z">
+                        <value name="movement">
+                          <block type="pos_still" id="atIv]D^1Wm[46!+q}P77">
+                            <field name="pos">down</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_ankle" id=".:AuQwXVK(;`Y-xJGJvF">
+                            <value name="movement">
+                              <block type="pos_still" id="{;f$mhpRuH:IqHVg$:y`">
+                                <field name="pos">down</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_thigh" id="Z-|Z$@7YtOMey8]%h-00">
+                                <value name="movement">
+                                  <block type="pos_still" id="K`H=q@$%s8?|ZQUsQF-#">
+                                    <field name="pos">down</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_thigh" id="=PR/l}k=p4ic4{q8;cNl">
+                                    <value name="movement">
+                                      <block type="pos_still" id="OOOg.Q#Wv~%pP3;xi@pm">
+                                        <field name="pos">down</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">reclining and reading a book	</field>
+    <statement name="DESC">
+      <block type="pa_br" id="Dc+%#^^GE7,Snrrh3^Ok">
+        <value name="BR">
+          <block type="br_normal" id="OK963^x[x@M8dM3aNOHf"></block>
+        </value>
+        <next>
+          <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+            <statement name="BODYPART">
+              <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                <value name="movement">
+                  <block type="occa_moving" id="8=(Unp,aN!CYIlLOLx0u">
+                    <field name="pos">up</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                    <value name="movement">
+                      <block type="occa_moving" id="P@v/X|C{DKkYaI1M.~ic">
+                        <field name="pos">up</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                        <value name="movement">
+                          <block type="pos_still" id="|@?2B}m5MAN;*XewZ6L3">
+                            <field name="pos">down</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                            <value name="movement">
+                              <block type="pos_still" id="P%+52!IS1@v1v$[h`[m:">
+                                <field name="pos">down</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                <value name="movement">
+                                  <block type="pos_still" id=",y+#JNYuRUO2RmRFoP8n">
+                                    <field name="pos">parallel</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                    <value name="movement">
+                                      <block type="pos_still" id="N!{w$]Y}np(W-5THQvB]">
+                                        <field name="pos">parallel</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">sleeping</field>
+    <statement name="DESC">
+      <block type="pa_br" id="Dc+%#^^GE7,Snrrh3^Ok">
+        <value name="BR">
+          <block type="br_normal" id="OK963^x[x@M8dM3aNOHf"></block>
+        </value>
+        <next>
+          <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+            <statement name="BODYPART">
+              <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                <value name="movement">
+                  <block type="pos_still" id="~974|pIHS!UM,$CtVG;7">
+                    <field name="pos">parallel</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                    <value name="movement">
+                      <block type="pos_still" id="[G[6=,mNU))C!g9][0e+">
+                        <field name="pos">parallel</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                        <value name="movement">
+                          <block type="pos_still" id="|@?2B}m5MAN;*XewZ6L3">
+                            <field name="pos">parallel</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                            <value name="movement">
+                              <block type="pos_still" id="P%+52!IS1@v1v$[h`[m:">
+                                <field name="pos">parallel</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                <value name="movement">
+                                  <block type="pos_still" id=",y+#JNYuRUO2RmRFoP8n">
+                                    <field name="pos">parallel</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                    <value name="movement">
+                                      <block type="pos_still" id="N!{w$]Y}np(W-5THQvB]">
+                                        <field name="pos">parallel</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">standing and cooking pasta</field>
+    <statement name="DESC">
+      <block type="pa_br" id="AmPxeR45m_[!8!CMRC!=">
+        <value name="BR">
+          <block type="br_normal" id="?cb,{a`^$E$W37.I`[A_"></block>
+        </value>
+        <next>
+          <block type="pa_object" id="4|}+WX8`cA/Xp%6Bl3Gu">
+            <value name="OBJ">
+              <block type="op_and" id="9R]X_4eq2+u:).)EouL}">
+                <value name="x">
+                  <block type="ex_object_fryingpan" id="yVi+,+ki3Hn[UQZEs/(C"></block>
+                </value>
+                <value name="y">
+                  <block type="ex_object_stove" id="}(T$I*(MrQ{_y~}tmwEa"></block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+                <statement name="BODYPART">
+                  <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                    <value name="movement">
+                      <block type="occa_moving" id="[H+RhD,E2B:/GxdhzagS">
+                        <field name="pos">parallel</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                        <value name="movement">
+                          <block type="occa_moving" id="~{GJ[eJPCV$sP;#)]xtL">
+                            <field name="pos">parallel</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                            <value name="movement">
+                              <block type="pos_still" id="3eg;R^?K6M5i;}NNrm}X">
+                                <field name="pos">down</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                                <value name="movement">
+                                  <block type="pos_still" id="O#0TI{q5S#7(T^KYf$bf">
+                                    <field name="pos">down</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                    <value name="movement">
+                                      <block type="pos_still" id="Ul0%~?tSHML8)QS$,DpD">
+                                        <field name="pos">down</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                        <value name="movement">
+                                          <block type="pos_still" id="5UdnDSBJZatU}Xi5[9H$">
+                                            <field name="pos">down</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">swimming in a pool</field>
+    <statement name="DESC">
+      <block type="pa_br" id="AmPxeR45m_[!8!CMRC!=">
+        <value name="BR">
+          <block type="ass_greater_than" id="zI_s}8t,9,J8*]tRj[4T">
+            <value name="assignments">
+              <block type="br_act" id="YY~o|IzTU$Ri.9`8?9|4">
+                <field name="ACT">climbing stairs</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+            <statement name="BODYPART">
+              <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                <value name="movement">
+                  <block type="mov_pattern_value_input" id="^KWd=%L^tFZ9.ld4CB?:">
+                    <value name="MANNER">
+                      <shadow type="mov_motion_type_ghost" id="jj;sxC:#LRc_Lmyi7Po,"></shadow>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                    <value name="movement">
+                      <block type="mov_pattern_value_input" id="Co]ivUDHkZImeC*ZycZ]">
+                        <value name="MANNER">
+                          <shadow type="mov_motion_type_ghost" id="9Te2,j@}pN5C%4s[8[8-"></shadow>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                        <value name="movement">
+                          <block type="mov_pattern_value_input" id=")H[%C2pQ66vT2#*fj:)Q">
+                            <value name="MANNER">
+                              <shadow type="mov_motion_type_ghost"></shadow>
+                              <block type="mov_motion_type" id="$34LXR75I51!o,eHH#8=">
+                                <field name="TYPE">arc</field>
+                                <value name="PLANE">
+                                  <shadow type="mov_motion_plane_ghost" id="lc#/}*;qOa2FLd*70aC?"></shadow>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                            <value name="movement">
+                              <block type="mov_pattern_value_input" id="_,G@9c2X6MVuaK)gNrB}">
+                                <value name="MANNER">
+                                  <shadow type="mov_motion_type_ghost"></shadow>
+                                  <block type="mov_motion_type" id="p[M:4H*U06+^e4|01f/J">
+                                    <field name="TYPE">arc</field>
+                                    <value name="PLANE">
+                                      <shadow type="mov_motion_plane_ghost" id="6uSrA{y+g2mSzm`Hj5Xu"></shadow>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                <value name="movement">
+                                  <block type="mov_pattern_value_input" id="*)k(@jr.65Ula$uzX,[2">
+                                    <value name="MANNER">
+                                      <shadow type="mov_motion_type_ghost"></shadow>
+                                      <block type="mov_motion_type" id="42/;(55qBvTE]f!v+%_h">
+                                        <field name="TYPE">arc</field>
+                                        <value name="PLANE">
+                                          <shadow type="mov_motion_plane_ghost" id="I%hq:IU`pXj5:vI7!w2)"></shadow>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                    <value name="movement">
+                                      <block type="mov_pattern_value_input" id="OEW:3;J=|r^!:(xKr?L?">
+                                        <value name="MANNER">
+                                          <shadow type="mov_motion_type_ghost" id="WS4^uq*[{*gi81CK_lJF"></shadow>
+                                          <block type="mov_motion_type" id="l/JOa;m,`Oq2ZGMwq$*e">
+                                            <field name="TYPE">arc</field>
+                                            <value name="PLANE">
+                                              <shadow type="mov_motion_plane_ghost" id="^ne`f4YBeXN$`GD$}QI["></shadow>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">biking</field>
+    <statement name="DESC">
+      <block type="pa_br" id="AmPxeR45m_[!8!CMRC!=">
+        <value name="BR">
+          <block type="ass_greater_than" id="zI_s}8t,9,J8*]tRj[4T">
+            <value name="assignments">
+              <block type="br_act" id="YY~o|IzTU$Ri.9`8?9|4">
+                <field name="ACT">walking</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="pa_object" id=",Ky=dbYG9Nw2.P$XzM64">
+            <value name="OBJ">
+              <block type="ex_object_bike" id="O{#d8vrbxC(OXzdISf@^"></block>
+            </value>
+            <next>
+              <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+                <statement name="BODYPART">
+                  <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                    <value name="movement">
+                      <block type="occa_moving" id="?jvE$}R!JaU_C8ca1gtt">
+                        <field name="pos">down</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                        <value name="movement">
+                          <block type="occa_moving" id="U6:URs7TM.7=z;br|:r2">
+                            <field name="pos">down</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                            <value name="movement">
+                              <block type="mov_pattern_value_input" id=")H[%C2pQ66vT2#*fj:)Q">
+                                <value name="MANNER">
+                                  <shadow type="mov_motion_type_ghost"></shadow>
+                                  <block type="mov_motion_type" id="$34LXR75I51!o,eHH#8=">
+                                    <field name="TYPE">arc</field>
+                                    <value name="PLANE">
+                                      <shadow type="mov_motion_plane_ghost" id="lc#/}*;qOa2FLd*70aC?"></shadow>
+                                      <block type="mov_motion_plane" id="2+H]B[B9G5/qJN6hH)mC">
+                                        <field name="PLANE">updown</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                                <value name="movement">
+                                  <block type="mov_pattern_value_input" id="_,G@9c2X6MVuaK)gNrB}">
+                                    <value name="MANNER">
+                                      <shadow type="mov_motion_type_ghost"></shadow>
+                                      <block type="mov_motion_type" id="p[M:4H*U06+^e4|01f/J">
+                                        <field name="TYPE">arc</field>
+                                        <value name="PLANE">
+                                          <shadow type="mov_motion_plane_ghost" id="6uSrA{y+g2mSzm`Hj5Xu"></shadow>
+                                          <block type="mov_motion_plane" id=",pyzFI}6}m#8ZlZZA7Mp">
+                                            <field name="PLANE">updown</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                    <value name="movement">
+                                      <block type="mov_pattern_value_input" id="*)k(@jr.65Ula$uzX,[2">
+                                        <value name="MANNER">
+                                          <shadow type="mov_motion_type_ghost"></shadow>
+                                          <block type="mov_motion_type" id="42/;(55qBvTE]f!v+%_h">
+                                            <field name="TYPE">circle</field>
+                                            <value name="PLANE">
+                                              <shadow type="mov_motion_plane_ghost" id="I%hq:IU`pXj5:vI7!w2)"></shadow>
+                                              <block type="mov_motion_plane" id="mT+i-=qr0,$_T8ablsIA">
+                                                <field name="PLANE">updown</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                        <value name="movement">
+                                          <block type="mov_pattern_value_input" id="OEW:3;J=|r^!:(xKr?L?">
+                                            <value name="MANNER">
+                                              <shadow type="mov_motion_type_ghost" id="WS4^uq*[{*gi81CK_lJF"></shadow>
+                                              <block type="mov_motion_type" id="l/JOa;m,`Oq2ZGMwq$*e">
+                                                <field name="TYPE">circle</field>
+                                                <value name="PLANE">
+                                                  <shadow type="mov_motion_plane_ghost" id="^ne`f4YBeXN$`GD$}QI["></shadow>
+                                                  <block type="mov_motion_plane" id="Qz/lb5Qr4OP7BeVUjsDX">
+                                                    <field name="PLANE">updown</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">stationary biking</field>
+    <statement name="DESC">
+      <block type="pa_br" id="AmPxeR45m_[!8!CMRC!=">
+        <value name="BR">
+          <block type="ass_greater_than" id="zI_s}8t,9,J8*]tRj[4T">
+            <value name="assignments">
+              <block type="br_act" id="YY~o|IzTU$Ri.9`8?9|4">
+                <field name="ACT">walking</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="pa_object" id=",Ky=dbYG9Nw2.P$XzM64">
+            <value name="OBJ">
+              <block type="ex_object_bike" id="O{#d8vrbxC(OXzdISf@^"></block>
+            </value>
+            <next>
+              <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+                <statement name="BODYPART">
+                  <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                    <value name="movement">
+                      <block type="pos_still" id="01f?7nd0V(enZXQzLSnd">
+                        <field name="pos">down</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                        <value name="movement">
+                          <block type="pos_still" id="@v!gfitN7I5z1k@(Ck=+">
+                            <field name="pos">down</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                            <value name="movement">
+                              <block type="mov_pattern_value_input" id=")H[%C2pQ66vT2#*fj:)Q">
+                                <value name="MANNER">
+                                  <shadow type="mov_motion_type_ghost"></shadow>
+                                  <block type="mov_motion_type" id="$34LXR75I51!o,eHH#8=">
+                                    <field name="TYPE">arc</field>
+                                    <value name="PLANE">
+                                      <shadow type="mov_motion_plane_ghost" id="lc#/}*;qOa2FLd*70aC?"></shadow>
+                                      <block type="mov_motion_plane" id="2+H]B[B9G5/qJN6hH)mC">
+                                        <field name="PLANE">updown</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                                <value name="movement">
+                                  <block type="mov_pattern_value_input" id="_,G@9c2X6MVuaK)gNrB}">
+                                    <value name="MANNER">
+                                      <shadow type="mov_motion_type_ghost"></shadow>
+                                      <block type="mov_motion_type" id="p[M:4H*U06+^e4|01f/J">
+                                        <field name="TYPE">arc</field>
+                                        <value name="PLANE">
+                                          <shadow type="mov_motion_plane_ghost" id="6uSrA{y+g2mSzm`Hj5Xu"></shadow>
+                                          <block type="mov_motion_plane" id=",pyzFI}6}m#8ZlZZA7Mp">
+                                            <field name="PLANE">updown</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                    <value name="movement">
+                                      <block type="mov_pattern_value_input" id="*)k(@jr.65Ula$uzX,[2">
+                                        <value name="MANNER">
+                                          <shadow type="mov_motion_type_ghost"></shadow>
+                                          <block type="mov_motion_type" id="42/;(55qBvTE]f!v+%_h">
+                                            <field name="TYPE">circle</field>
+                                            <value name="PLANE">
+                                              <shadow type="mov_motion_plane_ghost" id="I%hq:IU`pXj5:vI7!w2)"></shadow>
+                                              <block type="mov_motion_plane" id="mT+i-=qr0,$_T8ablsIA">
+                                                <field name="PLANE">updown</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                        <value name="movement">
+                                          <block type="mov_pattern_value_input" id="OEW:3;J=|r^!:(xKr?L?">
+                                            <value name="MANNER">
+                                              <shadow type="mov_motion_type_ghost" id="WS4^uq*[{*gi81CK_lJF"></shadow>
+                                              <block type="mov_motion_type" id="l/JOa;m,`Oq2ZGMwq$*e">
+                                                <field name="TYPE">circle</field>
+                                                <value name="PLANE">
+                                                  <shadow type="mov_motion_plane_ghost" id="^ne`f4YBeXN$`GD$}QI["></shadow>
+                                                  <block type="mov_motion_plane" id="Qz/lb5Qr4OP7BeVUjsDX">
+                                                    <field name="PLANE">updown</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">squatting</field>
+    <statement name="DESC">
+      <block type="pa_br" id="AmPxeR45m_[!8!CMRC!=">
+        <value name="BR">
+          <block type="ass_greater_than" id="zI_s}8t,9,J8*]tRj[4T">
+            <value name="assignments">
+              <block type="br_act" id="YY~o|IzTU$Ri.9`8?9|4">
+                <field name="ACT">climbing stairs</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="pa_object" id=",Ky=dbYG9Nw2.P$XzM64">
+            <value name="OBJ">
+              <block type="ex_object_bike" id="O{#d8vrbxC(OXzdISf@^"></block>
+            </value>
+            <next>
+              <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+                <statement name="BODYPART">
+                  <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                    <value name="movement">
+                      <block type="mov_pattern_value_input" id=")H[%C2pQ66vT2#*fj:)Q">
+                        <value name="MANNER">
+                          <shadow type="mov_motion_type_ghost" id="Xs0(;AcusinYQvgP;j{p"></shadow>
+                          <block type="mov_motion_type" id="$34LXR75I51!o,eHH#8=">
+                            <field name="TYPE">line</field>
+                            <value name="PLANE">
+                              <shadow type="mov_motion_plane_ghost" id="lc#/}*;qOa2FLd*70aC?"></shadow>
+                              <block type="mov_motion_plane" id="2+H]B[B9G5/qJN6hH)mC">
+                                <field name="PLANE">updown</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                        <value name="movement">
+                          <block type="mov_pattern_value_input" id="@C4r6Amp0`BIRSRsHKR;">
+                            <value name="MANNER">
+                              <shadow type="mov_motion_type_ghost"></shadow>
+                              <block type="mov_motion_type" id="NduI_:Iw,YS{(=zmhgFX">
+                                <field name="TYPE">line</field>
+                                <value name="PLANE">
+                                  <shadow type="mov_motion_plane_ghost"></shadow>
+                                  <block type="mov_motion_plane" id="{zB^!UW-@?R?#..,Kd0|">
+                                    <field name="PLANE">updown</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                            <value name="movement">
+                              <block type="pos_still" id="01f?7nd0V(enZXQzLSnd">
+                                <field name="pos">down</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                                <value name="movement">
+                                  <block type="pos_still" id="@v!gfitN7I5z1k@(Ck=+">
+                                    <field name="pos">down</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                    <value name="movement">
+                                      <block type="mov_pattern_value_input" id="*)k(@jr.65Ula$uzX,[2">
+                                        <value name="MANNER">
+                                          <shadow type="mov_motion_type_ghost"></shadow>
+                                          <block type="mov_motion_type" id="42/;(55qBvTE]f!v+%_h">
+                                            <field name="TYPE">line</field>
+                                            <value name="PLANE">
+                                              <shadow type="mov_motion_plane_ghost" id="I%hq:IU`pXj5:vI7!w2)"></shadow>
+                                              <block type="mov_motion_plane" id="mT+i-=qr0,$_T8ablsIA">
+                                                <field name="PLANE">updown</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                        <value name="movement">
+                                          <block type="mov_pattern_value_input" id="OEW:3;J=|r^!:(xKr?L?">
+                                            <value name="MANNER">
+                                              <shadow type="mov_motion_type_ghost" id="WS4^uq*[{*gi81CK_lJF"></shadow>
+                                              <block type="mov_motion_type" id="l/JOa;m,`Oq2ZGMwq$*e">
+                                                <field name="TYPE">line</field>
+                                                <value name="PLANE">
+                                                  <shadow type="mov_motion_plane_ghost" id="^ne`f4YBeXN$`GD$}QI["></shadow>
+                                                  <block type="mov_motion_plane" id="Qz/lb5Qr4OP7BeVUjsDX">
+                                                    <field name="PLANE">updown</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">arm ergometry</field>
+    <statement name="DESC">
+      <block type="pa_br" id="AmPxeR45m_[!8!CMRC!=">
+        <value name="BR">
+          <block type="ass_greater_than" id="zI_s}8t,9,J8*]tRj[4T">
+            <value name="assignments">
+              <block type="br_act" id="YY~o|IzTU$Ri.9`8?9|4">
+                <field name="ACT">walking</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+            <statement name="BODYPART">
+              <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                <value name="movement">
+                  <block type="mov_pattern_value_input" id=")H[%C2pQ66vT2#*fj:)Q">
+                    <value name="MANNER">
+                      <shadow type="mov_motion_type_ghost" id="Xs0(;AcusinYQvgP;j{p"></shadow>
+                      <block type="mov_motion_type" id="$34LXR75I51!o,eHH#8=">
+                        <field name="TYPE">circle</field>
+                        <value name="PLANE">
+                          <shadow type="mov_motion_plane_ghost" id="lc#/}*;qOa2FLd*70aC?"></shadow>
+                          <block type="mov_motion_plane" id="2+H]B[B9G5/qJN6hH)mC">
+                            <field name="PLANE">updown</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                    <value name="movement">
+                      <block type="mov_pattern_value_input" id="@C4r6Amp0`BIRSRsHKR;">
+                        <value name="MANNER">
+                          <shadow type="mov_motion_type_ghost"></shadow>
+                          <block type="mov_motion_type" id="NduI_:Iw,YS{(=zmhgFX">
+                            <field name="TYPE">circle</field>
+                            <value name="PLANE">
+                              <shadow type="mov_motion_plane_ghost"></shadow>
+                              <block type="mov_motion_plane" id="{zB^!UW-@?R?#..,Kd0|">
+                                <field name="PLANE">updown</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                        <value name="movement">
+                          <block type="pos_still" id="01f?7nd0V(enZXQzLSnd">
+                            <field name="pos">down</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                            <value name="movement">
+                              <block type="pos_still" id="@v!gfitN7I5z1k@(Ck=+">
+                                <field name="pos">down</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                <value name="movement">
+                                  <block type="pos_still" id="U[22_v(uDYB1l1xR{?Nl">
+                                    <field name="pos">parallel</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                    <value name="movement">
+                                      <block type="pos_still" id="KLpBZSl:ZK9On?8+~U/_">
+                                        <field name="pos">parallel</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">using a stationary rowing machine</field>
+    <statement name="DESC">
+      <block type="pa_br" id="AmPxeR45m_[!8!CMRC!=">
+        <value name="BR">
+          <block type="ass_greater_than" id="zI_s}8t,9,J8*]tRj[4T">
+            <value name="assignments">
+              <block type="br_act" id="YY~o|IzTU$Ri.9`8?9|4">
+                <field name="ACT">climbing stairs</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+            <statement name="BODYPART">
+              <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                <value name="movement">
+                  <block type="mov_pattern_value_input" id=")H[%C2pQ66vT2#*fj:)Q">
+                    <value name="MANNER">
+                      <shadow type="mov_motion_type_ghost" id="Xs0(;AcusinYQvgP;j{p"></shadow>
+                      <block type="mov_motion_type" id="$34LXR75I51!o,eHH#8=">
+                        <field name="TYPE">line</field>
+                        <value name="PLANE">
+                          <shadow type="mov_motion_plane_ghost" id="lc#/}*;qOa2FLd*70aC?"></shadow>
+                          <block type="mov_motion_plane" id="2+H]B[B9G5/qJN6hH)mC">
+                            <field name="PLANE">frontback</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                    <value name="movement">
+                      <block type="mov_pattern_value_input" id="K6?eL;uN}x;tE@W1Q.][">
+                        <value name="MANNER">
+                          <shadow type="mov_motion_type_ghost"></shadow>
+                          <block type="mov_motion_type" id="lKp2hNN@R0`5.3cF}?8c">
+                            <field name="TYPE">line</field>
+                            <value name="PLANE">
+                              <shadow type="mov_motion_plane_ghost"></shadow>
+                              <block type="mov_motion_plane" id="3}MwY2w9,aO[-[TXc{[u">
+                                <field name="PLANE">frontback</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                        <value name="movement">
+                          <block type="pos_still" id="U[22_v(uDYB1l1xR{?Nl">
+                            <field name="pos">parallel</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                            <value name="movement">
+                              <block type="pos_still" id="KLpBZSl:ZK9On?8+~U/_">
+                                <field name="pos">parallel</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                <value name="movement">
+                                  <block type="mov_pattern_value_input" id="#IQ3((,)wDLC9eKuUhw^">
+                                    <value name="MANNER">
+                                      <shadow type="mov_motion_type_ghost"></shadow>
+                                      <block type="mov_motion_type" id="_Z}V=M8Jc7ApgDAX7zuE">
+                                        <field name="TYPE">line</field>
+                                        <value name="PLANE">
+                                          <shadow type="mov_motion_plane_ghost"></shadow>
+                                          <block type="mov_motion_plane" id="U==uhKjHrZ4[sXG.3ddl">
+                                            <field name="PLANE">frontback</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                    <value name="movement">
+                                      <block type="mov_pattern_value_input" id="1{ZRo),X}vTzJ3NEnyni">
+                                        <value name="MANNER">
+                                          <shadow type="mov_motion_type_ghost"></shadow>
+                                          <block type="mov_motion_type" id="{qgv^b5siuAbC5Ur)vcY">
+                                            <field name="TYPE">line</field>
+                                            <value name="PLANE">
+                                              <shadow type="mov_motion_plane_ghost"></shadow>
+                                              <block type="mov_motion_plane" id="^{N~+x;J66n^#$L7%^5)">
+                                                <field name="PLANE">frontback</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">ironing clothes</field>
+    <statement name="DESC">
+      <block type="pa_br" id="AmPxeR45m_[!8!CMRC!=">
+        <value name="BR">
+          <block type="br_normal" id="H8]!I|piDyC-|cixBLeQ"></block>
+        </value>
+        <next>
+          <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+            <statement name="BODYPART">
+              <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                <value name="movement">
+                  <block type="mov_pattern_value_input" id=")H[%C2pQ66vT2#*fj:)Q">
+                    <value name="MANNER">
+                      <shadow type="mov_motion_type_ghost" id="Xs0(;AcusinYQvgP;j{p"></shadow>
+                      <block type="mov_motion_type" id="$34LXR75I51!o,eHH#8=">
+                        <field name="TYPE">line</field>
+                        <value name="PLANE">
+                          <shadow type="mov_motion_plane_ghost" id="lc#/}*;qOa2FLd*70aC?"></shadow>
+                          <block type="mov_motion_plane" id="2+H]B[B9G5/qJN6hH)mC">
+                            <field name="PLANE">leftright</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                    <value name="movement">
+                      <block type="occa_moving" id="P/|!Upu_|2gxIPA1yTg]">
+                        <field name="pos">parallel</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                        <value name="movement">
+                          <block type="pos_still" id="U[22_v(uDYB1l1xR{?Nl">
+                            <field name="pos">down</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                            <value name="movement">
+                              <block type="pos_still" id="KLpBZSl:ZK9On?8+~U/_">
+                                <field name="pos">down</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                <value name="movement">
+                                  <block type="pos_still" id="`pGQi|J{B~mqP2;Y:D$;">
+                                    <field name="pos">down</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                    <value name="movement">
+                                      <block type="pos_still" id="$N+u2%M79JjJ;`W6V|E8">
+                                        <field name="pos">down</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">using a vacuum cleaner</field>
+    <statement name="DESC">
+      <block type="pa_br" id="AmPxeR45m_[!8!CMRC!=">
+        <value name="BR">
+          <block type="br_normal" id="H8]!I|piDyC-|cixBLeQ"></block>
+        </value>
+        <next>
+          <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+            <statement name="BODYPART">
+              <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                <value name="movement">
+                  <block type="occa_moving" id="P/|!Upu_|2gxIPA1yTg]">
+                    <field name="pos">parallel</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                    <value name="movement">
+                      <block type="occa_moving" id="R%DhM[SRF|GoWB.NX5k/">
+                        <field name="pos">down</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                        <value name="movement">
+                          <block type="occa_moving" id="[X-v./G2[(@)0fWnPY_z">
+                            <field name="pos">down</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                            <value name="movement">
+                              <block type="occa_moving" id="?c+4`ut0mEnRCxpE}oHn">
+                                <field name="pos">down</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                <value name="movement">
+                                  <block type="occa_moving" id="RfSGHg#,nBXG`$f83k(R">
+                                    <field name="pos">down</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                    <value name="movement">
+                                      <block type="occa_moving" id="FaVQ87]KMfg/|XO/Nvb7">
+                                        <field name="pos">down</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">washing dishes</field>
+    <statement name="DESC">
+      <block type="pa_br" id="AmPxeR45m_[!8!CMRC!=">
+        <value name="BR">
+          <block type="br_normal" id="H8]!I|piDyC-|cixBLeQ"></block>
+        </value>
+        <next>
+          <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+            <statement name="BODYPART">
+              <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                <value name="movement">
+                  <block type="occa_moving" id="P/|!Upu_|2gxIPA1yTg]">
+                    <field name="pos">parallel</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                    <value name="movement">
+                      <block type="occa_moving" id="R%DhM[SRF|GoWB.NX5k/">
+                        <field name="pos">parallel</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                        <value name="movement">
+                          <block type="pos_still" id="ROjE6}qdutuy6/4IH^t}">
+                            <field name="pos">down</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                            <value name="movement">
+                              <block type="pos_still" id="PO$OHM?X2kS%9-l}[ecI">
+                                <field name="pos">down</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                <value name="movement">
+                                  <block type="pos_still" id="[]XPGQ$W2Mx~u|Jwy?da">
+                                    <field name="pos">down</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                    <value name="movement">
+                                      <block type="pos_still" id="DY=kIdu!E`q!?co8D)|9">
+                                        <field name="pos">down</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block><block type="activity" id="2rx2YwlSDsK2Mw=.(CsY" deletable="false" movable="false" x="10" y="10">
+    <field name="NAME">folding laundry</field>
+    <statement name="DESC">
+      <block type="pa_br" id="AmPxeR45m_[!8!CMRC!=">
+        <value name="BR">
+          <block type="br_normal" id="H8]!I|piDyC-|cixBLeQ"></block>
+        </value>
+        <next>
+          <block type="body_parts" id="(gYATLsjLw.m6b|O%w[z">
+            <statement name="BODYPART">
+              <block type="left_wrist" id="gZZvF4IJvl{V$%yET_j~">
+                <value name="movement">
+                  <block type="mov_pattern_value_input" id="K1ig8xm3$Ey/~4lKTQAN">
+                    <value name="MANNER">
+                      <shadow type="mov_motion_type_ghost" id="Mg2}Yt8kG)]C0eAgY~vo"></shadow>
+                      <block type="mov_motion_type" id="SdQVX7hUhfN]^1??jauq">
+                        <field name="TYPE">line</field>
+                        <value name="PLANE">
+                          <shadow type="mov_motion_plane_ghost" id="3sW_8L-{JD?Y#@whxZM("></shadow>
+                          <block type="mov_motion_plane" id="0P0ByrEnPMtoVH;av)cq">
+                            <field name="PLANE">leftright</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="right_wrist" id="EmW,[LKt@.=nCAf9;6kt">
+                    <value name="movement">
+                      <block type="mov_pattern_value_input" id="]+_PlxH]Yxg2Ju,Wl7Zm">
+                        <value name="MANNER">
+                          <shadow type="mov_motion_type_ghost"></shadow>
+                          <block type="mov_motion_type" id="-K;$2=F4vrr51^kL}N?u">
+                            <field name="TYPE">line</field>
+                            <value name="PLANE">
+                              <shadow type="mov_motion_plane_ghost"></shadow>
+                              <block type="mov_motion_plane" id="-FsQ{#s.gSa{CsC}kF#4">
+                                <field name="PLANE">leftright</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="left_ankle" id="FFBeF;hhyywz2-yju?*7">
+                        <value name="movement">
+                          <block type="pos_still" id="ROjE6}qdutuy6/4IH^t}">
+                            <field name="pos">down</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="right_ankle" id="bHd4_`eTA80w%6xh+:Ve">
+                            <value name="movement">
+                              <block type="pos_still" id="PO$OHM?X2kS%9-l}[ecI">
+                                <field name="pos">down</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="left_thigh" id="h3Vo9f!qdf|+k4lQzW}[">
+                                <value name="movement">
+                                  <block type="pos_still" id="[]XPGQ$W2Mx~u|Jwy?da">
+                                    <field name="pos">down</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="right_thigh" id="s_z#7h.rb:MQ7;4Pxnfw">
+                                    <value name="movement">
+                                      <block type="pos_still" id="DY=kIdu!E`q!?co8D)|9">
+                                        <field name="pos">down</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block></xml>

@@ -150,8 +150,11 @@ BlockLibraryController.prototype.clearBlockLibrary = function() {
     // Clear Block Library Storage.
     this.storage.clear();
     this.storage.saveToLocalStorage();
+    this.storage_del.clear();
+    this.storage_del.saveToLocalStorage();
     // Update dropdown.
     this.view.clearOptions();
+    this.view.clearOptions_del();
     // Show default block.
     BlockFactory.showStarterBlock();
     // User may not save the starter block, but will get explicit instructions

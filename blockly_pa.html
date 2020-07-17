@@ -56,6 +56,16 @@ p {
   vertical-align: bottom;
 }
 
+#buttonContainer {
+  text-align: right;
+  vertical-align: middle;
+}
+
+#files {
+  position: absolute;
+  visibility: hidden;
+}
+
 button:disabled, .buttonStyle:disabled {
   opacity: 0.6;
 }
@@ -211,25 +221,35 @@ button, .buttonStyle {
 
 	  <tr id="blockLibrary" height="50px">
 		<td id="blockLibraryContainer">
-		<span>
-		  <div class="dropdown">
-			<button id="button_blockLib">Activities</button>
-			<div id="dropdownDiv_blockLib" class="dropdown-content">
-			  <a id="createNewBlockButton">Create New Activity</a>
-			</div>
-		  </div>
-		  <select id="blockLibraryDropdown" style="display:none">
-		  </select>
-		</span>
-		<span>
-		  <div class="dropdown">
-			<button id="button_DelblockLib">Deleted Activities</button>
-			<div id="dropdownDiv_DelblockLib" class="dropdown-content">
-			</div>
-		  </div>
-		  <select id="blockLibraryDropdown_del" style="display:none">
-		  </select>
-		</span>
+      <span>
+        <div class="dropdown">
+        <button id="button_blockLib">Activities</button>
+        <div id="dropdownDiv_blockLib" class="dropdown-content">
+          <a id="createNewBlockButton">Create New Activity</a>
+        </div>
+        </div>
+        <select id="blockLibraryDropdown" style="display:none">
+        </select>
+      </span>
+      <span>
+        <div class="dropdown">
+        <button id="button_DelblockLib">Deleted Activities</button>
+        <div id="dropdownDiv_DelblockLib" class="dropdown-content">
+        </div>
+        </div>
+        <select id="blockLibraryDropdown_del" style="display:none">
+        </select>
+      </span>
+      <button id="clearBlockLibraryButton" title="Clear Defined Activities.">
+        <span>Clear Activities</span>
+      </button>
+      <button id="localSaveButton" title="Save defined activities XML to a local file.">
+        <span>Download Activities</span>
+      </button>
+      <label for="files" class="buttonStyle">
+        <span class="">Import Activities</span>
+      </label>
+      <input id="files" type="file" name="files" accept="application/xml">
 		</td>
 		<td id="blockLibraryControls">
 		<button id="saveToBlockLibraryButton" title="Save block to Block Library.">

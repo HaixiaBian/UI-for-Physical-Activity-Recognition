@@ -100,8 +100,8 @@ AppController.prototype.importBlockLibraryFromFile = function() {
       self.blockLibraryController.setBlockLibraryStorage(blockLibStorage);
       // Update the block library dropdown.
       self.blockLibraryController.populateBlockLibrary();
-      // Update the exporter's block library storage.
-      self.exporter.setBlockLibraryStorage(blockLibStorage);
+      // // Update the exporter's block library storage.
+      // self.exporter.setBlockLibraryStorage(blockLibStorage);
     });
     // Read the file.
     fileReader.readAsText(file);
@@ -118,8 +118,8 @@ AppController.prototype.exportBlockLibraryToFile = function() {
   // Concatenate the XMLs, each separated by a blank line.
   var blockLibText = this.formatBlockLibraryForExport_(blockLib);
   // Get file name.
-  var filename = prompt('Enter the file name under which to save your block ' +
-      'library.', 'library.xml');
+  var filename = prompt('Enter the file name under which to save your defined ' +
+      'activites.', 'activities.xml');
   // Download file if all necessary parameters are provided.
   if (filename) {
     FactoryUtils.createAndDownloadFile(blockLibText, filename, 'xml');
@@ -127,7 +127,7 @@ AppController.prototype.exportBlockLibraryToFile = function() {
         BlocklyDevTools.Analytics.BLOCK_FACTORY_LIBRARY,
         { format: BlocklyDevTools.Analytics.FORMAT_XML });
   } else {
-    var msg = 'Could not export Block Library without file name under which ' +
+    var msg = 'Could not export defined activites without file name under which ' +
       'to save library.';
     BlocklyDevTools.Analytics.onWarning(msg);
     alert(msg);
@@ -475,11 +475,11 @@ AppController.prototype.assignLibraryClickHandlers = function() {
         self.blockLibraryController.removeFromBlockLibrary();
       });
 
-  // // Button for clearing the block library.
-  // document.getElementById('clearBlockLibraryButton').addEventListener('click',
-  //     function() {
-  //       self.blockLibraryController.clearBlockLibrary();
-  //     });
+  // Button for clearing the block library.
+  document.getElementById('clearBlockLibraryButton').addEventListener('click',
+      function() {
+        self.blockLibraryController.clearBlockLibrary();
+      });
 
   // Hide and show the block library dropdown.
   document.getElementById('button_blockLib').addEventListener('click',
@@ -499,10 +499,10 @@ AppController.prototype.assignLibraryClickHandlers = function() {
 AppController.prototype.assignBlockFactoryClickHandlers = function() {
   var self = this;
   // Assign button event handlers for Block Factory.
-  // document.getElementById('localSaveButton')
-  //     .addEventListener('click', function() {
-  //       self.exportBlockLibraryToFile();
-  //     });
+  document.getElementById('localSaveButton')
+      .addEventListener('click', function() {
+        self.exportBlockLibraryToFile();
+      });
 
   // document.getElementById('helpButton').addEventListener('click',
   //     function() {
@@ -510,19 +510,19 @@ AppController.prototype.assignBlockFactoryClickHandlers = function() {
   //            'BlockFactoryHelp');
   //     });
 
-  // document.getElementById('files').addEventListener('change',
-  //     function() {
-  //       // Warn user.
-  //       var replace = confirm('This imported block library will ' +
-  //           'replace your current block library.');
-  //       if (replace) {
-  //         self.importBlockLibraryFromFile();
-  //         // Clear this so that the change event still fires even if the
-  //         // same file is chosen again. If the user re-imports a file, we
-  //         // want to reload the workspace with its contents.
-  //         this.value = null;
-  //       }
-  //     });
+  document.getElementById('files').addEventListener('change',
+      function() {
+        // Warn user.
+        var replace = confirm('This imported block library will ' +
+            'replace your current block library.');
+        if (replace) {
+          self.importBlockLibraryFromFile();
+          // Clear this so that the change event still fires even if the
+          // same file is chosen again. If the user re-imports a file, we
+          // want to reload the workspace with its contents.
+          this.value = null;
+        }
+      });
 
   document.getElementById('createNewBlockButton')
     .addEventListener('click', function() {
@@ -779,7 +779,7 @@ AppController.prototype.defToTree = function(blockdef) {
 
 AppController.prototype.editDistanceBlock = function(def1, def2) {
   var insert, remove, update;
-  insert = remove = function(node) { return 0.1; }; //uplist the mathched nodes
+  insert = remove = function(node) { return 0.01; }; //uplist the mathched nodes
   update = function(nodeA, nodeB) { return nodeA.id !== nodeB.id ? 1 : -1; };
   
   var tree1 = this.defToTree(def1);
@@ -1453,6 +1453,9 @@ AppController.prototype.initializeBlocklyStorage = function() {
       function() {
           BlocklyStorage.link(BlockFactory.mainWorkspace);});
   BlockFactory.disableEnableLink();
+};
+
+AppController.prototype.clearBlocklyStorage = function() {
 };
 
 /**
