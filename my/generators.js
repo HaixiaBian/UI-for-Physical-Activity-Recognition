@@ -66,6 +66,26 @@ Blockly.JavaScript['pa_in_place'] = function(block) {
   return code;
 };
 
+Blockly.JavaScript['location_change'] = function(block) {
+  var value_change = Blockly.JavaScript.valueToCode(block, 'CHANGE', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  if (!value_change) {
+    return '';
+  }
+  var code = genDictItemArray("loc_change", value_change);
+  return code;
+};
+
+Blockly.JavaScript['close_to'] = function(block) {
+  var value_person = Blockly.JavaScript.valueToCode(block, 'PERSON', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  if (!value_person) {
+    return '';
+  }
+  var code = genDictItemArray("close_to", value_person);
+  return code;
+};
+
 Blockly.JavaScript['pa_at_time'] = function(block) {
   var value_pa_time = Blockly.JavaScript.valueToCode(block, 'pa_time', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
@@ -243,10 +263,25 @@ Blockly.JavaScript['office'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
+Blockly.JavaScript['work'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"work"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
 Blockly.JavaScript['other'] = function(block) {
   var text_other = block.getFieldValue('Other');
   // TODO: Assemble JavaScript into code variable.
   var code = '"' + text_other + '"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['room'] = function(block) {
+  var dropdown_room = block.getFieldValue('ROOM');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"room", "' + dropdown_room + '"';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
@@ -365,6 +400,20 @@ Blockly.JavaScript['ex_object_stove'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
+Blockly.JavaScript['ex_object_pasta_container'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"pasta_container"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['ex_person_child'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"child"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
 //----------------------------------------------------
 
 Blockly.JavaScript['left_ankle'] = function(block) {
@@ -431,6 +480,18 @@ Blockly.JavaScript['right_thigh'] = function(block) {
   }
   // var code = '{"right_thigh": [' + value_movement + ']"},\n';
   var code = genItemArray("right_thigh", value_movement);
+  return code;
+};
+
+Blockly.JavaScript['torso'] = function(block) {
+  var value_movement = Blockly.JavaScript.valueToCode(block, 'movement', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  if (!value_movement) {
+    value_movement = '""';
+    return '';
+  }
+  // var code = '{"right_thigh": [' + value_movement + ']"},\n';
+  var code = genItemArray("torso", value_movement);
   return code;
 };
 
@@ -516,8 +577,13 @@ Blockly.JavaScript['pos_still'] = function(block) {
 
 Blockly.JavaScript['occa_moving'] = function(block) {
   var dropdown_pos = block.getFieldValue('pos');
+  var value_rate = Blockly.JavaScript.valueToCode(block, 'rate', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = '"occa_moving", "' + dropdown_pos + '"';
+  var def = {"pos": dropdown_pos}
+  if (value_rate) {
+    def["rate"] = JSON.parse(value_rate);
+  }
+  var code = '"occa_moving", ' + JSON.stringify(def);
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };

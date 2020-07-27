@@ -470,6 +470,50 @@ Blockly.defineBlocksWithJsonArray([
   "helpUrl": ""
 },
 {
+  "type": "work",
+  "message0": "Work",
+  "output": null,
+  "colour": 0,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "room",
+  "message0": "Room %1",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "ROOM",
+      "options": [
+        [
+          "kitchen",
+          "kitchen"
+        ],
+        [
+          "bedroom",
+          "bedroom"
+        ],
+        [
+          "living room",
+          "living room"
+        ],
+        [
+          "bathroom",
+          "bathroom"
+        ],
+        [
+          "laundry room",
+          "laundry room"
+        ],
+      ]
+    }
+  ],
+  "output": null,
+  "colour": 0,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
   "type": "other",
   "message0": "Other %1",
   "args0": [
@@ -1106,6 +1150,24 @@ Blockly.defineBlocksWithJsonArray([
   "helpUrl": ""
 },
 {
+  "type": "ex_object_pasta_container",
+  "message0": "Pasta Container",
+  "inputsInline": false,
+  "output": "ex_object",
+  "colour": 150,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "ex_person_child",
+  "message0": "Child",
+  "inputsInline": false,
+  "output": "ex_person",
+  "colour": 150,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
   "type": "duration_act",
   "message0": " %1",
   "args0": [
@@ -1260,6 +1322,21 @@ Blockly.defineBlocksWithJsonArray([
   "helpUrl": ""
 },
 {
+  "type": "torso",
+  "message0": "Torso %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "movement"
+    }
+  ],
+  "previousStatement": "bodypart_desc",
+  "nextStatement": "bodypart_desc",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
   "type": "left_ankle_left_output",
   "message0": "Left ankle %1",
   "args0": [
@@ -1352,6 +1429,24 @@ Blockly.defineBlocksWithJsonArray([
 {
   "type": "right_thigh_left_output",
   "message0": "Right thigh %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "movement",
+      "check": [
+        "pose",
+        "pattern"
+      ]
+    }
+  ],
+  "output": "bodypart_desc",
+  "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "torso_left_output",
+  "message0": "Torso %1",
   "args0": [
     {
       "type": "input_value",
@@ -1603,7 +1698,15 @@ Blockly.defineBlocksWithJsonArray([
         [
           "pointing up",
           "up"
-        ]
+        ],
+        [
+          "leaning forward",
+          "lean_forward"
+        ],
+        [
+          "leaning backward",
+          "lean_backward"
+        ],
       ]
     }
   ],
@@ -1614,7 +1717,7 @@ Blockly.defineBlocksWithJsonArray([
 },
 {
   "type": "occa_moving",
-  "message0": "occasionally moving %1 without any order or pattern:   %2 %3",
+  "message0": "occasionally moving %1 without any order or pattern:   %2 %3 rate %4",
   "args0": [
     {
       "type": "input_dummy"
@@ -1637,8 +1740,21 @@ Blockly.defineBlocksWithJsonArray([
         [
           "pointing up",
           "up"
-        ]
+        ],
+        [
+          "leaning forward",
+          "lean_forward"
+        ],
+        [
+          "leaning backward",
+          "lean_backward"
+        ],
       ]
+    },
+    {
+      "type": "input_value",
+      "name": "rate",
+      "align": "right",
     }
   ],
   "output": "pose",
@@ -2324,6 +2440,41 @@ Blockly.defineBlocksWithJsonArray([
   "previousStatement": "bodypart_desc",
   "nextStatement": "bodypart_desc",
   "colour": 180,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "location_change",
+  "message0": "Location change %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "CHANGE",
+      "check": [
+        "Boolean",
+        "rel"
+      ]
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 0,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "close_to",
+  "message0": "Close to %1",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "PERSON",
+      "check": "ex_person"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 150,
   "tooltip": "",
   "helpUrl": ""
 },

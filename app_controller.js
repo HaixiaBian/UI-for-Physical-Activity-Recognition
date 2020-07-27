@@ -100,8 +100,8 @@ AppController.prototype.importBlockLibraryFromFile = function() {
       self.blockLibraryController.setBlockLibraryStorage(blockLibStorage);
       // Update the block library dropdown.
       self.blockLibraryController.populateBlockLibrary();
-      // // Update the exporter's block library storage.
-      // self.exporter.setBlockLibraryStorage(blockLibStorage);
+      // Update the exporter's block library storage.
+      self.exporter.setBlockLibraryStorage(blockLibStorage);
     });
     // Read the file.
     fileReader.readAsText(file);
@@ -118,8 +118,8 @@ AppController.prototype.exportBlockLibraryToFile = function() {
   // Concatenate the XMLs, each separated by a blank line.
   var blockLibText = this.formatBlockLibraryForExport_(blockLib);
   // Get file name.
-  var filename = prompt('Enter the file name under which to save your defined ' +
-      'activites.', 'activities.xml');
+  var filename = prompt('Enter the file name under which to save your block ' +
+      'library.', 'library.xml');
   // Download file if all necessary parameters are provided.
   if (filename) {
     FactoryUtils.createAndDownloadFile(blockLibText, filename, 'xml');
@@ -127,7 +127,7 @@ AppController.prototype.exportBlockLibraryToFile = function() {
         BlocklyDevTools.Analytics.BLOCK_FACTORY_LIBRARY,
         { format: BlocklyDevTools.Analytics.FORMAT_XML });
   } else {
-    var msg = 'Could not export defined activites without file name under which ' +
+    var msg = 'Could not export Block Library without file name under which ' +
       'to save library.';
     BlocklyDevTools.Analytics.onWarning(msg);
     alert(msg);
@@ -1136,7 +1136,7 @@ AppController.prototype.getBodyPartListCurrActRate = function(block) {
   var bplist = {};
   var def = root_def['body_parts'];
   forEachBP(def, function(bodypart, bp) {
-    if (bp[0] == "pattern") {
+    if (bp[0] == "pattern" || bp[0] == 'occa_moving') {
       bplist[bodypart] = true;
     }
   });
@@ -1170,7 +1170,7 @@ AppController.prototype.getBodyPartListExceptCurrActRate = function(cur_block) {
     }
     var def = block_def['body_parts'];
     forEachBP(def, function(bodypart, bp) {
-      if (bp[0] == "pattern") {
+      if (bp[0] == "pattern" || bp[0] == 'occa_moving') {
         bplist[bodypart] = true;
       }
     });
@@ -1202,7 +1202,7 @@ AppController.prototype.getActivityListHasBodyPartRate = function(cur_block, bod
       continue;
     }
     findBP(block_def['body_parts'], bodypart, function(bp) {    
-      if (bp[0] == "pattern") {
+      if (bp[0] == "pattern" || bp[0] == 'occa_moving') {
         actlist.push(pa_name);
       }
     });
