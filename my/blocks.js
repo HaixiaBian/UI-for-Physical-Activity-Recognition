@@ -2463,6 +2463,24 @@ Blockly.defineBlocksWithJsonArray([
   "helpUrl": ""
 },
 {
+  "type": "loc_ch_yes",
+  "message0": "Yes",
+  "inputsInline": false,
+  "output": "Boolean",
+  "colour": 0,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "loc_ch_no",
+  "message0": "No",
+  "inputsInline": false,
+  "output": "Boolean",
+  "colour": 0,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
   "type": "close_to",
   "message0": "Close to %1",
   "args0": [

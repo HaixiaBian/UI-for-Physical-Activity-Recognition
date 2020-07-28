@@ -286,6 +286,20 @@ Blockly.JavaScript['room'] = function(block) {
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 
+Blockly.JavaScript['loc_ch_yes'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"yes"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
+Blockly.JavaScript['loc_ch_no'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '"no"';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_ATOMIC];
+};
+
 //----------------------------------------------------
 
 Blockly.JavaScript['time'] = function(block) {
