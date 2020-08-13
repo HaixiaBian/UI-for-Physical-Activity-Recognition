@@ -82,7 +82,7 @@ button, .buttonStyle {
   color: #000;
   padding: 10px;
   margin: 10px 5px;
-  font-size: small;
+  font-size: medium;
 }
 
 .buttonStyle:hover:not(:disabled), button:hover:not(:disabled) {
@@ -103,15 +103,15 @@ button, .buttonStyle {
   overflow-y: scroll;
 }
 
-#button_blockLib {
-  border-color: darkgrey;
-  font-size: large;
-}
-
-#button_DelblockLib {
-  border-color: darkgrey;
-  font-size: large;
-}
+//#button_blockLib {
+//  border-color: darkgrey;
+//  font-size: large;
+//}
+//
+//#button_DelblockLib {
+//  border-color: darkgrey;
+//  font-size: large;
+//}
 
 .button_alert {
   background-color: #fcc;
@@ -170,6 +170,11 @@ button, .buttonStyle {
   background-color: #DDD;
 }
 
+/* Widen the category colour bar */
+.blocklyTreeRow {
+  border-left: 12px;
+}
+
 /* Show the dropdown menu */
 .show {
   display: block;
@@ -223,7 +228,7 @@ button, .buttonStyle {
 		<td id="blockLibraryContainer">
       <span>
         <div class="dropdown">
-        <button id="button_blockLib">Activities</button>
+        <button id="button_blockLib">Define/List/Edit Activities</button>
         <div id="dropdownDiv_blockLib" class="dropdown-content">
           <a id="createNewBlockButton">Create New Activity</a>
         </div>
@@ -252,12 +257,19 @@ button, .buttonStyle {
       <input id="files" type="file" name="files" accept="application/xml">
 		</td>
 		<td id="blockLibraryControls">
-		<button id="saveToBlockLibraryButton" title="Save block to Block Library.">
-		  Save "new_activity"
-		</button>
-		<button id="removeBlockFromLibraryButton" title="Remove block from Block Library.">
-		  Delete "new_activity"
-		</button>
+			<div style="display: flex; justify-content: space-between;">
+			<div style="display: inline-block; align-self: center; font-size: large; font-weight: bold;">
+				<span>Similar activity definitions</span>
+			</div>
+            <div style="display: inline-block;">
+				<button id="saveToBlockLibraryButton" title="Save block to Block Library.">
+				  Save "new_activity"
+				</button>
+				<button id="removeBlockFromLibraryButton" title="Remove block from Block Library.">
+				  Delete "new_activity"
+				</button>
+			</div>
+			</div>
 		</td>
 	  </tr>
 	  <tr>
@@ -309,9 +321,9 @@ button, .buttonStyle {
 <!--			<block type="br_lt"></block>-->
 <!--			<block type="br_sim"></block>-->
 			<block type="br_normal"></block>
-			<block type="br_act"></block>
+<!--			<block type="br_act"></block>-->
 		</category>
-		<category name="Objects/People" colour=150>
+		<category name="External" colour=150>
 			<block type="pa_object"></block>
 			<block type="ex_object_iron"></block>
 			<block type="ex_object_bike"></block>
@@ -471,7 +483,7 @@ button, .buttonStyle {
 			<block type="temporal_order_during_leftoutput"></block>
 		</category>
 		<sep></sep>
-		<category name="My physical activities" custom="DEFINED_ACTIVITIES" colour=300>
+		<category name="Activities as blocks" custom="DEFINED_ACTIVITIES" colour=300>
 		</category>
 		
 	</xml>

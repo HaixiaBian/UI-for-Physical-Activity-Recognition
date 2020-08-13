@@ -106,6 +106,8 @@ Blockly.Toolbox = function(workspace) {
    * @private
    */
   this.flyout_ = null;
+  
+  this.blockIndex = {};
 };
 
 /**
@@ -242,6 +244,7 @@ Blockly.Toolbox.prototype.renderTree = function(languageTree) {
   }
   this.addColour_();
   this.position();
+  this.setState_();
 
   // Trees have an implicit orientation of vertical, so we only need to set this
   // when the toolbox is in horizontal mode.
@@ -250,6 +253,14 @@ Blockly.Toolbox.prototype.renderTree = function(languageTree) {
         /** @type {!Element} */ (this.tree_.getElement()),
         Blockly.utils.aria.State.ORIENTATION, 'horizontal');
   }
+};
+
+Blockly.Toolbox.prototype.setState_ = function() {
+  this.tree_.forEachChild(function(node) {
+    if (node.disabled_) {
+      node.disable();
+    }
+  });
 };
 
 /**
@@ -475,6 +486,10 @@ Blockly.Toolbox.prototype.syncTrees_ = function(treeIn, treeOut, pathToMedia) {
         } else {
           childOut.setExpanded(false);
         }
+        
+        if (childIn.getAttribute('disabled') == 'true') {
+          childOut.disabled_ = true;
+        }
         lastElement = childIn;
         break;
       case 'SEP':
@@ -492,6 +507,7 @@ Blockly.Toolbox.prototype.syncTrees_ = function(treeIn, treeOut, pathToMedia) {
       case 'LABEL':
       case 'BUTTON':
         treeOut.blocks.push(childIn);
+        this.blockIndex[childIn.getAttribute('type')] = treeOut;
         lastElement = childIn;
         break;
     }
@@ -618,7 +634,7 @@ Blockly.Toolbox.prototype.addColour_ = function(opt_tree) {
     var element = child.getRowElement();
     if (element) {
       if (this.hasColours_) {
-        var border = '8px solid ' + (child.hexColour || '#ddd');
+        var border = '12px solid ' + (child.hexColour || '#ddd');
       } else {
         var border = 'none';
       }
@@ -711,6 +727,33 @@ Blockly.Toolbox.prototype.selectFirstCategory = function() {
   if (!selectedItem) {
     this.tree_.selectChild();
   }
+};
+
+Blockly.Toolbox.prototype.enableCategory = function(categoryName) {
+  var node = this.tree_.findNodeByContent(categoryName);
+  node.enable();
+}
+
+Blockly.Toolbox.prototype.disableCategory = function(categoryName) {
+  var node = this.tree_.findNodeByContent(categoryName);
+  node.disable();
+}
+
+Blockly.Toolbox.prototype.enableAll = function() {
+  this.tree_.forEachChild(function(node) {
+    node.enable();
+  });
+}
+
+Blockly.Toolbox.prototype.disableAll = function() {
+  this.tree_.forEachChild(function(node) {
+    node.disable();
+  });
+}
+
+Blockly.Toolbox.prototype.selectCategory = function(categoryName) {
+  var node = this.tree_.findNodeByContent(categoryName);
+  node.select();
 };
 
 /**

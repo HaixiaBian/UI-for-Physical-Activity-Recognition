@@ -50,6 +50,11 @@ AppController = function() {
   this.toolbox = null;
   //this.hasExactMatch = false;
   this.rootDef = null;
+
+  this.blockmoved_dx = 0;
+  this.origin_scrollX = null;
+
+  this.defState = 'activity';
 };
 
 // Constant values representing the three tabs in the controller.
@@ -825,6 +830,9 @@ AppController.prototype.libraryMatch = function(event) {
     }
     this.defToTree(root_def);
     BlockFactory.matchesWorkspace.clear();
+    if (Object.keys(root_def).length == 0) {
+      return;
+    }
     
     var allinlib = this.blockLibraryController.storage.blocks;
     //var matches = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
@@ -1295,6 +1303,95 @@ AppController.prototype.updateToolbox = function() {
   BlockFactory.mainWorkspace.updateToolbox(this.toolbox);
 };
 
+AppController.prototype.enableBlock_ = function(blockType) {
+  var blocks = this.toolbox.getElementsByTagName('block');
+  for (var block of blocks) {
+    if (block.getAttribute('type') == blockType) {
+      block.removeAttribute('disabled');
+      break;
+    }
+  }
+};
+
+AppController.prototype.disableBlock_ = function(blockType) {
+  var blocks = this.toolbox.getElementsByTagName('block');
+  for (var block of blocks) {
+    if (block.getAttribute('type') == blockType) {
+      block.setAttribute('disabled', true);
+      break;
+    }
+  }
+};
+
+AppController.prototype.enableAllBlocksInCategory_ = function(categoryName) {
+  var categories = this.toolbox.getElementsByTagName('category');
+  for (var category of categories) {
+    if (category.getAttribute('name') == categoryName) {
+      for (var block of category.children) {
+        block.removeAttribute('disabled');
+      }
+      break;
+    }
+  }
+};
+
+AppController.prototype.disableAllBlocksInCategory_ = function(categoryName) {
+  var categories = this.toolbox.getElementsByTagName('category');
+  for (var category of categories) {
+    if (category.getAttribute('name') == categoryName) {
+      for (var block of category.children) {
+        block.setAttribute('disabled', true);
+      }
+      break;
+    }
+  }
+};
+
+AppController.prototype.enableCategory_ = function(categoryName) {
+  var categories = this.toolbox.getElementsByTagName('category');
+  for (var category of categories) {
+    if (category.getAttribute('name') == categoryName) {
+      category.removeAttribute('disabled');
+      break;
+    }
+  }
+};
+
+AppController.prototype.disableCategory_ = function(categoryName) {
+  var categories = this.toolbox.getElementsByTagName('category');
+  for (var category of categories) {
+    if (category.getAttribute('name') == categoryName) {
+      category.setAttribute('disabled', true);
+      break;
+    }
+  }
+};
+
+AppController.prototype.enableAllCategories_ = function() {
+  var categories = this.toolbox.getElementsByTagName('category');
+  for (var category of categories) {
+    category.removeAttribute('disabled');
+  }
+};
+
+AppController.prototype.disableAllCategories_ = function() {
+  var categories = this.toolbox.getElementsByTagName('category');
+  for (var category of categories) {
+    category.setAttribute('disabled', true);
+  }
+};
+
+AppController.prototype.highlightEnabledCategories = function() {
+  var categories = this.toolbox.getElementsByTagName('category');
+  for (var category of categories) {
+    if (!category.getAttribute('disabled')) {
+      var node = this.toolbox_.tree_.findNodeByContent(category.getAttribute('name'));
+      node.element_.backgroundColor = 'white';
+    }
+    category.removeAttribute('disabled');
+  }
+};
+
 AppController.prototype.checkValidDefinition = function(root_def) {
   var self = this;
   
@@ -1351,6 +1448,428 @@ var treeify = function(tree, indent) {
   return ret;
 };
 
+//var defState = null;
+AppController.prototype.handleDefState = function(block) {
+  var self = this;
+  var toolbox = BlockFactory.mainWorkspace.toolbox_;
+  var stateHandlers = {
+    null: function(block) {
+      if (block.type == 'activity') {
+        self.defState = 'activity';
+        self.enableAllCategories_();
+      }
+    },
+    activity: function(block) {
+      // place
+      if (block.type == 'pa_in_place') {
+        var cur_category = 'My places';
+        //self.disableAllBlocksInCategory_(cur_category);
+        self.disableBlock_('pa_in_place');
+        self.disableBlock_('location_change');
+        self.disableBlock_('loc_ch_yes');
+        self.disableBlock_('loc_ch_no');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = block.type;
+      } else if (block.type == 'location_change') {
+        var cur_category = 'My places';
+        self.disableAllBlocksInCategory_(cur_category);
+        self.enableBlock_('loc_ch_yes');
+        self.enableBlock_('loc_ch_no');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = block.type;
+      } else if (block.type == 'pa_at_time') {
+        var cur_category = 'Time of the day';
+        self.disableAllBlocksInCategory_(cur_category);
+        self.enableBlock_('time');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = block.type;
+      } else if (block.type == 'pa_on_day') {
+        var cur_category = 'Day of the week';
+        self.disableAllBlocksInCategory_(cur_category);
+        self.enableBlock_('day');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = block.type;
+      } else if (block.type == 'pa_last_for') {
+        var cur_category = 'Duration';
+        self.disableAllBlocksInCategory_(cur_category);
+        self.enableBlock_('duration');
+        self.enableBlock_('duration_sim');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.enableCategory_('Comparisons');
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = block.type;
+      } else if (block.type == 'pa_br') {
+        var cur_category = 'Breathing rate';
+        self.disableAllBlocksInCategory_(cur_category);
+        self.enableBlock_('br_normal');
+        //self.enableBlock_('br_act');
+        self.updateToolbox();
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.enableCategory_('Comparisons');
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = block.type;
+      } else if (block.type == 'pa_object') {
+        var cur_category = 'External';
+        self.disableAllBlocksInCategory_(cur_category);
+        self.enableBlock_('ex_object_iron');
+        self.enableBlock_('ex_object_bike');
+        self.enableBlock_('ex_object_fryingpan');
+        self.enableBlock_('ex_object_stove');
+        self.enableBlock_('ex_object_pasta_container');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = block.type;
+      } else if (block.type == 'close_to') {
+        var cur_category = 'External';
+        self.disableAllBlocksInCategory_(cur_category);
+        self.enableBlock_('ex_person_child');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = block.type;
+      } else if (block.type == 'body_parts') {
+        var cur_category = 'Body parts';
+        self.disableAllBlocksInCategory_(cur_category);
+        self.enableBlock_('left_ankle');
+        self.enableBlock_('right_ankle');
+        self.enableBlock_('left_wrist');
+        self.enableBlock_('right_wrist');
+        self.enableBlock_('left_thigh');
+        self.enableBlock_('right_thigh');
+        self.enableBlock_('torso');
+        self.enableBlock_('mov_sequential');
+        self.enableBlock_('mov_simultaneous');
+        self.enableBlock_('mov_sequential_with_option');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = block.type;
+      } else if (block.type == 'left_ankle' ||
+                 block.type == 'right_ankle' ||
+                 block.type == 'left_wrist' ||
+                 block.type == 'right_wrist' ||
+                 block.type == 'left_thigh' ||
+                 block.type == 'right_thigh' ||
+                 block.type == 'torso') {
+        this.body_parts(block);
+      } else if (block.type == 'order_in_time') {
+        var cur_category = 'Order in time';
+        self.disableAllBlocksInCategory_(cur_category);
+        self.enableBlock_('temporal_order_before_leftoutput');
+        self.enableBlock_('temporal_order_after_leftoutput');
+        self.enableBlock_('temporal_order_meets_leftoutput');
+        self.enableBlock_('temporal_order_overlaps_leftoutput');
+        self.enableBlock_('temporal_order_starts_leftoutput');
+        self.enableBlock_('temporal_order_during_leftoutput');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = block.type;
+      }
+    },
+    pa_in_place: function(block) {
+      if (block.type == 'home' ||
+          block.type == 'school' ||
+          block.type == 'office' ||
+          block.type == 'work' ||
+          block.type == 'room') {
+        self.enableAllBlocksInCategory_('My places');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      }
+    },
+    location_change: function(block) {
+      if (block.type == 'loc_ch_yes' ||
+          block.type == 'loc_ch_no') {
+        self.enableAllBlocksInCategory_('My places');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      }
+    },
+    pa_at_time: function(block) {
+      if (block.type == 'time') {
+        self.enableAllBlocksInCategory_('Time of the day');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      }
+    },
+    pa_on_day: function(block) {
+      if (block.type == 'day') {
+        self.enableAllBlocksInCategory_('Day of the week');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      }
+    },
+    pa_last_for: function(block) {
+      if (block.type == 'duration') {
+        self.enableAllBlocksInCategory_('Duration');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      } else if (block.type == 'duration_sim') {
+        var cur_category = 'Duration';
+        self.disableAllBlocksInCategory_(cur_category);
+        self.enableBlock_('duration_act');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = block.type;
+      }
+    },
+    duration_sim: function(block) {
+      if (block.type == 'duration_act') {
+        self.enableAllBlocksInCategory_('Duration');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      }
+    },
+    pa_br: function(block) {
+      if (block.type == 'br_normal') {
+        self.enableAllBlocksInCategory_('Breathing rate');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      } else if (block.type == 'ass_similar_to' ||
+                 block.type == 'ass_different_from' ||
+                 block.type == 'ass_greater_than' ||
+                 block.type == 'ass_lower_than') {
+        var cur_category = 'Activities as blocks';
+        //self.disableAllBlocksInCategory_(cur_category);
+        //self.enableBlock_('duration_act');
+        //self.updateToolbox();
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = 'br_comp';
+      }
+    },
+    br_comp: function(block) {
+      if (block.type == 'pa_activity_defined') {
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      }
+    },
+    pa_object: function(block) {
+      if (block.type == 'ex_object_iron' ||
+          block.type == 'ex_object_bike' ||
+          block.type == 'ex_object_fryingpan' ||
+          block.type == 'ex_object_stove' ||
+          block.type == 'ex_object_pasta_container') {
+        self.enableAllBlocksInCategory_('External');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      }
+    },
+    close_to: function(block) {
+      if (block.type == 'ex_person_child') {
+        self.enableAllBlocksInCategory_('External');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      }
+    },
+    body_parts: function(block) {
+      if (block.type == 'left_ankle' ||
+          block.type == 'right_ankle' ||
+          block.type == 'left_wrist' ||
+          block.type == 'right_wrist' ||
+          block.type == 'left_thigh' ||
+          block.type == 'right_thigh' ||
+          block.type == 'torso') {
+        var cur_category = 'Body parts';
+        self.disableAllBlocksInCategory_(cur_category);
+        self.enableBlock_('pos_still');
+        self.enableBlock_('occa_moving');
+        self.enableBlock_('mov_pattern_value_input');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = 'bp_movement';
+      } else if (block.type == 'mov_sequential'||
+                 block.type == 'mov_simultaneous'||
+                 block.type == 'mov_sequential_with_option') {
+        toolbox.selectCategory('Body parts');
+      }
+    },
+    bp_movement: function(block) {
+      if (block.type == 'pos_still' ||
+          block.type == 'occa_moving') {
+        self.enableAllBlocksInCategory_('Body parts');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      } else if (block.type == 'mov_pattern_value_input') {
+        var cur_category = 'Body parts';
+        self.disableAllBlocksInCategory_(cur_category);
+        self.enableBlock_('mov_motion_type');
+        self.enableBlock_('mov_manner_bodypart_left_output');
+        self.enableBlock_('mov_manner_activity_left_output');
+        self.enableBlock_('mov_manner_bodypart_activity_left_output');
+        self.enableBlock_('mov_rate_bodypart_left_output');
+        self.enableBlock_('mov_rate_activity_left_output');
+        self.enableBlock_('mov_rate_bodypart_activity_left_output');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = 'mov_pattern';
+      }
+    },
+    mov_pattern: function(block) {
+      if (block.type == 'mov_motion_type') {
+        var cur_category = 'Body parts';
+        self.disableBlock_('mov_motion_type');
+        self.disableBlock_('mov_manner_bodypart_left_output');
+        self.disableBlock_('mov_manner_activity_left_output');
+        self.disableBlock_('mov_manner_bodypart_activity_left_output');
+        self.enableBlock_('mov_motion_plane');
+        self.enableBlock_('mov_motion_plane_sim_bodypart');
+        self.enableBlock_('mov_motion_plane_sim_activity');
+        self.enableBlock_('mov_motion_plane_sim_bodypart_activity');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = 'mov_pattern_t';
+      } else if (block.type == 'mov_manner_bodypart_left_output' ||
+                 block.type == 'mov_manner_activity_left_output' ||
+                 block.type == 'mov_manner_bodypart_activity_left_output') {
+        self.enableAllBlocksInCategory_('Body parts');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      } else if (block.type == 'mov_rate_bodypart_left_output' ||
+                 block.type == 'mov_rate_activity_left_output' ||
+                 block.type == 'mov_rate_bodypart_activity_left_output') {
+        var cur_category = 'Body parts';
+        self.disableBlock_('mov_rate_bodypart_left_output');
+        self.disableBlock_('mov_rate_activity_left_output');
+        self.disableBlock_('mov_rate_bodypart_activity_left_output');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+      }
+    },
+    mov_pattern_t: function(block) {
+      if (block.type == 'mov_motion_plane' ||
+          block.type == 'mov_motion_plane_sim_bodypart' ||
+          block.type == 'mov_motion_plane_sim_activity' ||
+          block.type == 'mov_motion_plane_sim_bodypart_activity') {
+        self.enableAllBlocksInCategory_('Body parts');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      } else if (block.type == 'mov_rate_bodypart_left_output' ||
+                 block.type == 'mov_rate_activity_left_output' ||
+                 block.type == 'mov_rate_bodypart_activity_left_output') {
+        var cur_category = 'Body parts';
+        self.disableBlock_('mov_rate_bodypart_left_output');
+        self.disableBlock_('mov_rate_activity_left_output');
+        self.disableBlock_('mov_rate_bodypart_activity_left_output');
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+      }
+    },
+    order_in_time: function(block) {
+      if (block.type == 'temporal_order_before_leftoutput' ||
+          block.type == 'temporal_order_after_leftoutput' ||
+          block.type == 'temporal_order_meets_leftoutput' ||
+          block.type == 'temporal_order_overlaps_leftoutput' ||
+          block.type == 'temporal_order_starts_leftoutput' ||
+          block.type == 'temporal_order_during_leftoutput') {
+        self.enableAllBlocksInCategory_('Order in time');
+        var cur_category = 'Activities as blocks';
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = 'order_in_time_rel';
+      }
+    },
+    order_in_time_rel: function(block) {
+      if (block.type == 'pa_activity_defined') {
+        var cur_category = 'Activities as blocks';
+        self.disableAllCategories_();
+        self.enableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory(cur_category);
+        self.defState = 'order_in_time_act1';
+      }
+    },
+    order_in_time_act1: function(block) {
+      if (block.type == 'pa_activity_defined') {
+        var cur_category = 'Activities as blocks';
+        self.enableAllBlocksInCategory_('Activities as blocks');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
+      }
+    }
+  };
+  if (this.defState in stateHandlers) {
+    console.log('handle block', block.type);
+    stateHandlers[this.defState](block);
+    console.log('state', this.defState);
+  } else {
+  }
+};
+
+AppController.prototype.enableEligibleBlocks = function() {
+  //var uniqueBlocks = ;
+  var w = BlockFactory.mainWorkspace;
+  var blocks = FactoryUtils.getRootBlock(w).getDescendants();
+  for (var block of blocks) {
+    // if (block.type in )
+  }
+  var categories = this.toolbox.getElementsByTagName('category');
+  for (var category of categories) {
+    if (category.getAttribute('name') == categoryName) {
+      for (var block of category.children) {
+        block.removeAttribute('disabled');
+      }
+      break;
+    }
+  }
+
+};
+
+AppController.prototype.highlightRelevantCategories = function() {
+  
+};
 
 /**
  * Add event listeners for the block factory.
@@ -1370,8 +1889,100 @@ AppController.prototype.addBlockFactoryEventListeners = function() {
   //       self.blockLibraryController));
   //   });
   BlockFactory.mainWorkspace.addChangeListener(function(event) {
+    // move workspace when open categories
+    if (event.type != Blockly.Events.UI) {
+      return;
+    }
+    if (event.element != 'category' && event.element != 'selected') {
+      return;
+    }
+
+    var w = BlockFactory.mainWorkspace;
+    
+    if (event.element == 'selected') {
+      if (!event.oldValue || w.getBlockById(event.oldValue)) {
+        return;
+      }
+    }
+    
+    var root_block = FactoryUtils.getRootBlock(w);
+    var oldx = root_block.getRelativeToSurfaceXY().x;
+    if (event.element == 'category' && event.newValue) { // expanded category
+      // get flyout width and current position of root block
+      var fl = w.getFlyout();
+      var flw = fl.getWidth();
+
+      // move definition blocks, record move dis
+      var dx = - w.scrollX + flw;
+      if (dx < 0 && self.origin_scrollX == null) {
+        return;
+      }
+
+      if (self.origin_scrollX == null) {
+        self.origin_scrollX = w.scrollX;
+      } else {
+        if (self.origin_scrollX > w.scrollX + dx) {
+          w.scroll(self.origin_scrollX, w.scrollY);
+          self.blockmoved_dx = 0;
+          self.origin_scrollX = null;
+          return;
+        }
+      }
+      //root_block.moveBy(dx, 0);
+      w.scroll(w.scrollX + dx, w.scrollY);
+      self.blockmoved_dx += dx;
+
+    } else {
+      var dx = self.blockmoved_dx;
+      
+      
+      if (event.newValue) {
+        var block = w.getBlockById(event.newValue);
+        if (block) {
+          console.log('old pos', block.getRelativeToSurfaceXY());
+          console.log('moveby', dx)
+          //block.moveBy(dx, 0);
+          console.log('new pos', block.getRelativeToSurfaceXY());
+        }
+      }
+      
+      //if (dx) {
+        //root_block.moveBy(-dx, 0);
+      console.log('old scroll', w.scrollX);
+      console.log('scrollto', self.origin_scrollX);
+      w.scroll(self.origin_scrollX, w.scrollY);
+      console.log('new scroll', w.scrollX);
+      //}
+      self.blockmoved_dx = 0;
+      self.origin_scrollX = null;
+      
+      //self.highlightEnabledCategories();
+      //w.toolbox_.enableAll();
+    }
+
+  });
+
+  BlockFactory.mainWorkspace.addChangeListener(function(event) {
     if (event.type != Blockly.Events.MOVE &&
         event.type != Blockly.Events.CREATE &&
+        event.type != Blockly.Events.DELETE &&
+        event.type != Blockly.Events.CHANGE) {
+      return;
+    }
+    var block = BlockFactory.mainWorkspace.getBlockById(event.blockId);
+    //console.log(block);
+    if ((event.type == Blockly.Events.CREATE || event.type == Blockly.Events.MOVE) &&
+        block && block.getParent()) {
+      self.handleDefState(block);
+    }
+    
+
+  });
+
+  BlockFactory.mainWorkspace.addChangeListener(function(event) {
+    if (event.type != Blockly.Events.MOVE &&
+        event.type != Blockly.Events.CREATE &&
+        event.type != Blockly.Events.DELETE &&
         event.type != Blockly.Events.CHANGE) {
       return;
     }

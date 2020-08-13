@@ -391,3 +391,14 @@ Blockly.tree.TreeControl.prototype.createNode = function(opt_content) {
   return new Blockly.tree.TreeNode(
       this.toolbox_, opt_content || '', this.config_);
 };
+
+Blockly.tree.TreeControl.prototype.findNodeByContent = function(content) {
+  var ret = null;
+  this.forEachChild(function(node) {
+    if (node.content == content) {
+      ret = node;
+      return;
+    }
+  });
+  return ret;
+}

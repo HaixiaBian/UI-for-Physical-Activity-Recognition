@@ -105,6 +105,8 @@ Blockly.tree.BaseNode = function(content, config) {
    * @private
    */
   this.depth_ = -1;
+
+  this.disabled_ = false;
 };
 Blockly.utils.object.inherits(Blockly.tree.BaseNode, Blockly.Component);
 
@@ -713,6 +715,9 @@ Blockly.tree.BaseNode.prototype.updateIcon_ = function() {
  * @protected
  */
 Blockly.tree.BaseNode.prototype.onMouseDown = function(e) {
+  if (this.disabled_) {
+    return;
+  }
   var el = e.target;
   // expand icon
   var type = el.getAttribute('type');
@@ -908,3 +913,15 @@ Blockly.tree.BaseNode.prototype.setTreeInternal = function(tree) {
     this.forEachChild(function(child) { child.setTreeInternal(tree); });
   }
 };
+
+Blockly.tree.BaseNode.prototype.disable = function() {
+  var el = this.element_;
+  this.disabled_ = true;
+  el.firstElementChild.style.color = '#ccc'
+}
+
+Blockly.tree.BaseNode.prototype.enable = function() {
+  var el = this.element_;
+  this.disabled_ = false;
+  el.firstElementChild.style.removeProperty('color');
+}
