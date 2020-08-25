@@ -1323,6 +1323,15 @@ AppController.prototype.disableBlock_ = function(blockType) {
   }
 };
 
+AppController.prototype.enableAllBlocks_ = function() {
+  var categories = this.toolbox.getElementsByTagName('category');
+  for (var category of categories) {
+    for (var block of category.children) {
+      block.removeAttribute('disabled');
+    }
+  }
+};
+
 AppController.prototype.enableAllBlocksInCategory_ = function(categoryName) {
   var categories = this.toolbox.getElementsByTagName('category');
   for (var category of categories) {
@@ -1448,6 +1457,13 @@ var treeify = function(tree, indent) {
   return ret;
 };
 
+AppController.prototype.resetDefState = function(block) {
+  this.enableAllBlocks_();
+  this.enableAllCategories_();
+  this.updateToolbox();
+  this.defState = 'activity';
+};
+
 //var defState = null;
 AppController.prototype.handleDefState = function(block) {
   var self = this;
@@ -1489,6 +1505,7 @@ AppController.prototype.handleDefState = function(block) {
         self.enableBlock_('time');
         self.disableAllCategories_();
         self.enableCategory_(cur_category);
+        self.enableCategory_('Combinations');
         self.updateToolbox();
         toolbox.selectCategory(cur_category);
         self.defState = block.type;
@@ -1615,6 +1632,33 @@ AppController.prototype.handleDefState = function(block) {
         self.enableAllCategories_();
         self.updateToolbox();
         self.defState = 'activity';
+      } else if (block.type == 'op_and' ||
+                 block.type == 'op_or') {
+        var cur_category = 'Combinations';
+        self.disableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory('Time of the day');
+        self.defState = 'time_op';
+      } else if (block.type == 'op_not') {
+        var cur_category = 'Combinations';
+        self.disableCategory_(cur_category);
+        self.updateToolbox();
+        toolbox.selectCategory('Time of the day');
+        self.defState = 'time_op';
+      }
+    },
+    time_op: function(block) {
+      if (block.type == 'time') {
+        toolbox.selectCategory('Time of the day');
+        self.defState = 'time_op2';
+      }
+    },
+    time_op2: function(block) {
+      if (block.type == 'time') {
+        self.enableAllBlocksInCategory_('Time of the day');
+        self.enableAllCategories_();
+        self.updateToolbox();
+        self.defState = 'activity';
       }
     },
     pa_on_day: function(block) {
@@ -1665,6 +1709,8 @@ AppController.prototype.handleDefState = function(block) {
         //self.enableBlock_('duration_act');
         //self.updateToolbox();
         self.disableAllCategories_();
+        self.enableCategory_('Breathing rate');
+        self.enableBlock_('br_normal');
         self.enableCategory_(cur_category);
         self.updateToolbox();
         toolbox.selectCategory(cur_category);
@@ -1672,7 +1718,8 @@ AppController.prototype.handleDefState = function(block) {
       }
     },
     br_comp: function(block) {
-      if (block.type == 'pa_activity_defined') {
+      if (block.type == 'pa_activity_defined' ||
+          block.type == 'br_normal') {
         self.enableAllCategories_();
         self.updateToolbox();
         self.defState = 'activity';
@@ -1833,9 +1880,6 @@ AppController.prototype.handleDefState = function(block) {
     order_in_time_act1: function(block) {
       if (block.type == 'pa_activity_defined') {
         var cur_category = 'Activities as blocks';
-        self.enableAllBlocksInCategory_('Activities as blocks');
-        self.enableAllCategories_();
-        self.updateToolbox();
         self.defState = 'activity';
       }
     }
@@ -1972,11 +2016,14 @@ AppController.prototype.addBlockFactoryEventListeners = function() {
     var block = BlockFactory.mainWorkspace.getBlockById(event.blockId);
     //console.log(block);
     if ((event.type == Blockly.Events.CREATE || event.type == Blockly.Events.MOVE) &&
-        block && block.getParent()) {
+        event.newParentId) {
       self.handleDefState(block);
     }
     
-
+    if ((event.type == Blockly.Events.MOVE || event.type == Blockly.Events.DELETE) &&
+        !event.newParentId) {
+      self.resetDefState();
+    }
   });
 
   BlockFactory.mainWorkspace.addChangeListener(function(event) {

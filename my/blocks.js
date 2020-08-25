@@ -2149,7 +2149,7 @@ Blockly.defineBlocksWithJsonArray([
 },
 {
   "type": "mov_pattern_value_input",
-  "message0": "Repeating Pattern manner %1 rate %2",
+  "message0": "Repeating Pattern manner %1 rate (optional) %2",
   "args0": [
     {
       "type": "input_value",
