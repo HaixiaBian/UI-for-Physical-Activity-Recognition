@@ -548,9 +548,7 @@ AppController.prototype.assignBlockFactoryClickHandlers = function() {
 };
 
 
-var xmlGetField = function(xml, fieldName) {
-  
-}
+/* parse the PA definition in xml
 var xmlGetInput =  function(xml) {
   return xml.getElementsByTagName('value')[0];
 }
@@ -610,6 +608,8 @@ var xmlToDef = function(xml) {
   console.log(res);
   return res;
 }
+*/
+/* parse the PA definition in block objects
 var blockToConstrain = function(block) {
   var ctype = block.type;
   var converter_map = {
@@ -657,7 +657,9 @@ var blockToDef = function(defblock) {
   console.log(res);
   return res;
 }
-  
+*/
+
+// Check whether two blocks are same on common categories
 var matchBlock = function(src, target) {
   for (k in src) {
     if (!(k in target)) {
@@ -672,6 +674,7 @@ var matchBlock = function(src, target) {
   return true;
 };
 
+// Check whether two blocks are exactly the same
 var matchExact = function(src, target) {
   for (k in src) {
     if (!(k in target)) {
@@ -683,6 +686,7 @@ var matchExact = function(src, target) {
       return false;
     }
   }
+  // check whether one pa have additional categories
   for (k in target) {
     if (!(k in src)) {
       return false;
@@ -691,15 +695,18 @@ var matchExact = function(src, target) {
   return true;
 };
 
+// get root block of the workspace
 AppController.prototype.getRootBlock = function(block) {
   var root_block = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
   return root_block;
 };
 
+// get the whole PA definition in JSON format
 AppController.prototype.getRootDef = function() {
   return this.rootDef;
   var root_block = FactoryUtils.getRootBlock(BlockFactory.mainWorkspace);
   if (root_block) {
+    // generate JSON code with generators for javascript
     var block_code = Blockly.JavaScript.blockToCode(root_block);
     try {
       var block_def = JSON.parse(block_code);
@@ -719,26 +726,25 @@ var allBP = [
   'left_thigh', 'right_thigh'
 ];
 
-
+// add definitions in def as children of node
 function _addChildren(node, def) {
   if (typeof def === 'string') {
     var newnode = {id: def};
     node.children.push(newnode);
   } else if (Array.isArray(def)) {
     if (typeof def[0] === 'string') { // def is a single subtree
-      var newnode = _arrayToTree(def);
-      node.children.push(newnode);
+      var newnode = _arrayToTree(def); // create a subtree with def[0] as root
+      node.children.push(newnode); // add the subtree as the child of node
     } else { // def is several subtrees
-      var key_counts = {}
+      var key_counts = {} // adding number for duplicate keys
       for (var val of def) { // each element is a subtree
         // elements could have duplicate keys
-        var newnode = _arrayToTree(val, key_counts);
+        var newnode = _arrayToTree(val, key_counts); // create a subtree with each val
         node.children.push(newnode);
       }
     }
-  } else { // is a dictionary
-    // sort keys
-    // var sorted_keys
+  } else { // def is a dictionary
+    // sort keys then create as subtree with each item in the dictionary
     for (var key of Object.keys(def).sort()) {
       var val = def[key];
       var newnode = {id: key, children: []};
@@ -774,7 +780,7 @@ function _arrayToTree(arrdef, key_counts) {
 }
 
 
-
+// create a tree sctruture from the JSON definitions
 AppController.prototype.defToTree = function(blockdef) {
   var tree = {id: 'activity', children: []};
   _addChildren(tree, blockdef);
@@ -782,6 +788,7 @@ AppController.prototype.defToTree = function(blockdef) {
   return tree;
 };
 
+// compute the tree edit distance between two activities
 AppController.prototype.editDistanceBlock = function(def1, def2) {
   var insert, remove, update;
   insert = remove = function(node) { return 0.01; }; //uplist the mathched nodes
@@ -797,6 +804,7 @@ AppController.prototype.editDistanceBlock = function(def1, def2) {
   return ted.distance;
 };
 
+// display the matched activities in the right panel
 AppController.prototype.showMatches = function(matches) {
   BlockFactory.matchesWorkspace.clear();
   
@@ -814,13 +822,16 @@ AppController.prototype.showMatches = function(matches) {
   }
 };
 
+// get blocks in the library that matches the current activity
+// this function will be registered as a change event handler to blockly
 AppController.prototype.libraryMatch = function(event) {
   if (event.type == Blockly.Events.MOVE ||
       event.type == Blockly.Events.CREATE ||
       event.type == Blockly.Events.CHANGE) {
-    if (!event.workspaceId) {
+    if (!event.workspaceId) { // the event doesn't happen in a workspace
       return;
     }
+    // get definition of the current activity
     var root_def = Blockly.JavaScript.workspaceToCode(BlockFactory.mainWorkspace);
     console.log(root_def);
     try {
@@ -834,6 +845,7 @@ AppController.prototype.libraryMatch = function(event) {
       return;
     }
     
+    // compare with blocks in the library
     var allinlib = this.blockLibraryController.storage.blocks;
     //var matches = '<xml xmlns="https://developers.google.com/blockly/xml"></xml>';
     //matches = Blockly.Xml.textToDom(matches);
@@ -842,6 +854,7 @@ AppController.prototype.libraryMatch = function(event) {
     for (var pa_name in allinlib) {
       // console.log(pa_name);
       var xml = this.blockLibraryController.storage.getBlockXml(pa_name);
+      // user a hidden workspace to covert the definition
       BlockFactory.hiddenWorkspace.clear();
       var block = Blockly.Xml.domToWorkspace(xml, BlockFactory.hiddenWorkspace);
       block = Blockly.JavaScript.workspaceToCode(BlockFactory.hiddenWorkspace);
@@ -856,12 +869,14 @@ AppController.prototype.libraryMatch = function(event) {
       // if (!matchBlock(root_def, block_def)) {
       //   continue;
       // }
+      // calculate the edit distance
       var d = this.editDistanceBlock(root_def, block_def);
       matches.push([d, xml]);
     }
     BlockFactory.hiddenWorkspace.clear();
     
     // Blockly.Xml.domToWorkspace(matches, BlockFactory.matchesWorkspace);
+    // sort activities based on the edit distance
     matches.sort(function (m1, m2) {
       if (m1[0] > m2[0]) {
         return 1;
@@ -871,18 +886,20 @@ AppController.prototype.libraryMatch = function(event) {
         return 0;
       }
     });
+    // log edit distances
     for (elem of matches) {
       var d = elem[0];
       var xml = elem[1];
       var act_name = xml.children[0].children[0].textContent;
       console.log('Tree Edit Distance', act_name, d);
     }
-    this.showMatches(matches);
+    this.showMatches(matches); // display activities
 
     return;
   }
 };
 
+// recursively iterate def of body parts
 var forEachBP = function(desc_list, callback) {
   for (var item of desc_list) {
     var key = item[0];
@@ -895,6 +912,7 @@ var forEachBP = function(desc_list, callback) {
   }
 };
 
+// recursively find a bodypart in def of body parts
 var findBP = function(desc_list, bodypart, callback) {
   for (var item of desc_list) {
     var key = item[0];
@@ -913,6 +931,7 @@ var findBP = function(desc_list, bodypart, callback) {
   return false;
 };
 
+// get body part list of the current activity for the plane definition 
 AppController.prototype.getBodyPartListCurrActPlane = function(block) {
   var root_def;
   if (!block) {
@@ -950,6 +969,7 @@ AppController.prototype.getBodyPartListCurrActPlane = function(block) {
   return Object.keys(bplist);
 };
 
+// get body part list except for the current activity for the plane definition 
 AppController.prototype.getBodyPartListExceptCurrActPlane = function(cur_block) {
   var bplist = {};
   var allinlib = this.blockLibraryController.storage.blocks;
@@ -983,6 +1003,7 @@ AppController.prototype.getBodyPartListExceptCurrActPlane = function(cur_block) 
   return Object.keys(bplist);
 };
 
+// get activity list the has a bodypart definition for the plane definition 
 AppController.prototype.getActivityListHasBodyPartPlane = function(cur_block, bodypart) {
   var allinlib = this.blockLibraryController.storage.blocks;
   var actlist = [];
@@ -1015,6 +1036,7 @@ AppController.prototype.getActivityListHasBodyPartPlane = function(cur_block, bo
   return actlist;
 };
 
+// get body part list of the current activity for the manner definition 
 AppController.prototype.getBodyPartListCurrActManner = function(block) {
   var root_def;
   if (!block) {
@@ -1052,6 +1074,7 @@ AppController.prototype.getBodyPartListCurrActManner = function(block) {
   return Object.keys(bplist);
 };
 
+// get body part list except for the current activity for the manner definition 
 AppController.prototype.getBodyPartListExceptCurrActManner = function(cur_block) {
   var bplist = {};
   var allinlib = this.blockLibraryController.storage.blocks;
@@ -1085,6 +1108,7 @@ AppController.prototype.getBodyPartListExceptCurrActManner = function(cur_block)
   return Object.keys(bplist);
 };
 
+// get activity list the has a bodypart definition for the manner definition 
 AppController.prototype.getActivityListHasBodyPartManner = function(cur_block, bodypart) {
   var allinlib = this.blockLibraryController.storage.blocks;
   var actlist = [];
@@ -1117,6 +1141,7 @@ AppController.prototype.getActivityListHasBodyPartManner = function(cur_block, b
   return actlist;
 };
 
+// get body part list of the current activity for the rate definition 
 AppController.prototype.getBodyPartListCurrActRate = function(block) {
   var root_def;
   if (!block) {
@@ -1152,6 +1177,7 @@ AppController.prototype.getBodyPartListCurrActRate = function(block) {
   return Object.keys(bplist);
 };
 
+// get body part list except for the current activity for the rate definition 
 AppController.prototype.getBodyPartListExceptCurrActRate = function(cur_block) {
   var bplist = {};
   var allinlib = this.blockLibraryController.storage.blocks;
@@ -1186,6 +1212,7 @@ AppController.prototype.getBodyPartListExceptCurrActRate = function(cur_block) {
   return Object.keys(bplist);
 };
 
+// get activity list the has a bodypart definition for the rate definition 
 AppController.prototype.getActivityListHasBodyPartRate = function(cur_block, bodypart) {
   var allinlib = this.blockLibraryController.storage.blocks;
   var actlist = [];
@@ -1218,6 +1245,7 @@ AppController.prototype.getActivityListHasBodyPartRate = function(cur_block, bod
   return actlist;
 };
 
+// check whether all inputs are filled
 var allInputsFilled = function(block) {
   for (var input of block.inputList) {
     if (input.type == 5) {
@@ -1229,6 +1257,7 @@ var allInputsFilled = function(block) {
   }
   return true;
 };
+// check wheter at least on input is filled
 var atLeastOneInputFilled = function(block) {
   for (var input of block.inputList) {
     if (input.type == 5) {
@@ -1240,6 +1269,7 @@ var atLeastOneInputFilled = function(block) {
   }
   return false;
 };
+// requirement for each block
 var inputCheck = {
   'activity': allInputsFilled,
   'pa_in_place': allInputsFilled,
@@ -1254,6 +1284,7 @@ var inputCheck = {
   'order_in_time': allInputsFilled,
   // 'mov_pattern_value_input': atLeastOneInputFilled,
 };
+// check block inputs based on requirement associated with the block type
 var checkBlockInput = function(block) {
   if (block.isShadow()) {
     return true;
@@ -1270,6 +1301,7 @@ var checkBlockInput = function(block) {
   // }
   return true;
 };
+// check inputs for all blocks
 AppController.prototype.checkInputs = function(block) {
   if (!checkBlockInput(block)) {
     return false;
@@ -1298,11 +1330,12 @@ AppController.prototype.setActivityDef = function(xml) {
 
 //AppController.prototype.updateSaveButtons = 
 
-
+// update the toolbox control
 AppController.prototype.updateToolbox = function() {
   BlockFactory.mainWorkspace.updateToolbox(this.toolbox);
 };
 
+// enable a block in the toolbox
 AppController.prototype.enableBlock_ = function(blockType) {
   var blocks = this.toolbox.getElementsByTagName('block');
   for (var block of blocks) {
@@ -1313,6 +1346,7 @@ AppController.prototype.enableBlock_ = function(blockType) {
   }
 };
 
+// disable a block in the toolbox
 AppController.prototype.disableBlock_ = function(blockType) {
   var blocks = this.toolbox.getElementsByTagName('block');
   for (var block of blocks) {
@@ -1323,6 +1357,7 @@ AppController.prototype.disableBlock_ = function(blockType) {
   }
 };
 
+// enable all blocks in the toolbox
 AppController.prototype.enableAllBlocks_ = function() {
   var categories = this.toolbox.getElementsByTagName('category');
   for (var category of categories) {
@@ -1332,6 +1367,7 @@ AppController.prototype.enableAllBlocks_ = function() {
   }
 };
 
+// enable all blocks in a category
 AppController.prototype.enableAllBlocksInCategory_ = function(categoryName) {
   var categories = this.toolbox.getElementsByTagName('category');
   for (var category of categories) {
@@ -1344,6 +1380,7 @@ AppController.prototype.enableAllBlocksInCategory_ = function(categoryName) {
   }
 };
 
+// disable all blocks in a category
 AppController.prototype.disableAllBlocksInCategory_ = function(categoryName) {
   var categories = this.toolbox.getElementsByTagName('category');
   for (var category of categories) {
@@ -1356,6 +1393,7 @@ AppController.prototype.disableAllBlocksInCategory_ = function(categoryName) {
   }
 };
 
+// enable a category
 AppController.prototype.enableCategory_ = function(categoryName) {
   var categories = this.toolbox.getElementsByTagName('category');
   for (var category of categories) {
@@ -1366,6 +1404,7 @@ AppController.prototype.enableCategory_ = function(categoryName) {
   }
 };
 
+// enable a category
 AppController.prototype.disableCategory_ = function(categoryName) {
   var categories = this.toolbox.getElementsByTagName('category');
   for (var category of categories) {
@@ -1376,6 +1415,7 @@ AppController.prototype.disableCategory_ = function(categoryName) {
   }
 };
 
+// enable all categories
 AppController.prototype.enableAllCategories_ = function() {
   var categories = this.toolbox.getElementsByTagName('category');
   for (var category of categories) {
@@ -1383,6 +1423,7 @@ AppController.prototype.enableAllCategories_ = function() {
   }
 };
 
+// disable all categories
 AppController.prototype.disableAllCategories_ = function() {
   var categories = this.toolbox.getElementsByTagName('category');
   for (var category of categories) {
@@ -1390,6 +1431,7 @@ AppController.prototype.disableAllCategories_ = function() {
   }
 };
 
+// highlight enabled categories in the toolbox
 AppController.prototype.highlightEnabledCategories = function() {
   var categories = this.toolbox.getElementsByTagName('category');
   for (var category of categories) {
@@ -1401,6 +1443,7 @@ AppController.prototype.highlightEnabledCategories = function() {
   }
 };
 
+// check whether the current definition is valid to save and update the save button accordingly
 AppController.prototype.checkValidDefinition = function(root_def) {
   var self = this;
   
@@ -1434,6 +1477,7 @@ AppController.prototype.checkValidDefinition = function(root_def) {
   }
 };
 
+// convert the tree to a string representation
 var treeify = function(tree, indent) {
   if (!tree) {
     return '';
@@ -1457,6 +1501,7 @@ var treeify = function(tree, indent) {
   return ret;
 };
 
+// reset the toolbox state
 AppController.prototype.resetDefState = function(block) {
   this.enableAllBlocks_();
   this.enableAllCategories_();
@@ -1464,7 +1509,8 @@ AppController.prototype.resetDefState = function(block) {
   this.defState = 'activity';
 };
 
-//var defState = null;
+// handle the new added block based on the current state and
+// change the current state of the toolbox
 AppController.prototype.handleDefState = function(block) {
   var self = this;
   var toolbox = BlockFactory.mainWorkspace.toolbox_;
@@ -1892,6 +1938,7 @@ AppController.prototype.handleDefState = function(block) {
   }
 };
 
+/* enable all blocks that are valid to add to the current definition
 AppController.prototype.enableEligibleBlocks = function() {
   //var uniqueBlocks = ;
   var w = BlockFactory.mainWorkspace;
@@ -1910,10 +1957,8 @@ AppController.prototype.enableEligibleBlocks = function() {
   }
 
 };
+*/
 
-AppController.prototype.highlightRelevantCategories = function() {
-  
-};
 
 /**
  * Add event listeners for the block factory.
@@ -2007,6 +2052,7 @@ AppController.prototype.addBlockFactoryEventListeners = function() {
   });
 
   BlockFactory.mainWorkspace.addChangeListener(function(event) {
+    // handle toolbox state when adding or removing a block
     if (event.type != Blockly.Events.MOVE &&
         event.type != Blockly.Events.CREATE &&
         event.type != Blockly.Events.DELETE &&

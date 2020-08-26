@@ -2528,11 +2528,13 @@ var getDropdownText = function(value) {
   return dropdownTextMap[value];
 }
 
+// list of all bodypart in dropdown
 var dropdownAllBP = [["", ""]];
 for (var key in dropdownTextMap) {
   dropdownAllBP.push([getDropdownText(key), key]);
 }
 
+// convert the actlist to a dropdown list
 var getBPDropdownList = function(bplist) {
           var dropdown_list = [];
           for (var bp of bplist) {
@@ -2543,6 +2545,7 @@ var getBPDropdownList = function(bplist) {
           }
           return dropdown_list;
 }
+// convert the actlist to a dropdown list
 var getActDropdownList = function(actlist) {
           var dropdown_list = [];
           for (var act of actlist) {
@@ -2554,6 +2557,9 @@ var getActDropdownList = function(actlist) {
           return dropdown_list;
 }
 
+// check whether the block need dynamic fields based on its current position
+// if the block isn't in the mainWorkspace or it isn't rendered,
+// then we don't need the dynamic fields
 var needDynamicFields = function(block) {
   if ((block.workspace != BlockFactory.mainWorkspace)) {
   //if ((!block.isInFlyout && block.workspace != BlockFactory.mainWorkspace)) {
@@ -2568,6 +2574,7 @@ var needDynamicFields = function(block) {
   // }
   return true;
 };
+// check whether the block need all values to work properly
 var needFieldValues = function(block) {
   if (block.isInFlyout) {
     return false;
@@ -2575,6 +2582,7 @@ var needFieldValues = function(block) {
   return true;
 };
 
+// generate a static list with all values or no value
 var genStaticBPList = function(block) {
   if (needFieldValues(block)) {
     return dropdownAllBP;
@@ -2583,6 +2591,7 @@ var genStaticBPList = function(block) {
   }
 };
 
+// generate a static list with all values or no value
 var genStaticActList = function(block) {
   if (needFieldValues(block)) {
     var actlist = blocklyFactory.blockLibraryController.getBlockTypesInLibrary();
@@ -2593,7 +2602,7 @@ var genStaticActList = function(block) {
   }
 };
 
-
+// find what bodypart the block belongs to
 var getBodyPartBelonging = function(block) {
   var p = block;
   while (p && p.type != 'mov_pattern_value_input') {
@@ -2605,7 +2614,7 @@ var getBodyPartBelonging = function(block) {
   return null;
 };
 
-
+// generating dynamic fields
 Blockly.Blocks['mov_manner_bodypart'] = {
   init: function() {
     var block = this;
